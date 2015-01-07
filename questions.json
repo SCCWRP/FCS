@@ -1,0 +1,63 @@
+[
+  {
+	"title": "Do you speak English?",
+	"action": "none",
+      	"num": "q11",
+      	"type": "radio",
+      	"menu": "Yes,No",
+        "other": "n",
+	"otype": "",
+	"check": "0,1",
+  	"answer": "",
+	"decline": "no",
+	"declinedefault": "",
+	"errmessage": "We are sorry, but we are only enrolling surfers who speak English.",
+      	"status": "incomplete",
+      	"id": "1"
+  },
+  {
+	"title": "Are you 18 years or older?",
+	"action": "none",
+      	"num": "q12",
+      	"type": "radio",
+      	"menu": "Yes,No",
+        "other": "n",
+	"otype": "",
+  	"answer": "",
+	"decline": "no",
+	"declinedefault": "",
+	"errmessage": "We are sorry, but we are only enrolling surfers are 18 years or older.",
+      	"status": "incomplete",
+      	"id": "2"
+  },
+  {
+	"title": "Do you plan to surf in California in the next 3 months?",
+	"action": "none",
+      	"num": "q13",
+      	"type": "radio",
+      	"menu": "Yes,No",
+        "other": "n",
+	"otype": "",
+  	"answer": "",
+	"decline": "no",
+	"declinedefault": "",
+	"errmessage": "We are sorry, but we are only enrolling surfers who plan to surf in California in the next 3 months.",
+      	"status": "incomplete",
+      	"id": "3"
+  },
+  {
+	"title": "Do you have internet access with a computer or a smartphone?",
+	"action": "none",
+      	"num": "q14",
+      	"type": "radio",
+      	"menu": "Yes,No",
+        "other": "n",
+	"otype": "",
+  	"answer": "",
+	"decline": "no",
+	"declinedefault": "",
+	"errmessage": "We are sorry, but we are only enrolling surfers who have internet access, because the study will rely on reporting through the web.",
+      	"status": "incomplete",
+      	"id": "4"
+  }
+]
