@@ -7,7 +7,7 @@ var QuestionList = Backbone.Collection.extend({
 		//this.on('sync',this.getQuestion,this);
 	},
     	getQuestion: function(){
-		//console.log("getQuestion");
+		console.log("getQuestion");
 		var that = this;
 		var valLU = {};
 		var validationFuncs = {

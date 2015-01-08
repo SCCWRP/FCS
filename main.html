@@ -38,15 +38,20 @@
     	<script type="text/template" id="tpl-intro-details">
 	<div id="landing" data-theme="b">
 	  <ul id="landList" data-role="listview">
-		<li class="boxed2"><a id='landingSurvey'><h1><center><span class="liDown"><br>Sign In/Enroll</span></center></h1></a></li>
-		<li class="boxed2"><a id='landingSurf'><h1><center><span class="liDown"><br>Find a Surf Spot</span></center></h1></a></li>
-		<li class="boxed2"><a id='landingContact'><h1><center><span class="liDown"><br>Contact Us</span></center></h1></a></li>
-		<li class="boxed2"><a id='landingCamera'><h1><center><span class="liDown"><br>Camera</span></center></h1></a></li>
+		<li class="boxed2"><a id='startSurvey'><h1><center><span class="liDown"><br>Start Survey</span></center></h1></a></li>
+		<li class="boxed2"><a id='saveLocal'><h1><center><span class="liDown"><br>Save Local</span></center></h1></a></li>
+		<li class="boxed2"><a id='saveLocalSD'><h1><center><span class="liDown"><br>Save Local Storage Device</span></center></h1></a></li>
+		<li class="boxed2"><a id='showGPS'><h1><center><span class="liDown"><br>Show Coordinates</span></center></h1></a></li>
+		<li class="boxed2"><a id='showCamera'><h1><center><span class="liDown"><br>Show Camera</span></center></h1></a></li>
+		<li class="boxed2"><a id='deleteLocal'><h1><center><span class="liDown"><br>Delete Local</span></center></h1></a></li>
 	  </ul>
 	</div>
 	</script>
 	<script type="text/template" id="tpl-camera-details">
 		Camera
+	</script>
+	<script type="text/template" id="tpl-storage-details">
+		Local SD	
 	</script>
 	<script type="text/template" id="tpl-footer-details">
 	 <div id="progBars" class="boxed">
@@ -75,13 +80,13 @@
 		<h1 id="question" class="ui-title" role="heading" aria-level="1"><%= title %></h3></h1>
 	</script>
 	<script src="js/globals.js"></script>
-	<script src="js/views/CameraView.js"></script>
 	<script src="js/views/IntroView.js"></script>
 	<script src="js/models/Question.js"></script>
 	<script src="js/collections/QuestionList.js"></script>
 	<script src="js/views/FooterView.js"></script>
 	<script src="js/views/HeaderView.js"></script>
 	<script src="js/views/QuestionListView.js"></script>
+	<script src="js/views/StorageView.js"></script>
 	<script src="js/application.js"></script>
   </body>
 </html>
