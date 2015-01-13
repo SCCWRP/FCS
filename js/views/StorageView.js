@@ -18,15 +18,15 @@ var StorageView = Backbone.View.extend({
 			fileWriter.onerror = function(e){
 				alert("write failed: " + e.toString());
 			};
-			//fileWriter.write = function() {
-				//alert("write to file");
-            			//app.showContent("Done writing to file.<p/>");
-        	  	//}
         		//go to the end of the file...
         		fileWriter.seek(fileWriter.length);
 			//var localSave = this.getLocalData("local","save");
 			//var localSave = new String("my test 1:13pm");
 			var localSave = new Blob(['Lorem Ipsum'], {type: 'text/plain'});
+			fileWriter.write = function() {
+				alert("write to file");
+            			//app.showContent("Done writing to file.<p/>");
+        	  	}
         		fileWriter.write(localSave);
     		}, app.onError);
         },
