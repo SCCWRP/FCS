@@ -4,11 +4,12 @@ var StorageView = Backbone.View.extend({
 	initialize: function(){
 		alert("initialize StorageView");
 		var self = this;
-		fileSystem.root.getFile("test.txt", {create:true}, this.fileAppend, this.onError);
+		fileSystem.root.getFile("test.txt", {create:true}, this.fileAppend, app.onError);
 	},
   	fileAppend: function(f){
 		alert("fileAppend");
-  		//alert(f.fullPath);
+		alert(f);
+  		alert(f.fullPath);
     		f.createWriter(function(writerOb) {
 			writerOb.onwrite=function() {
             			app.showContent("Done writing to file.<p/>");
