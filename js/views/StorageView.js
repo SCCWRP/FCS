@@ -12,22 +12,22 @@ var StorageView = Backbone.View.extend({
     		fs.createWriter(function(fileWriter) {
 			alert("fs.createWriter");
 			// blows up here
-			fileWriter.onwriteend = function(e){
-				alert("write completed");
-			};
+			//fileWriter.onwriteend = function(e){
+			//	alert("write completed");
+			//};
 			fileWriter.onerror = function(e){
 				alert("write failed: " + e.toString());
 			};
         		//go to the end of the file...
-        		fileWriter.seek(fileWriter.length);
+        		//fileWriter.seek(fileWriter.length);
 			//var localSave = this.getLocalData("local","save");
 			//var localSave = new String("my test 1:13pm");
-			var localSave = new Blob(['Lorem Ipsum'], {type: 'text/plain'});
+			//var localSave = new Blob(['Lorem Ipsum'], {type: 'text/plain'});
 			fileWriter.write = function() {
 				alert("write to file");
             			//app.showContent("Done writing to file.<p/>");
-        	  	}
-        		fileWriter.write(localSave);
+        	  	};
+        		//fileWriter.write(localSave);
     		}, app.onError);
         },
   	getLocalData: function(a,t){
