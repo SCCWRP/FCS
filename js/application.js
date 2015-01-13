@@ -131,6 +131,7 @@ var app = {
       //rsubmit(s);
   },
   onDeviceReady: function(){
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, this.onFSSuccess, this.onError);
  	// jquery cors support for phonegap
 	/*
 	$.support.cors = true;
@@ -157,8 +158,6 @@ var app = {
     		document.addEventListener("deviceready", function(){
 			alert("isDevice deviceready");
 			app.onDeviceReady();
-			// request file system
-			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, this.onFSSuccess, onError);
 		},true);
 	} else {
 		app.onDeviceReady();
