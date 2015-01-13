@@ -22,6 +22,7 @@ var StorageView = Backbone.View.extend({
         		//fileWriter.seek(fileWriter.length);
 			//var localSave = this.getLocalData("local","save");
 			//var localSave = new String("my test 1:13pm");
+			fileWriter.seek(fileWriter.length);
 			var localSave = new Blob(['this is a test emergency'], {type: 'text/plain'});
 			//fileWriter.write = function() {
 				//alert("write to file");
