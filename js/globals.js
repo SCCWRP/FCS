@@ -27,3 +27,4 @@ $.ajax({
 	},
 	error: function () {/*console.log("error")*/}	
 });
+window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;

@@ -101,6 +101,39 @@ var app = {
   showContent: function(s) {
     app.getId("#content").innerHTML += s;
   },
+  onFSSuccess: function(fs){
+	alert("onFSSuccess");
+	fileSystem = fs;
+	alert(fileSystem.name);
+	//app.showContent("Got file system: "+fileSystem.name);
+  },
+  getById: function(id){
+	return document.querySelector(id);
+  },
+  onError: function(e){
+	var msg = '';
+    	switch (e.code) {
+          case FileError.QUOTA_EXCEEDED_ERR:
+		msg = 'QUOTA_EXCEEDED_ERR';
+          break;
+          case FileError.NOT_FOUND_ERR:
+		msg = 'NOT_FOUND_ERR';
+	  break;
+	  case FileError.SECURITY_ERR:
+	      msg = 'SECURITY_ERR';
+	  break;
+	  case FileError.INVALID_MODIFICATION_ERR:
+	      msg = 'INVALID_MODIFICATION_ERR';
+	  break;
+	  case FileError.INVALID_STATE_ERR:
+	      msg = 'INVALID_STATE_ERR';
+	  break;
+	  default:
+	      msg = 'Unknown Error';
+	  break;
+	};
+      	alert('Error: ' + msg);
+  },
   submitRemote: function(s,t){
      //alert("s:"+s);
      //function rsubmit(s){
@@ -131,7 +164,8 @@ var app = {
       //rsubmit(s);
   },
   onDeviceReady: function(){
- 	// jquery cors support for phonegap
+	//window.requestFileSystem(window.TEMPORARY, 5*1024*1024 /*5MB*/, app.onFSSuccess, app.onError);
+ 	// jquery cors support for phonega
 	/*
 	$.support.cors = true;
 	$.mobile.allowCrossDomainPages = true;
@@ -157,28 +191,13 @@ var app = {
     		document.addEventListener("deviceready", function(){
 			alert("isDevice deviceready");
 			app.onDeviceReady();
+			alert(cordova.file);
 			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, app.onFSSuccess, app.onError);
+			//window.requestFileSystem(window.TEMPORARY, 5*1024*1024 /*5MB*/, app.onFSSuccess, app.onError);
 		},true);
 	} else {
 		app.onDeviceReady();
 	}
-	function onFSSuccess(fs){
-		alert("onFSSuccess");
-		fileSystem = fs;
-		elog("Got file system: "+fileSystem.name);
-	}
-	function getById(id){
-		return document.querySelector(id);
-    	}
-	function onError(e){
-		alert("onError");
-		alert(e);
-		alert(e.toString());
-		getById("#content").innerHTML = "<h2>Error</h2>"+e.toString();
-	}
-	function eLog(s){
-		getById("#content").innerHTML += s;
-    	}
   }
 };
 app.initialize();
