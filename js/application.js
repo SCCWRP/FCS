@@ -157,6 +157,7 @@ var app = {
     		document.addEventListener("deviceready", function(){
 			alert("isDevice deviceready");
 			app.onDeviceReady();
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, this.onFSSuccess, this.onError);
 		},true);
 	} else {
 		app.onDeviceReady();
