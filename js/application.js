@@ -131,7 +131,6 @@ var app = {
       //rsubmit(s);
   },
   onDeviceReady: function(){
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, this.onFSSuccess, this.onError);
  	// jquery cors support for phonegap
 	/*
 	$.support.cors = true;
@@ -158,6 +157,7 @@ var app = {
     		document.addEventListener("deviceready", function(){
 			alert("isDevice deviceready");
 			app.onDeviceReady();
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, this.onFSSuccess, this.onError);
 		},true);
 	} else {
 		app.onDeviceReady();
@@ -171,6 +171,9 @@ var app = {
 		return document.querySelector(id);
     	}
 	function onError(e){
+		alert("onError");
+		alert(e);
+		alert(e.toString());
 		getById("#content").innerHTML = "<h2>Error</h2>"+e.toString();
 	}
 	function eLog(s){
