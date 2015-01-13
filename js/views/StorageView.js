@@ -3,16 +3,13 @@ var StorageView = Backbone.View.extend({
 	template:_.template($('#tpl-storage-details').html()),
 	initialize: function(){
 		alert("initialize StorageView");
-		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onError);
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, this.onFSSuccess, app.onError);
 	},
     	onFSSuccess: function(fs){
         	alert("onFSSuccess");
 		fileSystem = fs; 
 		//return fileSystem;
-		fileSystem.root.getFile("test.txt", {create:true}, fileAppend, app.onError);
-	},
-    	onError: function(){
-		alert("onError");
+		fileSystem.root.getFile("test.txt", {create:true}, this.fileAppend, app.onError);
 	},
   	fileAppend: function(f){
 		alert("fileAppend");
