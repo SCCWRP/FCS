@@ -8,10 +8,12 @@ var StorageView = Backbone.View.extend({
 	},
   	fileAppend: function(f){
 		alert("fileAppend");
-		alert(f);
   		alert(f.fullPath);
     		f.createWriter(function(writerOb) {
+			alert("f.createWriter");
+			alert(writerOb);
 			writerOb.onwrite=function() {
+				alert("writerOb.onwrite");
             			app.showContent("Done writing to file.<p/>");
         	  	}
         	//go to the end of the file...
@@ -21,8 +23,8 @@ var StorageView = Backbone.View.extend({
     		})
         },
   	getLocalData: function(a,t){
-     		//alert("a: "+a);
-     		//alert("t: "+t);
+     		alert("a: "+a);
+     		alert("t: "+t);
      		var localSave;
      		var prevStorage = window.localStorage.getItem("fcs-keys");
       		alert("prevStorage: "+prevStorage); 
