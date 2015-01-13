@@ -8,8 +8,8 @@ var StorageListView = Backbone.View.extend({
     	onFSSuccess: function(fs){
         	alert("onFSSuccess");
 		fileSystem = fs; 
-		return fileSystem;
-		this.fileDirectoryListing();
+		//return fileSystem;
+		this.fileDirectoryListing;
 	},
     	onError: function(){
 		alert("onError");
