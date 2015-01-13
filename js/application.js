@@ -99,13 +99,13 @@ var app = {
     return document.querySelector(id);
   },
   showContent: function(s) {
-    app.getId("#content").innerHTML += s;
+    $("#log").html(s);
   },
   onFSSuccess: function(fs){
 	alert("onFSSuccess");
 	fileSystem = fs;
 	alert(fileSystem.name);
-	//app.showContent("Got file system: "+fileSystem.name);
+	app.showContent("Got file system");
   },
   getById: function(id){
 	return document.querySelector(id);

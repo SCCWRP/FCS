@@ -6,22 +6,29 @@ var StorageView = Backbone.View.extend({
 		//window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, this.onFSSuccess, app.onError);
 		fileSystem.root.getFile("test.txt", {create:true}, this.fileAppend, app.onError);
 	},
-  	fileAppend: function(f){
+  	fileAppend: function(fs){
 		alert("fileAppend");
-  		alert(f.fullPath);
-    		f.createWriter(function(writerOb) {
-			alert("f.createWriter");
-			alert(writerOb);
+  		alert(fs.fullPath);
+    		fs.createWriter(function(fileWriter) {
+			alert("fs.createWriter");
 			// blows up here
-			writerOb.onwrite=function() {
-				alert("writerOb.onwrite");
-            			app.showContent("Done writing to file.<p/>");
-        	  	}
+			fileWriter.onwriteend = function(e){
+				alert("write completed");
+			};
+			fileWriter.onerror = function(e){
+				alert("write failed: " + e.toString());
+			};
+			//fileWriter.write = function() {
+				//alert("write to file");
+            			//app.showContent("Done writing to file.<p/>");
+        	  	//}
         		//go to the end of the file...
-        		writerOb.seek(writerOb.length);
-			var localSave = this.getLocalData("local","save");
-        		writerOb.write(localSave)
-    		})
+        		fileWriter.seek(fileWriter.length);
+			//var localSave = this.getLocalData("local","save");
+			//var localSave = new String("my test 1:13pm");
+			var localSave = new Blob(['Lorem Ipsum'], {type: 'text/plain'});
+        		fileWriter.write(localSave);
+    		}, app.onError);
         },
   	getLocalData: function(a,t){
      		alert("a: "+a);

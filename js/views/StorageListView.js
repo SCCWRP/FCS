@@ -3,23 +3,9 @@ var StorageListView = Backbone.View.extend({
 	template:_.template($('#tpl-storage-list-details').html()),
 	initialize: function(){
 		alert("initialize StorageListView");
-		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, this.onFSSuccess, app.onError);
-	},
-    	onFSSuccess: function(fs){
-        	alert("onFSSuccess");
-		fileSystem = fs; 
-		//return fileSystem;
-		this.fileDirectoryListing;
-	},
-    	onError: function(){
-		alert("onError");
-	},
-    	fileDirectoryListing: function(e){
-	   	alert("fileDirectoryListing");
-	  	//get a directory reader from our FS
 	 	var dirReader = fileSystem.root.createReader();
 		dirReader.readEntries(this.gotFiles,app.onError);        
-        },
+	},
    	gotFiles: function(entries) { 
 		alert("gotFiles");
 		var s = "";
@@ -33,7 +19,7 @@ var StorageListView = Backbone.View.extend({
 	 		s += "<br/>";
 	     	}
 	        s+="<p/>";
-		alert("showContent render here");
+		//alert("showContent render here: "+s);
 	        app.showContent(s);
 	},
 	render: function(){
