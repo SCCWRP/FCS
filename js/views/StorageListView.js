@@ -3,7 +3,16 @@ var StorageListView = Backbone.View.extend({
 	template:_.template($('#tpl-storage-list-details').html()),
 	initialize: function(){
 		alert("initialize StorageListView");
-		this.fileDirectoryListing();
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onError);
+	},
+    	onFSSuccess: function(fs){
+        	alert("onFSSuccess");
+		fileSystem = fs; 
+		return fileSystem;
+		fileDirectoryListing();
+	},
+    	onError: function(){
+		alert("onError");
 	},
     	fileDirectoryListing: function(e){
 	   	alert("fileDirectoryListing");
