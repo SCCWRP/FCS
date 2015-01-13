@@ -8,6 +8,7 @@ var IntroView = Backbone.View.extend({
 		"click #deleteLocal":"deleteLocal",
 		"click #saveLocal":"saveLocal",
 		"click #saveLocalSD":"saveLocalSD",
+		"click #showLocalSD":"showLocalSD",
 		"click #submitLocal":"submitLocal",
 		"click #submitLocalSD":"submitLocalSD",
 		"click #showGPS":"getGPS",
@@ -82,6 +83,11 @@ var IntroView = Backbone.View.extend({
     		alert("saveLocalSD");
 		headerView = new HeaderView;
 		storageView = new StorageView;
+  	},
+	showLocalSD: function(){
+    		alert("showLocalSD");
+		headerView = new HeaderView;
+		storageListView = new StorageListView;
   	},
 	cleanup: function() {
 		//console.log("IntroView cleanup");

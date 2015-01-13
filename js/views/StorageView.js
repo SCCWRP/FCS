@@ -12,14 +12,15 @@ var StorageView = Backbone.View.extend({
     		f.createWriter(function(writerOb) {
 			alert("f.createWriter");
 			alert(writerOb);
+			// blows up here
 			writerOb.onwrite=function() {
 				alert("writerOb.onwrite");
             			app.showContent("Done writing to file.<p/>");
         	  	}
-        	//go to the end of the file...
-        	writerOb.seek(writerOb.length);
-		var localSave = getLocalData("local","save");
-        	writerOb.write(localSave)
+        		//go to the end of the file...
+        		writerOb.seek(writerOb.length);
+			var localSave = getLocalData("local","save");
+        		writerOb.write(localSave)
     		})
         },
   	getLocalData: function(a,t){

@@ -155,23 +155,19 @@ var app = {
 	}
 	if( isDevice ){
     		document.addEventListener("deviceready", function(){
+			alert("isDevice deviceready");
 			app.onDeviceReady();
 			// request file system
-			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onError);
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, this.onFSSuccess, onError);
 		},true);
 	} else {
 		app.onDeviceReady();
 	}
 	function onFSSuccess(fs){
+		alert("onFSSuccess");
 		fileSystem = fs;
 		elog("Got file system: "+fileSystem.name);
-		console.log("file system");
-		doDirectoryListing();
 	}
-	function doDirectoryListing(e){
-		var dirReader = fileSystem.root.createReader();
-		dirReader.readEntries(gotFiles,onError);
-    	}
 	function getById(id){
 		return document.querySelector(id);
     	}
