@@ -28,7 +28,15 @@ var StorageView = Backbone.View.extend({
 				//alert("write to file");
             			//app.showContent("Done writing to file.<p/>");
         	  	//};
+    			fileWriter.onwrite = function(evt) {
+	            		alert("write success");
+		        };
         		fileWriter.write(localSave);
+	                fileWriter.write(" different text");
+	                fileWriter.onwriteend = function(evt){
+			        alert("contents of file now some different text");
+	                	fileWriter.write("end");
+	                }
     		}, app.onError);
         },
   	getLocalData: function(a,t){
