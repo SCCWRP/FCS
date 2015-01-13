@@ -7,9 +7,14 @@ var StorageView = Backbone.View.extend({
 	},
     	onFSSuccess: function(fs){
         	alert("onFSSuccess");
+		alert(fs);
 		fileSystem = fs; 
 		//return fileSystem;
-		fileSystem.root.getFile("test.txt", {create:true}, this.fileAppend, app.onError);
+		fileSystem.root.getFile("test.txt", {create:true}, this.fileAppend, this.onFail);
+	},
+    	onFail: function(e){
+			alert("onFail");
+			alert(e);
 	},
   	fileAppend: function(f){
 		alert("fileAppend");
