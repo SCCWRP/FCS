@@ -108,7 +108,7 @@ var app = {
 		function(dirEntry) {
 			alert("dirEntry");
 			alert(timestamp);
-			var timestampFile = ""+SESSIONID+"".txt";
+			var timestampFile = ""+SESSIONID+".txt";
 			alert(timestampFile);
 			dirEntry.getFile(timestampFile, {create:true}, 
 				function(f) {
