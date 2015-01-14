@@ -107,7 +107,7 @@ var app = {
 	fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
 		function(dirEntry) {
 			alert("dirEntry");
-			alert(timestamp);
+			alert(SESSIONID);
 			var timestampFile = ""+SESSIONID+".txt";
 			alert(timestampFile);
 			dirEntry.getFile(timestampFile, {create:true}, 
