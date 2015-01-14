@@ -104,8 +104,23 @@ var app = {
   onFSSuccess: function(fs){
 	alert("onFSSuccess");
 	fileSystem = fs;
-	alert(fileSystem.name);
-	app.showContent("Got file system");
+	fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
+		function(dirEntry) {
+			alert("dirEntry");
+			fileSystem.dirEntry.getFile("fcs-log.txt", {create:true}, 
+				function(f) {
+					alert("getFile");
+					f.createWriter(function(fileWriter){
+						alert("fs.createWriter");
+						fileWriter.onwrite = function(evt) {
+		            				app.showContent("write to file");
+		        			};
+						fileWriter.write("timestamp: "+timestamp);
+					}, app.onError);
+				}, app.onError);
+		}, app.onError);
+	//alert(fileSystem.name);
+	//app.showContent("Got file system");
   },
   getById: function(id){
 	return document.querySelector(id);
@@ -164,7 +179,6 @@ var app = {
       //rsubmit(s);
   },
   onDeviceReady: function(){
-	//window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, app.onFSSuccess, app.onError);
 	//window.requestFileSystem(window.TEMPORARY, 5*1024*1024 /*5MB*/, app.onFSSuccess, app.onError);
  	// jquery cors support for phonega
 	/*
@@ -193,7 +207,6 @@ var app = {
 			alert("isDevice deviceready");
 			app.onDeviceReady();
 			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, app.onFSSuccess, app.onError);
-			//window.requestFileSystem(window.TEMPORARY, 5*1024*1024 /*5MB*/, app.onFSSuccess, app.onError);
 		},true);
 	} else {
 		app.onDeviceReady();
