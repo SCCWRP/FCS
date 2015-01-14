@@ -107,8 +107,9 @@ var app = {
 	fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
 		function(dirEntry) {
 			alert("dirEntry");
-			//var timestampFile = timestamp + ".txt";
-			dirEntry.getFile("fcs-log.txt", {create:true}, 
+			alert(timestamp);
+			var timestampFile = SESSIONID + ".txt";
+			dirEntry.getFile(timestampFile, {create:true}, 
 				function(f) {
 					alert("getFile");
 					f.createWriter(function(fileWriter){
@@ -116,7 +117,7 @@ var app = {
 						fileWriter.onwrite = function(evt) {
 		            				app.showContent("write to file");
 		        			};
-						fileWriter.write("timestamp: ");
+						fileWriter.write("my data");
 					}, app.onError);
 				}, app.onError);
 		}, app.onError);
