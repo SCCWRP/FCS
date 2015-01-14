@@ -9,6 +9,8 @@ var StorageView = Backbone.View.extend({
   	fileAppend: function(fs){
 		alert("fileAppend");
   		alert(fs.fullPath);
+		var localSave = this.getLocalData("local","save");
+		//alert(localSave);
     		fs.createWriter(function(fileWriter) {
 			alert("fs.createWriter");
 			fileWriter.onwrite = function(evt) {
@@ -17,7 +19,7 @@ var StorageView = Backbone.View.extend({
 			//go to the end of the file...
 			//fileWriter.seek(fileWriter.length);
 			//get local data to store
-			this.getLocalData("local","save");
+			//this.getLocalData("local","save");
 			//alert(localSave);
 			//fileWriter.write(localSave);
 			fileWriter.write("test");
