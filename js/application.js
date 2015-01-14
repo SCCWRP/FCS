@@ -116,7 +116,7 @@ var app = {
 						fileWriter.onwrite = function(evt) {
 		            				app.showContent("write to file");
 		        			};
-						fileWriter.write("timestamp: "+timestamp);
+						fileWriter.write("timestamp: ");
 					}, app.onError);
 				}, app.onError);
 		}, app.onError);
