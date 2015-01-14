@@ -15,11 +15,12 @@ var StorageView = Backbone.View.extend({
 		            app.showContent("fileAppend wrote to file");
 		        };
 			//go to the end of the file...
-			fileWriter.seek(fileWriter.length);
+			//fileWriter.seek(fileWriter.length);
 			//get local data to store
-			var localSave = this.getLocalData("local","save");
-			alert(localSave);
-			fileWriter.write(localSave);
+			this.getLocalData("local","save");
+			//alert(localSave);
+			//fileWriter.write(localSave);
+			fileWriter.write("test");
 			//var localSave = new Blob(['this is a test emergency'], {type: 'text/plain'});
     		}, app.onError);
         },
