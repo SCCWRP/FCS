@@ -11,11 +11,10 @@ var StorageView = Backbone.View.extend({
   		alert(fs.fullPath);
     		fs.createWriter(function(fileWriter) {
 			alert("fs.createWriter");
-			fileWriter.onwriteend = function(evt){
-				fileWriter.seek(4);
-				fileWriter.write("different text");
-			};
-			ileWriter.write("some sample text");
+			fileWriter.onwrite = function(evt) {
+		            app.showContent("Done writing to file");
+		        };
+			fileWriter.write("some sample text");
 			//var localSave = new Blob(['this is a test emergency'], {type: 'text/plain'});
 			//fileWriter.write = function() {
 				//alert("write to file");
