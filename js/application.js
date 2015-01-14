@@ -95,10 +95,10 @@ var app = {
 			timestampFile = ""+SESSIONID+".txt";
 			//alert(timestampFile);
 			dirEntry.getFile(timestampFile, {create:true}, 
-		         	app.showContent("directory and timestamp file created");
-				/*
 				function(f) {
-					alert("getFile");
+		         		app.showContent("directory and timestamp file created");
+				}, app.onError);
+				/*
 					f.createWriter(function(fileWriter){
 						alert("fs.createWriter");
 						fileWriter.onwrite = function(evt) {
@@ -106,7 +106,6 @@ var app = {
 		        			};
 						fileWriter.write("my data");
 					}, app.onError);
-				}, app.onError);
 				*/
 		}, app.onError);
 	//alert(fileSystem.name);
