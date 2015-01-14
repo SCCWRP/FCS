@@ -107,7 +107,8 @@ var app = {
 	fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
 		function(dirEntry) {
 			alert("dirEntry");
-			fileSystem.dirEntry.getFile("fcs-log.txt", {create:true}, 
+			var timestampFile = timestamp + ".txt";
+			dirEntry.getFile(timestampFile, {create:true}, 
 				function(f) {
 					alert("getFile");
 					f.createWriter(function(fileWriter){
