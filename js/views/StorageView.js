@@ -4,7 +4,7 @@ var StorageView = Backbone.View.extend({
 	initialize: function(){
 		alert("initialize StorageView");
 		//window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, this.onFSSuccess, app.onError);
-		fileSystem.root.getFile("fcs-log.txt", {create:true}, this.fileAppend, app.onError);
+		directoryLocation.getFile(timestampFile, {create:true}, this.fileAppend, app.onError);
 	},
   	fileAppend: function(fs){
 		alert("fileAppend");
@@ -12,9 +12,9 @@ var StorageView = Backbone.View.extend({
     		fs.createWriter(function(fileWriter) {
 			alert("fs.createWriter");
 			fileWriter.onwrite = function(evt) {
-		            app.showContent("Done writing to file");
+		            app.showContent("fileAppend wrote to file");
 		        };
-			fileWriter.write("some sample text");
+			fileWriter.write("data to save");
 			//var localSave = new Blob(['this is a test emergency'], {type: 'text/plain'});
 			//fileWriter.write = function() {
 				//alert("write to file");

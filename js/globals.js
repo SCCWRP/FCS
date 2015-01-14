@@ -6,6 +6,9 @@ var HOME = location.href;
 var SESSIONID = +new Date;
 var USERID;
 var user;
+var fileSystem;
+var directoryLocation;
+var timestampFile;
 $.ajax({
 	url: "questions.json",
 	dataType: 'json',

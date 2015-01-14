@@ -24,23 +24,6 @@ var app = {
 		alert(message);
 	}
   },
-  xhr_get: function(url,indata){
-	return $.ajax({
-		type: 'GET',
-		url: url,
-		contentType: "application/json",
-		dataType: 'jsonp',
-		data: {generic: indata},
-		crossDomain: true
-		//beforeSend: loader
-	})
-	.always(function(){
-		// loader
-	})
-	.fail(function(){
-		// failures
-	});
-  },
   dataSyncCheck: function(da,dc,dt){
 	// send autoid and captureid to see if record is in remote database
 	//alert("dataSyncCheck autoid: "+ da);
@@ -106,11 +89,14 @@ var app = {
 	fileSystem = fs;
 	fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
 		function(dirEntry) {
-			alert("dirEntry");
-			alert(SESSIONID);
-			var timestampFile = ""+SESSIONID+".txt";
-			alert(timestampFile);
+			directoryLocation = dirEntry;
+			alert(directoryLocation);
+			//alert(SESSIONID);
+			timestampFile = ""+SESSIONID+".txt";
+			//alert(timestampFile);
 			dirEntry.getFile(timestampFile, {create:true}, 
+		         	app.showContent("directory and timestamp file created");
+				/*
 				function(f) {
 					alert("getFile");
 					f.createWriter(function(fileWriter){
@@ -121,6 +107,7 @@ var app = {
 						fileWriter.write("my data");
 					}, app.onError);
 				}, app.onError);
+				*/
 		}, app.onError);
 	//alert(fileSystem.name);
 	//app.showContent("Got file system");
