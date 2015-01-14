@@ -31,6 +31,19 @@ var IntroView = Backbone.View.extend({
 				console.log("questionList Failed");
 			}
 		});		
+		answerList = new AnswerList();
+		var answerCreate = answerList.create({qcount: 1, timestamp: SESSIONID}, {
+			success: function(response){
+				var answer = answerList.get(response.id);
+				answerListView = new AnswerListView({model: answer });
+				answerListView.endquestion = MAXQUESTION;
+			},
+		    	error: function(model, response){
+				console.log(response.responseText);
+				console.log(response.status);
+				console.log(response.statusText);
+			}
+		});
      	},
 	showContact: function(){
 		headerView = new HeaderView;

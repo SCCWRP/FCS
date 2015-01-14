@@ -87,10 +87,239 @@
 	<script type="text/template" id="tpl-question-details">
 		<h1 id="question" class="ui-title" role="heading" aria-level="1"><%= title %></h3></h1>
 	</script>
+	<script type="text/template" id="tpl-answer-details">
+	  <% if((type) == "radio"){ %>
+	  <h3>Radio Question - <%= qcount %> - <%= type %></h3>
+         	<label>Record ID:</label>
+          	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
+          	<label>Question ID:</label>
+         	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
+		<button id="save" class="save">Save</button>
+		<% if(decline == "yes") { %>
+			<button id="decline" class="decline">Decline and save</button>
+			<% }; %>
+		    <% if((qcount) == 5){ %>
+	  		    <div id="multi-radio" class="ui-field-contain" data-role='fieldcontain'>
+	   			<form id ="aid" >
+	    			<div style="margin: 0 auto; display: table; width: 19em; position:relative;">
+		    		<fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain" data-mini="true">
+					<% for(i=0; i < menu.length; i++) { %>
+			 		<label class="radioClassLabel" id= <%= "radioLabel-" + String.fromCharCode(97 + i)  %> >
+			 		<input type="radio" id="radio-ID" name="radioSelect" value= <%= menu[i] %> />
+			 		<span class="ui-btn-inner"><span class="ui-btn-text" id= <%= "radio-text-" + String.fromCharCode(97 +i)  %> > <%= menu[i] %> </span></span></label>
+					<% }; %>
+				</fieldset>
+	    			</div> 
+	   			</form>
+	 		    </div>
+			    <br/><br/>
+			    <div id="consent" style="display: inline; visibility: visible;"> 
+				    <div id="formImages">
+					    <% if (isDevice){ $('#printConsent').css('display','none'); %>
+						<img width=95% src="img/Consent_Large_Page_1.jpg">
+						<img width=95% src="img/Consent_Large_Page_2.jpg">
+						<img width=95% src="img/Consent_Large_Page_3.jpg">
+						<img width=95% src="img/Consent_Large_Page_4.jpg">
+					    <%  } else { %>
+					    	<img width=65% src="img/Consent_1.jpg">
+					    	<img width=65% src="img/Consent_2.jpg">
+					    	<img width=65% src="img/Consent_3.jpg">
+					    	<img width=65% src="img/Consent_4.jpg">
+					    <% }; $('#consent').css('display','inline'); $('#consent').css('visibility','visible'); %>
+				    </div>
+				    <br>
+				    <form>
+					    <a href="img/Consent.pdf" target="_blank" data-inline=true data-role="button" id="printConsent">Print/Download</a>
+				    </form>
+				    <h3>Do you agree to the terms above?</h3>
+			    </div>
+			    <% }; %>
+	  <div id="multi-radio" class="ui-field-contain" data-role='fieldcontain'>
+	   <form id ="aid" >
+	    <div style="margin: 0 auto; display: table; width: 19em; position:relative;">
+		    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain" data-mini="true">
+			<% for(i=0; i < menu.length; i++) { %>
+			 <label class="radioClassLabel" id= <%= "radioLabel-" + String.fromCharCode(97 + i)  %> >
+			 <input type="radio" id="radio-ID" name="radioSelect" value= <%= menu[i] %> />
+			 <span class="ui-btn-inner"><span class="ui-btn-text" id= <%= "radio-text-" + String.fromCharCode(97 +i)  %> > <%= menu[i] %> </span></span></label>
+			<% }; %>
+		</fieldset>
+	    </div> 
+	   </form>
+	 </div>
+	  <% } else if ((type) == "numberSelect"){  %>
+	  	<!-- 
+         	<label>User ID:</label>
+          	<input type="text" value="<%= user_id %>" disabled />
+          	<label>Record ID:</label>
+          	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
+		// -->
+		<div class="ui-field-contain" data-inset="true">
+		  <input type="number" id="aid">
+    		  <select name="aidscale" id="aidscale">
+		  <% var dates = menu; %>
+		  <% for(i=0;i < menu.length;i++) { %>
+		 	 <option value= "<%= menu[i] %>" > <%= menu[i] %> </option>
+		 <% }; %>
+		</div>
+	  <% } else if ((type) == "multi"){  %>
+	    <div id="multi-view" data-role="fieldcontain">
+		<!-- <h3>Multi Question - <%= qcount %> - <%= type %></h3>
+         	<label>User ID:</label>
+          	<input type="text" value="<%= user_id %>" disabled />
+          	<label>Record ID:</label>
+          	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
+		// -->
+		<div class="ui-field-contain ui-body ui-br" data-inset="true">
+			<fieldset data-role="controlgroup" id="aid">
+			<% for(i=0; i < menu.length; i++) { %>
+			<input type="checkbox" class="custom" value= "<%= menu[i] %>"  name = <%= "multi-checkbox-" + i.toString() %> id= <%= "multi-checkbox-" + i.toString() %> />
+				<label for=<%= "multi-checkbox-" + i.toString()  %> >  <%= menu[i] %> </label> 
+	 		<% }; %>
+			</fieldset>
+		</div>
+		<!-- <button id="save" class="save">Save</button> // -->
+	    </div>
+	  <% } else if ((type) == "select"){  %>
+	  <div id="multi-select">
+		<!-- <h3>Select Question - <%= qcount %> - <%= type %></h3>
+         	<label>User ID:</label>
+          	<input type="text" value="<%= user_id %>" disabled />
+        	<label>Record ID:</label>
+        	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
+        	<label>Question ID:</label>
+        	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
+		// -->
+		<fieldset class="ui-field-contain">
+    		  <select name="aid" id="aid" class="selectClass">
+		  <% for(i=0; i < menu.length; i++) { %>
+		 	 <option value= "<%= menu[i] %>" > <%= menu[i] %> </option>
+		  <% }; %>
+    		  </select>
+		  <!-- <button id="save" class="save">Save</button> // -->
+    	    </div>
+	  <% } else if ((type) == "dateSelect"){  %>
+	  <div id="multi-select">
+		<!-- <h3>Select Question - <%= qcount %> - <%= type %></h3>
+         	<label>User ID:</label>
+          	<input type="text" value="<%= user_id %>" disabled />
+        	<label>Record ID:</label>
+        	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
+        	<label>Question ID:</label>
+        	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
+		// -->
+		<fieldset class="ui-field-contain">
+		  <% var dates = q26.split(","); %>
+		  <% dates = dates.map(function(x) { return new Date(Date.parse(x));}); %>  
+		  <% days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; %>
+		  <% days[new Date().getDay()] = "Today"; %>
+		  <% for(j=0; j < dates.length; j++) { %>
+		  <h3 id="date" name = <%= (dates[j].getMonth() + 1) + "/" + dates[j].getDate() + "/" + (1900 + dates[j].getYear()) %> > <%= days[dates[j].getDay()]  %> </h3>
+		  <select name= "<%= j %>" id="aid" class="multi-select">
+		  <% for(i=0; i < menu.length; i++) { %>
+		 	 <option value= "<%= menu[i] %>" > <%= menu[i] %> </option>
+		  <% }; %>
+    		  </select>
+		  <% }; %>
+	 	 </fieldset>
+		 <% var script = "$('[name=0]').on('change', function() {$('[id=aid]').each(function() { $(this).val($('[name=0]').val()); $(this).parent().find('.ui-btn-text').text($('[name=0]').val()); })}) " %>
+		 <%= "<script" + ">" + script + "</script" + ">"%> 
+	  <% } else if ((type) == "dateTimeInterval"){  %>
+	  <div id="multi-select">
+		<!-- <h3>Select Question - <%= qcount %> - <%= type %></h3>
+         	<label>User ID:</label>
+          	<input type="text" value="<%= user_id %>" disabled />
+        	<label>Record ID:</label>
+        	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
+        	<label>Question ID:</label>
+        	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
+		// -->
+		<fieldset id="multi-select-time" class="ui-field-contain">
+		  <% var dates = q26.split(","); %>
+		  <% dates = dates.map(function(x) { return new Date(Date.parse(x));}); %>  
+		  <% days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; %>
+		  <% days[new Date().getDay()] = "Today"; %>
+		  <% var AmArray = _.range(48).map(function(x) {if(x<4) x=x+48; return Math.floor(x/4) + ":" + ["00", 15, 30, 45][x % 4] + " AM";}); %>
+		  <% var PmArray = _.range(48).map(function(x) {if(x<4) x=x+48; return Math.floor(x/4) + ":" + ["00", 15, 30, 45][x % 4] + " PM";}); %> 
+		  <% var TimeArray = AmArray.concat(PmArray); %>
+		  <% TimeArray = TimeArray.slice(20, TimeArray.length); %>
+		  <%= "<script" + "> TimeArray = [" + ("'" + TimeArray.join("','") + "'").split(",") + "];</script" + ">" %>
+		  <% for(j=0; j < dates.length; j++) { %>
+		  <h3 id="date" name = <%= (dates[j].getMonth() + 1) + "/" + dates[j].getDate() + "/" + (1900 + dates[j].getYear()) %> > <%= days[dates[j].getDay()] %> </h3>
+		  <select name= <%=  "enter" + j  %> id="aid" class="enter">
+			  <option id="0" value="Select One">Select Enter</option>
+		  <% for(i=0; i < TimeArray.length; i++) { %>
+		 	 <option id= <%= i %> value="<%= TimeArray[i] %>" > <%= TimeArray[i] %> </option>
+		  <% }; %> 
+		  </select>
+		  <select name = <%= "exit" + j  %> id="aid" class="exit">
+			  <option id="0" value="Select One">Select Exit</option>
+		  </select>
+		  <% var script = "(function(){var start = $('[name=enter" + j + "]');start.on('change', function() {var index = start.children(':selected').attr('id');var end = $('[name=exit" + j + "]');end.find('option').remove();end.append($('<option></option>').attr('value', 'Select One').text('Select One'));for(i=Number(index)+1; i < 96; i++) {end.append($('<option></option>').attr('value', TimeArray[i]).text(TimeArray[i]));};});})();" %>
+		  <%= "<script" + ">" + script + "</script" + ">" %>
+		  <% }; %>
+		</fieldset>
+		<% var propagate1 = "$('[name=enter0]').on('change', function() {$('.enter').not('[name=enter0]').each(function () {$(this).val($('[name=enter0]').val());$(this).trigger('change');})});" %>
+		<% var propagate2 = "$('[name=exit0]').on('change', function() {$('.exit').not('[name=exit0]').each(function () {$(this).val($('[name=exit0]').val());$(this).trigger('change');})});" %>
+		<%= "<script" + ">" + propagate1 +  "</script" + ">" %>
+		<%= "<script" + ">" + propagate2 +  "</script" + ">" %>
+	  <% } else if ((type) == "text"){  %>
+	  <div class="ui-field-contain">
+		<!--
+		<h3>Text Question - <%= qcount %> - <%= type %></h3>
+         	<label>User ID:</label>
+          	<input type="text" value="<%= user_id %>" disabled />
+        	<label>Record ID:</label>
+        	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
+        	<label>Question ID:</label>
+        	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
+        	<label>Answer</label>
+		// -->
+		<input type="text" id="aid" name="aid" class="text-view" placeholder= <%= placeholder %> value="" required/>
+		<!-- <button id="save" class="save">Save</button> // -->
+		<% if(decline == "yes") { %>
+			<button id="decline" class="decline">Decline and save</button>
+			<% }; %>
+    	    </div>
+	  <% } else if (type == "sevenday"){  %>
+	  	<!-- 
+         	<label>User ID:</label>
+          	<input type="text" value="<%= user_id %>" disabled />
+          	<label>Record ID:</label>
+          	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
+          	<label>Question ID:</label>
+          	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
+          	<label>Answer</label>
+		// -->
+		<div id="multi-view">
+		  <div class="ui-field-contain" data-inset="true">
+			<fieldset data-role="controlgroup" id="aid">
+			<% today = new Date; %>
+			<% days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; %>
+			<% days = days.slice(0, today.getDay() + 1 ).reverse().concat(days.slice(today.getDay() + 1, 7).reverse()); %>
+			<% days[0] = "Today";	 %>
+			<% for(i=0; i < 7; i++) { %>
+			<% newday = new Date(new Date().setDate(new Date().getDate()-i)); %> 
+			<input type="checkbox" class="custom" value= <%= (newday.getMonth()+1) + "/" + (newday.getDate()) + "/" + (newday.getYear() + 1900)  %>  name = <%= days[i] %>  id= <%= days[i] %> />
+			<label for= <%= days[i] %> >  <%= days[i] %> </label> 
+	 		<% }; %>
+			<% if(qcount == "26" && decline == "yes") { %>
+			<!-- <input type="button"  name="decline" id="decline" class="decline">Did not Enter</input> // -->
+				<input type="checkbox" class="decline" value="decline" name="decline" id="decline" />
+				<label for="decline" class="decline">Did not Enter</label> 
+			<% }; %>
+			</fieldset>
+		  </div>
+		</div>
+	  <% } %>
+	</script>
 	<script src="js/globals.js"></script>
 	<script src="js/views/IntroView.js"></script>
+	<script src="js/models/Answer.js"></script>
 	<script src="js/models/Question.js"></script>
 	<script src="js/collections/QuestionList.js"></script>
+	<script src="js/collections/AnswerList.js"></script>
+	<script src="js/views/AnswerListView.js"></script>
 	<script src="js/views/FooterView.js"></script>
 	<script src="js/views/HeaderView.js"></script>
 	<script src="js/views/QuestionListView.js"></script>

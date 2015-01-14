@@ -56,7 +56,7 @@ var QuestionList = Backbone.Collection.extend({
 		  return valLU;
 		};
 		validators = createValidation(this);
-		//console.log(validators);
+		console.log(validators);
         },
 	model: Question,
 	url: 'questions.json'
