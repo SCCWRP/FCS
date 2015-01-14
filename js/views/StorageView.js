@@ -11,32 +11,21 @@ var StorageView = Backbone.View.extend({
   		alert(fs.fullPath);
     		fs.createWriter(function(fileWriter) {
 			alert("fs.createWriter");
-			// blows up here
-			//fileWriter.onwriteend = function(e){
-			//	alert("write completed");
-			//};
-			//fileWriter.onerror = function(e){
-				//alert("write failed: " + e.toString());
-			//};
-        		//go to the end of the file...
-        		//fileWriter.seek(fileWriter.length);
-			//var localSave = this.getLocalData("local","save");
-			//var localSave = new String("my test 1:13pm");
-			fileWriter.seek(fileWriter.length);
-			var localSave = new Blob(['this is a test emergency'], {type: 'text/plain'});
+			fileWriter.onwriteend = function(evt){
+				fileWriter.seek(4);
+				fileWriter.write("different text");
+			};
+			ileWriter.write("some sample text");
+			//var localSave = new Blob(['this is a test emergency'], {type: 'text/plain'});
 			//fileWriter.write = function() {
 				//alert("write to file");
             			//app.showContent("Done writing to file.<p/>");
         	  	//};
-    			fileWriter.onwrite = function(evt) {
-	            		alert("write success");
-		        };
-        		fileWriter.write(localSave);
-	                fileWriter.write(" different text");
-	                fileWriter.onwriteend = function(evt){
-			        alert("contents of file now some different text");
-	                	fileWriter.write("end");
-	                }
+        		//fileWriter.write(localSave);
+	                //fileWriter.onwriteend = function(evt){
+			 //       alert("contents of file now some different text");
+	                	//fileWriter.write("end");
+	                //}
     		}, app.onError);
         },
   	getLocalData: function(a,t){
