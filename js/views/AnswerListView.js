@@ -63,10 +63,9 @@ var AnswerListView = Backbone.View.extend({
 			this.saveAnswer(event);
 		}
 	},
+
 	change:function(event){
 		var that = this;
-		//console.log("change");
-		//console.log(event);
 		that.nextQuestion();
 	},
     	declineAnswer:function(event){
@@ -198,7 +197,7 @@ var AnswerListView = Backbone.View.extend({
 		};
 		//console.log("currentAnswer: "+ currentAnswer);
 	 	return currentAnswer;	
-		       },
+        },
 	saveAnswer:function(event, decline, other){
 		$("body").css("background-color", "gray");
 		$("body").css("opacity", "0.5");
@@ -207,122 +206,21 @@ var AnswerListView = Backbone.View.extend({
 		var that = this;
 		formtype = this.model.get("type");
 		// disable radio button double click
-                if(formtype == "radio"){
-		        $(".ui-radio").css("pointer-events", "none");
-		}
-		if(other) {
-			var currentAnswer = other;
-		} else if(!decline) {
-			var currentAnswer = this.extractAnswer();
-		} else {
-			var currentAnswer = "Did not Enter";	
-		};
-		if(currentAnswer == "Other") {
-			footerView.toggle("on");
-			return;
-		};
+                //if(formtype == "radio"){
+		 //       $(".ui-radio").css("pointer-events", "none");
+		//}
+	        var currentAnswer = this.extractAnswer();
 		// current question
 		var currentQuestion = Number(this.model.get("qcount")); 
 		appID = Number(this.model.get("id")); 
-	
-
 		// next question  
 		var nextQuestion = (currentQuestion + 1);
-		// storing userid email and phone
-		// set userid for answer also
-		//if(currentQuestion == 1){
-		//	 this.cleanup();
-		//	$("#content").html( new IntroView().render().el );
-		//}
-		if(currentQuestion == 1) {
-			this.model.set({"user_id": USERID});
-		};
-		if(currentQuestion == 6 || currentQuestion == 7) {
-			currentAnswer = currentAnswer.replace(/\W/g, '');
-		};
-		if(currentQuestion == 6){
-			// CRITICAL - need to add error checking for existing user account
-			user.save({ phone: currentAnswer }, {
-				wait: true,
-				success: function(response){
-					//console.log(user.toJSON());
-				},
-				error: function(model, response){
-				  if(response.status == 500){
-					custom_alert("You are attempting to enroll with phone/email that is already been registered. If you have already completed enrollment please login instead. If you were unable to complete enrollment please wait 20 minutes and your incomplete enrollment will be removed from the system.", "", function() {loginView = new LoginView;});
-				  }
-				}
-			});
-			// maybe a better place to set userid-uid
-			//this.model.set({"user_id": USERID}); //- moved to question1
-			this.model.set("q7", currentAnswer);
-		}
-		if(currentQuestion == 8){
-			// CRITICAL - need to add error checking for existing user account
-			user.save({ email: currentAnswer }, {
-				wait: true,
-				success: function(response){
-					//console.log(user.toJSON());
-					//if device save to user key
-					userPhoneEmail = '{"email":"'+user.get('email')+'","phone":"'+user.get('phone')+'","id":"'+USERID+'"}';
-					var userKey = window.localStorage.getItem("user");
-					// add to keychain
-					if(userKey != null){
-						userKey = ''+userKey+','+USERID+'';
-						window.localStorage.setItem("user", userKey);
-					} else {
-					// new keychain
-						window.localStorage.setItem("user", USERID);
-					}
-					window.localStorage.setItem("user-"+USERID, userPhoneEmail);
-					// set userid in database and forms
-				},
-				error: function(response){
-				  if(response.status == 500){
-					custom_alert("You are attempting to enroll with phone/email that is already been registered. If you have already completed enrollment please login instead. If you were unable to complete enrollment please wait 20 minutes and your incomplete enrollment will be removed from the system.", "", function() {loginView = new LoginView;});
-				  }
-				}
-			});
-			this.model.set("q9", currentAnswer);
-			//appRouter.navigate('shs2/receipt/' + appID, {trigger: true});
-		}
-		if(currentQuestion == 11){
-			var setContact = this.model.get('contact');
-			var setList = this.model.get('q10');
-			user.save({ "contact": setContact, "list": setList, "status": "complete" });
-		}
-                // logic for skipping certain questions
-		if([20, 23, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63].indexOf(currentQuestion) > -1  && currentAnswer == "No"){
-			nextQuestion += 1;
-		};
-		if(currentQuestion == 63 && currentAnswer == "No" && _.all(_.map(this.model.pick('q35', 'q37', 'q39', 'q41', 'q43', 'q45', 'q47', 'q51', 'q53', 'q55', 'q57', 'q59', 'q61' ), function(x) {return x == 'No';}))) {
-			nextQuestion += 6;	
-		};
-		// module3 did not surf
-		if(currentQuestion == 26 && currentAnswer == "Did not Enter"){
-			this.model.set({q27: null, q28: null, q29: null, q30: null, q31: null, q32: null, q33: null});
-			nextQuestion +=  7;
-		};
-		// this should really go somewhere after sync happens maybe next question
-		// also status needs to be toggled to complete in database
-		if(currentQuestion == 13){
-			user.save({ status: "complete" });
-		};
 		if(currentQuestion >=  this.endquestion){
 			//console.log("endquestion: "+this.endquestion);
 			/* user is finished with survey enrollment/weekly - record is complete */
 			// code below should only happen once - edit mode will cause code to re-execute
 			var current_status = this.model.get('status');
-			if(current_status != "edit"){
-				this.model.set({ status: "complete" });
-				/* notify user if this is an enrollment */
-				var survey_type = this.model.get('survey_type');
-				if(survey_type == "enrollment"){
-	                		var email = this.model.get('contact');
-	                		var id = this.model.get('user_id');
-					app.notify(email,id);
-				}
-			}
+			this.model.set({ status: "complete" });
 			/* set timer so after save the app goes to receipt */
 			timer = 4;
 		};
@@ -342,57 +240,15 @@ var AnswerListView = Backbone.View.extend({
 					//console.log("success");
 					//console.log(model);
 					if(that.qHistory.indexOf(currentQuestion) == -1)that.qHistory.push(currentQuestion);
-					//appID = Number(this.model.get("id")); 
-					// if module1 - then notify user 
-					// ****** notify user - working code ********** //
-					//var currentEmail = model.get("q8");
-					//app.notify(currentEmail);
-					// ******************************************** // 
 					// last module - go to receipt
 					if(timer == 4){
-						// clear stage and events
-						that.cleanup();
-						// return receipt from database
-						// check for ie9 or less - no receipt
-						var ie = (function(){ 
-							var undef, v = 3, div = document.createElement('div'), all = div.getElementsByTagName('i');				 
-							while ( div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->', all[0]);
-						       	return v > 4 ? v : undef;
-					       	}());
-						if(ie <= 9){
-							custom_alert("Survey is Complete. Come Back Next Week", "", function() { 
-								appRouter.navigate('/', {trigger: false});
-								location.assign(HOME);
-							});
-
-						} else {
-							networkStatus != "offline" ? appRouter.navigate('shs/receipt/' + appID, {trigger: true}) : (function () {appRouter.navigate('/', {trigger: true});location.assign(HOME);})();  
-						}
+						alert("All Done");
 					}
 				},
 				error: function(model,response){
-				  if(response.status == 500){
-					if(response.responseText.indexOf("SQLSTATE[23000]") !== -1){
-						user.save({ status: "duplicate" });
-						custom_alert("You are attempting to enroll with phone/email that is already been registered. Please attempt to login instead. If you continue to fail login please wait one hour and your incomplete enrollment will be removed from the system.", "", function() {
-							that.cleanup();
-							appRouter.navigate('/', {trigger: false});	
-							location.assign(HOME);
-						});
-					} else {
-						custom_alert("The application has encountered an error saving the most recent question. Your record has been saved up to the last question. Please re-login to finish the survey. The SHS team has been notified of the error.", "", function() {
-							that.cleanup();
-							appRouter.navigate('/', {trigger: false});	
-							location.assign(HOME);
-						});
-					}
-					// send sccwrp error message
-					app.xhr_get('http://shs.sccwrp.org/shs2/mail-sccwrp.php',response.responseText).done(function(data) { /* console.log(data.answer); */ });
-					//model.destroy({remote: false});
-				  }
+				  console.log(response.status);
        				}
 			});
-			//console.log(this.model);
 		$("body").css("background-color", "white");
 		$("body").css("opacity", "1");
 		}, /* end saveAnswer */
@@ -403,60 +259,14 @@ var AnswerListView = Backbone.View.extend({
 		this.remove();
 	},
 	render: function(){
-		//console.log("AnswerListView render");
+		console.log("AnswerListView render");
 		$(this.el).html("");
 		$(headerView.el).show();
 		$(footerView.el).show();
 		$(this.el).html(this.template(this.model.toJSON()));
-		$('input:checkbox[value="Other"]').on('change', function(s) {
-			$('<div>').simpledialog2({
-				mode: 'button',
-		   		headerText: '',
-		   		headerClose: true,
-				buttonPrompt: 'Type your response',
-				buttonInput: true,
-				buttons : {
-			  		'OK': {
-				    		click: function () { 
-							var name = $.mobile.sdLastInput;
-							var i = "'" + name + "'";
-						   	$("#aid").controlgroup("container").append('<input type="checkbox" value="' + name + '" id="id' + i + '"> <label for="id' + i + '">' + name + '</label>');
-						   	$("#aid").trigger("create");
-						   	$("input:checkbox[value="+i+"]").prop('checked', true).checkboxradio('refresh');
-					   	}
-			  		},
-		   		}
-	  		})
-		});
-		$('select').on('change', function(s) {
-				var selectTarget = $(s.currentTarget);
-				$("body").css("background-color", "white");
-				$("body").css("opacity", "1");
-				if(selectTarget.val() == "Other") {
-					$('<div>').simpledialog2({
-					    mode: 'button',
-				   	    headerText: '',
-				   	    headerClose: true,
-				    	    buttonPrompt: 'Type your response',
-				    	    buttonInput: true,
-				    	    buttons : {
-				          	'OK': {
-					          click: function () { 
-							var newoption = $.mobile.sdLastInput;
-							$("select").append($("<option></option>").attr("value", newoption).text(newoption));
-						       	selectTarget.val(newoption);
-							selectTarget.trigger('change');
-							}
-						},
-				    	   }
-			 	 	})	
-				};
-			});
-		//$('#multi-view').trigger('create');
-		//$("input[type='checkbox']").checkboxradio();
-		//$(this.el).trigger('create');
-		//console.log(Math.round($('#content').height()));
 		footerView.toggle("on");
+		/* !!!!!!!! important this must be in code otherwise events will be lost between rendering !!!!!! */
+		this.delegateEvents();
 		return this;
 	}
 });

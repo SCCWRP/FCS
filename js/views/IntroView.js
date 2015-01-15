@@ -20,17 +20,6 @@ var IntroView = Backbone.View.extend({
 		$("#home").show();
 		footerView = new FooterView;
 	     	var questionList = new QuestionList();
-	      	questionList.fetch({
-			success: function(response){
-				question = questionList.get(1);
-				var type = question.attributes.type;
-				questionListView = new QuestionListView({model: question});
-				questionListView.render();
-			},
-			error: function(response){
-				console.log("questionList Failed");
-			}
-		});		
 		answerList = new AnswerList();
 		var answerCreate = answerList.create({qcount: 1, timestamp: SESSIONID}, {
 			success: function(response){

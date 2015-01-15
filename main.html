@@ -3,8 +3,8 @@
   <head>
     <title>Fish Consumption Study</title>
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <!--
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+	<!-- 
         <link rel="stylesheet" href="css/jqm-icon-pack-fa.css" /> 
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.css" />
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.dark.css"  id='jQMnDTheme' />
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
-    // -->
+	// -->
         <meta http-equiv="cache-control" content="max-age=0" />
 	<meta http-equiv="cache-control" content="no-cache" />
 	<meta http-equiv="expires" content="0" />
@@ -79,7 +79,7 @@
 	  </div>
 	</script>
 	<script type="text/template" id="tpl-header-details">
-		<h1 id="question" class="ui-title" role="heading" aria-level="1">Surfer Health Survey</h1>
+		<h1 id="question" class="ui-title" role="heading" aria-level="1">Fish Consumption Study</h1>
 		<form>
 		<a href="./index.html" id="home" data-role="button" data-icon="home" class="ui-btn-right">Home</a>
 		</form>
@@ -89,51 +89,17 @@
 	</script>
 	<script type="text/template" id="tpl-answer-details">
 	  <% if((type) == "radio"){ %>
+	  <!--
 	  <h3>Radio Question - <%= qcount %> - <%= type %></h3>
          	<label>Record ID:</label>
           	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
           	<label>Question ID:</label>
          	<input type="text" id="qid" name="qid" value="<%= qcount %>" disabled />
 		<button id="save" class="save">Save</button>
+	  // -->
 		<% if(decline == "yes") { %>
 			<button id="decline" class="decline">Decline and save</button>
 			<% }; %>
-		    <% if((qcount) == 5){ %>
-	  		    <div id="multi-radio" class="ui-field-contain" data-role='fieldcontain'>
-	   			<form id ="aid" >
-	    			<div style="margin: 0 auto; display: table; width: 19em; position:relative;">
-		    		<fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain" data-mini="true">
-					<% for(i=0; i < menu.length; i++) { %>
-			 		<label class="radioClassLabel" id= <%= "radioLabel-" + String.fromCharCode(97 + i)  %> >
-			 		<input type="radio" id="radio-ID" name="radioSelect" value= <%= menu[i] %> />
-			 		<span class="ui-btn-inner"><span class="ui-btn-text" id= <%= "radio-text-" + String.fromCharCode(97 +i)  %> > <%= menu[i] %> </span></span></label>
-					<% }; %>
-				</fieldset>
-	    			</div> 
-	   			</form>
-	 		    </div>
-			    <br/><br/>
-			    <div id="consent" style="display: inline; visibility: visible;"> 
-				    <div id="formImages">
-					    <% if (isDevice){ $('#printConsent').css('display','none'); %>
-						<img width=95% src="img/Consent_Large_Page_1.jpg">
-						<img width=95% src="img/Consent_Large_Page_2.jpg">
-						<img width=95% src="img/Consent_Large_Page_3.jpg">
-						<img width=95% src="img/Consent_Large_Page_4.jpg">
-					    <%  } else { %>
-					    	<img width=65% src="img/Consent_1.jpg">
-					    	<img width=65% src="img/Consent_2.jpg">
-					    	<img width=65% src="img/Consent_3.jpg">
-					    	<img width=65% src="img/Consent_4.jpg">
-					    <% }; $('#consent').css('display','inline'); $('#consent').css('visibility','visible'); %>
-				    </div>
-				    <br>
-				    <form>
-					    <a href="img/Consent.pdf" target="_blank" data-inline=true data-role="button" id="printConsent">Print/Download</a>
-				    </form>
-				    <h3>Do you agree to the terms above?</h3>
-			    </div>
-			    <% }; %>
 	  <div id="multi-radio" class="ui-field-contain" data-role='fieldcontain'>
 	   <form id ="aid" >
 	    <div style="margin: 0 auto; display: table; width: 19em; position:relative;">
