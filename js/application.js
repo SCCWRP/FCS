@@ -292,7 +292,7 @@ var app = {
       //rsubmit(s);
   },
   onDeviceReady: function(){
-	window.requestFileSystem(window.TEMPORARY, 5*1024*1024 /*5MB*/, app.onFSSuccess, app.onError); // using chrome if mobile see below
+	//window.requestFileSystem(window.TEMPORARY, 5*1024*1024 /*5MB*/, app.onFSSuccess, app.onError); // using chrome if mobile see below
  	// jquery cors support for phonega
 	/*
 	$.support.cors = true;
@@ -319,7 +319,7 @@ var app = {
     		document.addEventListener("deviceready", function(){
 			alert("isDevice deviceready");
 			app.onDeviceReady();
-			//window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, app.onFSSuccess, app.onError); // mobile only
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, app.onFSSuccess, app.onError); // mobile only
 		},true);
 	} else {
 		app.onDeviceReady();
