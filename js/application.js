@@ -107,7 +107,8 @@ var app = {
      		//alert("a: "+a);
      		//alert("t: "+t);
      		var localSave;
-     		var prevStorage = window.localStorage.getItem("fcs-keys");
+     		//var prevStorage = window.localStorage.getItem("fcs-keys");
+     		var prevStorage = window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys");
       		alert("prevStorage: "+prevStorage); 
      		if (prevStorage != null){
 	     		//alert("The following session keys are saved " + prevStorage);
@@ -116,16 +117,21 @@ var app = {
 	     		//if(connectionStatus != "offline") {
 	     		var currentKey; // currentKey = sessionid
 	     		var loopNum=keysArray.length;
-	     		//alert("Should loop " + loopNum + " times");
+	     		alert("Should loop " + loopNum + " times");
 	     		for(var i=0; i<loopNum; i++){
 		     		//alert("Loop number " +  i + "");
 		     		currentKey = keysArray.pop();
-		     		//alert("currentKey: "+currentKey);
-		     		currentTime = currentKey.split('-');
+		     		alert("currentKey: "+currentKey);
+		     		//currentTime = currentKey.split('-');
 		     		//alert("currentTimestamp: "+currentTime[2]);
-		     		var read =  window.localStorage.getItem(currentKey);
+		     		//var read =  window.localStorage.getItem(currentKey);
+		     		//var read =  JSON.parse(window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys" + currentKey));
+		     		var read =  window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys" + currentKey);
+				//var readString = '{"record" : [' + read + ']}';
+				//alert("read: "+ read.timestamp);
+				//alert("read: "+ readString);
 		     		if(a=="local"){
-     					//alert("a: "+a);
+					//localSave += readString;	
 					localSave += read;	
 		     		}
 		     		//alert("Read Session: "+ read);
@@ -286,7 +292,7 @@ var app = {
       //rsubmit(s);
   },
   onDeviceReady: function(){
-	//window.requestFileSystem(window.TEMPORARY, 5*1024*1024 /*5MB*/, app.onFSSuccess, app.onError);
+	window.requestFileSystem(window.TEMPORARY, 5*1024*1024 /*5MB*/, app.onFSSuccess, app.onError); // using chrome if mobile see below
  	// jquery cors support for phonega
 	/*
 	$.support.cors = true;
@@ -313,7 +319,7 @@ var app = {
     		document.addEventListener("deviceready", function(){
 			alert("isDevice deviceready");
 			app.onDeviceReady();
-			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, app.onFSSuccess, app.onError);
+			//window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, app.onFSSuccess, app.onError); // mobile only
 		},true);
 	} else {
 		app.onDeviceReady();
