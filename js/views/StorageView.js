@@ -3,8 +3,9 @@ var StorageView = Backbone.View.extend({
 	template:_.template($('#tpl-storage-details').html()),
 	initialize: function(){
 		alert("initialize StorageView");
-		//window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, this.onFSSuccess, app.onError);
-		directoryLocation.getFile(timestampFile, {create:true}, this.fileAppend, app.onError);
+		// used timestamp for files initially but switched to static log file - everytime app is loaded it created a new timestamp file
+		//directoryLocation.getFile(timestampFile, {create:true}, this.fileAppend, app.onError);
+		directoryLocation.getFile("survey.txt", {create:true}, this.fileAppend, app.onError);
 	},
   	fileAppend: function(fs){
 		//alert("fileAppend");
@@ -17,29 +18,8 @@ var StorageView = Backbone.View.extend({
 		        };
 			//go to the end of the file...
 			fileWriter.seek(fileWriter.length);
+			// retrieve local data
 			localSave = app.getLocalData("local","save"); 
-			/*
-			var prevStorage = window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys");
-	                //alert("prevStorage: "+prevStorage);
-	                if (prevStorage != null){
-				var keysArray = prevStorage.split(',');
-				var currentKey; // currentKey = sessionid
-				var loopNum=keysArray.length;
-				//alert("Should loop " + loopNum + " times");
-	     			for(var i=0; i<loopNum; i++){
-		     			currentKey = keysArray.pop();
-		     			//alert("currentKey: "+currentKey);
-		     			var read =  window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys" + currentKey);
-					readString += read;
-					//var readObj =  JSON.parse(window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys" + currentKey));
-					//fileWriter.write(readString);
-					//alert(JSON.stringify(readObj));
-					//var localSave = new Blob([read], {type: 'text/plain'});
-					//fileWriter.write(localSave);
-					//fileWriter.write(localSave);
-				}
-			}
-			*/
 			//alert("readObj: "+ localSave);
 			var blob = new Blob([localSave], {type: "text/plain"});
 			fileWriter.write(blob);
