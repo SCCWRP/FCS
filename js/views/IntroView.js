@@ -12,7 +12,8 @@ var IntroView = Backbone.View.extend({
 		"click #submitLocal":"submitLocal",
 		"click #submitLocalSD":"submitLocalSD",
 		"click #showGPS":"getGPS",
-		"click #showCamera":"getCamera"
+		"click #showCamera":"getCamera",
+		"click #submitData":"submitData"
 	},
     	startSurvey: function(){
 		this.cleanup();
@@ -91,6 +92,41 @@ var IntroView = Backbone.View.extend({
 		headerView = new HeaderView;
 		storageListView = new StorageListView;
   	},
+	submitData: function(){
+		alert("submitData");
+    		var fileURL = "file:///storage/sdcard0/org.sccwrp.fcs/survey.txt";
+    		function win(r){
+	    		//alert(r);
+            		//alert("Code = " + r.responseCode);
+            		//alert("Response = " + r.response);
+            		//alert("Sent = " + r.bytesSent);
+    		}
+    		function fail(error){
+    			//alert("An error has occurred: Code = " + error.code);
+    			//alert("upload error source " + error.source);
+    			//alert("upload error target " + error.target);
+    		}
+
+    		var uri = encodeURI("http://data.sccwrp.org/fcs/upload.php");
+
+    		var options = new FileUploadOptions();
+    		options.fileKey = "file";
+    		options.fileName = fileURL.substr(fileURL.lastIndexOf('/')+1);
+    		options.mimeType = "text/plain";
+		
+    		var headers={'headerParam':'headerValue'};
+    		options.headers = headers;
+
+    		var ft = new FileTransfer();
+    		ft.onprogress = function(progressEvent){
+			if(progressEvent.lengthComputable){
+	  			loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
+			} else {
+	  			loadingStatus.increment();
+			}
+    		}
+    		ft.upload(fileURL, uri, win, fail, options);
+    	},
 	cleanup: function() {
 		//console.log("IntroView cleanup");
 	        this.undelegateEvents();

@@ -20,6 +20,22 @@ var appRouter = new (Backbone.Router.extend({
 	    }
 	    //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter); - issues with iphone
   },
+  dirty: function(){
+	alert("dirty");
+	answerList = new AnswerList();
+	var servicesSync = answerList.fetch({ 
+        	success: function (response) {
+			console.log(response);
+	        	answerList.syncDirtyAndDestroyed();    
+	        },
+	    	error: function(model,response){
+			console.log(response.responseText);
+			console.log(response.status);
+			console.log(response.statusText);
+		}
+
+        });
+  },
   resizePage: function(){
 	/* in the beta version this functin was used with unique form element names
 	   in full study all (maybe) form elements derive from .ui-field-contain */
@@ -84,12 +100,13 @@ var appRouter = new (Backbone.Router.extend({
   },
   question: function(){
 	questionList = new QuestionList();
-        questionList.fetch({ success: function(response){ /*console.log("questionList fetch - success");*/ questionList.getQuestion(); } });
+        questionList.fetch({ success: function(response){ /*console.log("questionList fetch - success");*/ questionList.getQuestion();  appRouter.dirty(); } });
   },
   start: function(){
 	$("#content").html( new IntroView().render().el );
 	appRouter.question();
 	$("#landList").css("height", window.innerHeight);
+	// check for dirty keys
   }
 }));
 var app = {
