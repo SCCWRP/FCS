@@ -96,15 +96,15 @@ var IntroView = Backbone.View.extend({
 		alert("submitData");
     		var fileURL = "file:///storage/sdcard0/org.sccwrp.fcs/survey.txt";
     		function win(r){
-	    		//alert(r);
-            		//alert("Code = " + r.responseCode);
-            		//alert("Response = " + r.response);
-            		//alert("Sent = " + r.bytesSent);
+	    		alert(r);
+            		alert("Code = " + r.responseCode);
+            		alert("Response = " + r.response);
+            		alert("Sent = " + r.bytesSent);
     		}
     		function fail(error){
-    			//alert("An error has occurred: Code = " + error.code);
-    			//alert("upload error source " + error.source);
-    			//alert("upload error target " + error.target);
+    			alert("An error has occurred: Code = " + error.code);
+    			alert("upload error source " + error.source);
+    			alert("upload error target " + error.target);
     		}
 
     		var uri = encodeURI("http://data.sccwrp.org/fcs/upload.php");
@@ -119,11 +119,17 @@ var IntroView = Backbone.View.extend({
 
     		var ft = new FileTransfer();
     		ft.onprogress = function(progressEvent){
-			if(progressEvent.lengthComputable){
-	  			loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
+		  if (progressEvent.lengthComputable) {
+			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+			var tmp_content =  perc + "% Loaded";
+			app.showContent(tmp_content);
+		  } else {
+			if($("#log").innerHTML == "") {
+				app.showContent("Loading");
 			} else {
-	  			loadingStatus.increment();
+				app.showContent(".");
 			}
+		  }
     		}
     		ft.upload(fileURL, uri, win, fail, options);
     	},
