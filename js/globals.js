@@ -7,6 +7,7 @@ var SESSIONID = +new Date;
 var fileSystem;
 var directoryLocation;
 var timestampFile;
+var latlon;
 $.ajax({
 	url: "questions.json",
 	dataType: 'json',

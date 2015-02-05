@@ -16,10 +16,6 @@ var IntroView = Backbone.View.extend({
 		headerView = new HeaderView;
 		$("#home").show();
 		footerView = new FooterView;
-		/* get coordinates and device type */
-		if(isDevice){
-			var latlon = navigator.geolocation.getCurrentPosition(app.getGPSOnSuccess, app.getGPSOnFailure);
-		} 
 		/* set version */
 		var deviceType = navigator.userAgent + "-v.0.0.1";
 	     	var questionList = new QuestionList();

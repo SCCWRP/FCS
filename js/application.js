@@ -222,6 +222,12 @@ var app = {
                 }
         });
   },
+  getGPSOnSuccess: function(position){
+	latlon = position.coords.latitude + "," + position.coords.longitude
+  },
+  getGPSOnFailure: function(error){
+	latlon = "failed";
+  },
   getId: function(id) {
     return document.querySelector(id);
   },
@@ -340,6 +346,7 @@ var app = {
 			alert("isDevice deviceready");
 			app.onDeviceReady();
 			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, app.onFSSuccess, app.onError); // mobile only
+			latlon = navigator.geolocation.getCurrentPosition(app.getGPSOnSuccess, app.getGPSOnFailure);
 		},true);
 	} else {
 		app.onDeviceReady();
