@@ -22,19 +22,23 @@ var appRouter = new (Backbone.Router.extend({
   },
   dirty: function(){
 	alert("dirty");
-	answerList = new AnswerList();
-	var servicesSync = answerList.fetch({ 
-        	success: function (response) {
+        var dirtyKeys = window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys_dirty");
+	alert(dirtyKeys);
+        if (dirtyKeys != null){
+		answerList = new AnswerList();
+		var servicesSync = answerList.fetch({ 
+        	  success: function (response) {
 			console.log(response);
 	        	answerList.syncDirtyAndDestroyed();    
-	        },
-	    	error: function(model,response){
+	          },
+	    	  error: function(model,response){
 			console.log(response.responseText);
 			console.log(response.status);
 			console.log(response.statusText);
-		}
+		  }
 
-        });
+        	});
+	}
   },
   resizePage: function(){
 	/* in the beta version this functin was used with unique form element names
@@ -100,13 +104,12 @@ var appRouter = new (Backbone.Router.extend({
   },
   question: function(){
 	questionList = new QuestionList();
-        questionList.fetch({ success: function(response){ /*console.log("questionList fetch - success");*/ questionList.getQuestion();  appRouter.dirty(); } });
+        questionList.fetch({ success: function(response){ /*console.log("questionList fetch - success");*/ questionList.getQuestion(); } });
   },
   start: function(){
 	$("#content").html( new IntroView().render().el );
 	appRouter.question();
 	$("#landList").css("height", window.innerHeight);
-	// check for dirty keys
   }
 }));
 var app = {

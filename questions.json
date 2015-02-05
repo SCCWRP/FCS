@@ -1,22 +1,22 @@
 [
   {
-	"title": "Do you speak English?",
+	"title": "Who are you interviewing?",
 	"action": "none",
       	"num": "q11",
-      	"type": "radio",
-      	"menu": "Yes,No",
+      	"type": "select",
+      	"menu": "Select One,Pier Angler,Shoreline Angler,Boat Angler",
         "other": "n",
 	"otype": "",
-	"check": "0,1",
+	"check": "select",
   	"answer": "",
 	"decline": "no",
 	"declinedefault": "",
-	"errmessage": "We are sorry, but we are only enrolling surfers who speak English.",
+	"errmessage": "",
       	"status": "incomplete",
       	"id": "1"
   },
   {
-	"title": "Are you 18 years or older?",
+	"title": "Have you ever been surveyed before for our San Diego Bay Fish Consumption Study?",
 	"action": "none",
       	"num": "q12",
       	"type": "radio",
@@ -26,7 +26,7 @@
   	"answer": "",
 	"decline": "no",
 	"declinedefault": "",
-	"errmessage": "We are sorry, but we are only enrolling surfers are 18 years or older.",
+	"errmessage": "",
       	"status": "incomplete",
       	"id": "2"
   },

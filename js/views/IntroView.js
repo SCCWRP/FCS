@@ -5,24 +5,26 @@ var IntroView = Backbone.View.extend({
 	},
 	events:{
 		"click #startSurvey":"startSurvey",
-		"click #deleteLocal":"deleteLocal",
-		"click #saveLocal":"saveLocal",
-		"click #saveLocalSD":"saveLocalSD",
-		"click #showLocalSD":"showLocalSD",
-		"click #submitLocal":"submitLocal",
-		"click #submitLocalSD":"submitLocalSD",
-		"click #showGPS":"getGPS",
-		"click #showCamera":"getCamera",
-		"click #submitData":"submitData"
+		"click #submitData":"submitData",
+		"click #getUtilities":"getUtilities"
 	},
+    	getUtilities: function(){
+		$("#content").html( new UtilitiesView().render().el );
+     	},
     	startSurvey: function(){
 		this.cleanup();
 		headerView = new HeaderView;
 		$("#home").show();
 		footerView = new FooterView;
+		/* get coordinates and device type */
+		if(isDevice){
+			var latlon = navigator.geolocation.getCurrentPosition(app.getGPSOnSuccess, app.getGPSOnFailure);
+		} 
+		/* set version */
+		var deviceType = navigator.userAgent + "-v.0.0.1";
 	     	var questionList = new QuestionList();
 		answerList = new AnswerList();
-		var answerCreate = answerList.create({qcount: 1, timestamp: SESSIONID}, {
+		var answerCreate = answerList.create({qcount: 1, timestamp: SESSIONID, device_type: deviceType, coordinates: latlon}, {
 			success: function(response){
 				var answer = answerList.get(response.id);
 				answerListView = new AnswerListView({model: answer });
@@ -35,87 +37,9 @@ var IntroView = Backbone.View.extend({
 			}
 		});
      	},
-	showContact: function(){
-		headerView = new HeaderView;
-		contactView = new ContactView;
-	},
-	getCamera: function(){
-		alert("getCamera");
-	       	//var image = document.getElementById('myImage');
-	       	//image.src = imageURI;
-		function movePicture(picture){
-			alert("movePicture");	
-			var currentDate = new Date();
-			var currentTime = currentDate.getTime();
-			var fileName = currentTime + ".jpg";
-			alert("fileName: "+ fileName);
-			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
-		          fileSystem = fs;
-		          fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
-				function(dirEntry) {
-					picture.moveTo(dirEntry, fileName, onSuccessMove, app.onError);
-				}, app.onError);
-			}, app.onError);
-		}
-		function findPictureLocation(file){
-			alert("findPictureLocation");
-			window.resolveLocalFileSystemURI(file, movePicture, app.onError);
-		}
-	    	function onSuccessMove(f){
-			app.showContent("Picture successfully moved.");
-	     	}
-	    	function onSuccess(imageURI){
-			findPictureLocation(imageURI);
-	     	}
-         	function onFail(message){
-	       		alert("Failed because: "+ message);
-	        }
-	     	navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
-	},
-  	getGPS: function(){
-		alert("getGPS");
-    		navigator.geolocation.getCurrentPosition(app.getGPSOnSuccess, app.getGPSOnFailure);
-  	},
-  	getGPSOnSuccess: function(position){
-    		window.localStorage.setItem("current-latitude", position.coords.latitude);	
-    		window.localStorage.setItem("current-longitude", position.coords.longitude);	
-  	},
-  	getGPSOnFailure: function(error){
-		alert("code: "+ error.code);
-		alert("message: "+ error.message);
-  	},
-	deleteLocal: function(){
-	    	alert("deleteLocal");
-	    	window.localStorage.clear();
-	    	alert("Check: " + window.localStorage.getItem("sensor-keys"));
-     	},
-	saveLocal: function(){
-    		alert("saveLocal");
-    		var prevStorage = window.localStorage.getItem("fcs-keys");
-    		var latitude = window.localStorage.getItem("current-latitude");
-    		var longitude = window.localStorage.getItem("current-longitude");
-    		if (prevStorage != null){
-    			window.localStorage.setItem("fcs-keys", ""+ prevStorage +",fcs-keys-"+ SESSIONID +"-1,fcs-keys-"+ SESSIONID +"-2");
-    		} else {
-    			window.localStorage.setItem("fcs-keys","fcs-keys-"+ SESSIONID +"-1,fcs-keys-"+ SESSIONID +"-2");
-    		} 
-    		window.localStorage.setItem('fcs-keys-'+ SESSIONID +'-1', '{"id":"1","time":"14:34:56","ph":"4.5","orp":"234","do":"4.7","ec":"211μs","temp":"89","color":"4.5","lat":"'+latitude+'","lon":"'+longitude+'"}');
-    		window.localStorage.setItem('fcs-keys-'+ SESSIONID +'-2', '{"id":"2","time":"09:03:23","ph":"3.0","orp":"450","do":"5.9","ec":"123μs","temp":"85","color":"2.1","lat":"'+latitude+'","lon":"'+longitude+'"}');
-    		var currentStorage = window.localStorage.getItem("fcs-keys");
-    		alert("Test pull on fcs-keys: "+ currentStorage);
-  	},
-	saveLocalSD: function(){
-    		alert("saveLocalSD");
-		headerView = new HeaderView;
-		storageView = new StorageView;
-  	},
-	showLocalSD: function(){
-    		alert("showLocalSD");
-		headerView = new HeaderView;
-		storageListView = new StorageListView;
-  	},
 	submitData: function(){
 		alert("submitData");
+		appRouter.dirty();
     		var fileURL = "file:///storage/sdcard0/org.sccwrp.fcs/survey.txt";
     		function win(r){
 	    		alert(r);

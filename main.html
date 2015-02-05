@@ -38,18 +38,24 @@
 	<script src="js/vendor/chance.min.js"></script>
 	<script type="text/javascript" src="js/vendor/jquery.mobile.simpledialog2.min.js"></script>
 	<script type="text/javascript" src="js/vendor/fastclick.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     	<script type="text/template" id="tpl-intro-details">
 	<div id="landing" data-theme="b">
 	  <ul id="landList" data-role="listview">
 		<li class="boxed2"><a id='startSurvey'><h1><center><span class="liDown"><br>Start Survey</span></center></h1></a></li>
+		<li class="boxed2"><a id='submitData'><h1><center><span class="liDown"><br>Submit to SCCWRP</span></center></h1></a></li>
+		<li class="boxed2"><a id='getUtilities'><h1><center><span class="liDown"><br>Utilities</span></center></h1></a></li>
+	  </ul>
+	</div>
+	</script>
+    	<script type="text/template" id="tpl-utility-details">
+	<div id="landing" data-theme="b">
+	  <ul id="landList" data-role="listview">
 		<li class="boxed2"><a id='saveLocal'><h1><center><span class="liDown"><br>Test Local Storage Data</span></center></h1></a></li>
 		<li class="boxed2"><a id='saveLocalSD'><h1><center><span class="liDown"><br>Save Local Storage Data to SD</span></center></h1></a></li>
 		<li class="boxed2"><a id='showLocalSD'><h1><center><span class="liDown"><br>Directory Listing of SD</span></center></h1></a></li>
 		<li class="boxed2"><a id='showGPS'><h1><center><span class="liDown"><br>Show Coordinates</span></center></h1></a></li>
 		<li class="boxed2"><a id='showCamera'><h1><center><span class="liDown"><br>Show Camera</span></center></h1></a></li>
 		<li class="boxed2"><a id='deleteLocal'><h1><center><span class="liDown"><br>Delete Local Storage Data</span></center></h1></a></li>
-		<li class="boxed2"><a id='submitData'><h1><center><span class="liDown"><br>Submit</span></center></h1></a></li>
 	  </ul>
 	</div>
 	</script>
@@ -117,7 +123,6 @@
 	  <% } else if ((type) == "numberSelect"){  %>
 	  	<!-- 
          	<label>User ID:</label>
-          	<input type="text" value="<%= user_id %>" disabled />
           	<label>Record ID:</label>
           	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
 		// -->
@@ -133,7 +138,6 @@
 	    <div id="multi-view" data-role="fieldcontain">
 		<!-- <h3>Multi Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
-          	<input type="text" value="<%= user_id %>" disabled />
           	<label>Record ID:</label>
           	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
 		// -->
@@ -151,7 +155,6 @@
 	  <div id="multi-select">
 		<!-- <h3>Select Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
-          	<input type="text" value="<%= user_id %>" disabled />
         	<label>Record ID:</label>
         	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
         	<label>Question ID:</label>
@@ -169,7 +172,6 @@
 	  <div id="multi-select">
 		<!-- <h3>Select Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
-          	<input type="text" value="<%= user_id %>" disabled />
         	<label>Record ID:</label>
         	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
         	<label>Question ID:</label>
@@ -195,7 +197,6 @@
 	  <div id="multi-select">
 		<!-- <h3>Select Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
-          	<input type="text" value="<%= user_id %>" disabled />
         	<label>Record ID:</label>
         	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
         	<label>Question ID:</label>
@@ -235,7 +236,6 @@
 		<!--
 		<h3>Text Question - <%= qcount %> - <%= type %></h3>
          	<label>User ID:</label>
-          	<input type="text" value="<%= user_id %>" disabled />
         	<label>Record ID:</label>
         	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
         	<label>Question ID:</label>
@@ -251,7 +251,6 @@
 	  <% } else if (type == "sevenday"){  %>
 	  	<!-- 
          	<label>User ID:</label>
-          	<input type="text" value="<%= user_id %>" disabled />
           	<label>Record ID:</label>
           	<input type="text" id="rid" name="rid" value="<%= id %>" disabled />
           	<label>Question ID:</label>
@@ -292,6 +291,7 @@
 	<script src="js/views/QuestionListView.js"></script>
 	<script src="js/views/StorageView.js"></script>
 	<script src="js/views/StorageListView.js"></script>
+	<script src="js/views/UtilitiesView.js"></script>
 	<script src="js/application.js"></script>
   </body>
 </html>
