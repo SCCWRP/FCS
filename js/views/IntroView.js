@@ -49,11 +49,13 @@ var IntroView = Backbone.View.extend({
 			var currentTime = currentDate.getTime();
 			var fileName = currentTime + ".jpg";
 			alert("fileName: "+ fileName);
-		        fileSystem = fs;
-		        fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
+		          fileSystem = fs;
+		          fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
 				function(dirEntry) {
 					picture.moveTo(dirEntry, fileName, onSuccessMove, app.onError);
 				}, app.onError);
+			}, app.onError);
 		}
 		function findPictureLocation(file){
 			alert("findPictureLocation");
