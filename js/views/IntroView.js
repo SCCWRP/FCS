@@ -43,11 +43,27 @@ var IntroView = Backbone.View.extend({
 		alert("getCamera");
 	       	//var image = document.getElementById('myImage');
 	       	//image.src = imageURI;
+		function movePicture(picture){
+			alert("movePicture");	
+			var currentDate = new Date();
+			var currentTime = currentDate.getTime();
+			var fileName = currentTime + ".jpg";
+			alert("fileName: "+ fileName);
+		        fileSystem = fs;
+		        fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
+				function(dirEntry) {
+					picture.moveTo(dirEntry, fileName, onSuccessMove, app.onError);
+				}, app.onError);
+		}
+		function findPictureLocation(file){
+			alert("findPictureLocation");
+			window.resolveLocalFileSystemURI(file, movePicture, app.onError);
+		}
+	    	function onSuccessMove(f){
+			app.showContent("Picture successfully moved.");
+	     	}
 	    	function onSuccess(imageURI){
-		  var fileSystem = function(fileDirectory){
-			alert("File Directory: " + fileDirectory.fullPath);
-		  }
-		  window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystem, app.onError); // mobile only
+			findPictureLocation(imageURI);
 	     	}
          	function onFail(message){
 	       		alert("Failed because: "+ message);
