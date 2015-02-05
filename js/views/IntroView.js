@@ -22,6 +22,7 @@ var IntroView = Backbone.View.extend({
 		answerList = new AnswerList();
 		var answerCreate = answerList.create({qcount: 1, timestamp: SESSIONID, device_type: deviceType, coordinates: latlon}, {
 			success: function(response){
+				alert("startSurvey success");
 				var answer = answerList.get(response.id);
 				answerListView = new AnswerListView({model: answer });
 				answerListView.endquestion = MAXQUESTION;

@@ -223,9 +223,11 @@ var app = {
         });
   },
   getGPSOnSuccess: function(position){
+	alert("getGPSOnSuccess");
 	latlon = position.coords.latitude + "," + position.coords.longitude
   },
   getGPSOnFailure: function(error){
+	alert("getGPSOnFailure");
 	latlon = "failed";
   },
   getId: function(id) {
