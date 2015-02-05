@@ -41,9 +41,13 @@ var IntroView = Backbone.View.extend({
 	},
 	getCamera: function(){
 		alert("getCamera");
-	     	function onSuccess(imageURI){
-	        	var image = document.getElementById('myImage');
-	         	image.src = imageURI;
+	       	//var image = document.getElementById('myImage');
+	       	//image.src = imageURI;
+	    	function onSuccess(imageURI){
+		  var fileSystem = function(fileDirectory){
+			alert("File Directory: " + fileDirectory.fullPath);
+		  }
+		  window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystem, app.onError); // mobile only
 	     	}
          	function onFail(message){
 	       		alert("Failed because: "+ message);
