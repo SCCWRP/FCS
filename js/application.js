@@ -196,7 +196,7 @@ var app = {
 			fileWriter.write(blob);
     		}, app.onError);
         }
-	directoryLocation.getFile("survey.txt", {create:true}, this.fileAppend, app.onError);
+	directoryLocation.getFile("survey.txt", {create:true}, fileAppend, app.onError);
   },
   dataSyncCheck: function(da,dc,dt){
 	// send autoid and captureid to see if record is in remote database
