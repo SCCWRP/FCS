@@ -242,6 +242,11 @@ var AnswerListView = Backbone.View.extend({
 					if(that.qHistory.indexOf(currentQuestion) == -1)that.qHistory.push(currentQuestion);
 					// last module - go to receipt
 					if(timer == 4){
+						// save data to sd drive
+						if(isDevice){
+							alert(parsedJSON);
+							app.saveLocalData(parsedJSON);
+						}
 						// clear stage and events
 						that.cleanup();
 						// return receipt from database

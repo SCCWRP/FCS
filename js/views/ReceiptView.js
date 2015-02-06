@@ -2,6 +2,7 @@ var ReceiptView = Backbone.View.extend({
 	//el: '#content',
 	template:_.template($('#tpl-receipt-details').html()),
 	initialize: function(){ //this.model.on('change',this.test,this);
+		alert("ReceiptView initialize");
 		//$(this.el).unbind("click");
 		this.listenTo(this.model, "change", this.render);
 	},

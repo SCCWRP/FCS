@@ -1,5 +1,6 @@
 var appRouter = new (Backbone.Router.extend({
   routes: {
+    "fcs/receipt/:appid": "receipt",
     "fcs/": "start",
     "": "start"
   },
@@ -39,6 +40,18 @@ var appRouter = new (Backbone.Router.extend({
 
         	});
 	}
+  },
+  receipt: function(appid){
+	 var receipt = new Receipt({id: appid});
+	 receipt.fetch({success: successMessage,error: errorMessage});
+	 function successMessage(response){
+		 receiptView = new ReceiptView({model: receipt}); 
+		 $("#content").html(receiptView.render().el );
+		 $('#content').trigger('create');
+	 }
+	 function errorMessage(response){
+		 //console.log(response);
+	 }
   },
   resizePage: function(){
 	/* in the beta version this functin was used with unique form element names
@@ -167,6 +180,23 @@ var app = {
 				return localSave;
 	     		}
 		}
+  },
+  saveLocalData: function(m){
+	alert("saveLocalData");
+  	function fileAppend(fs){
+		alert("fileAppend");
+    		fs.createWriter(function(fileWriter) {
+			alert("fs.createWriter");
+			fileWriter.onwrite = function(evt) {
+		            app.showContent("fileAppend wrote to file");
+		        };
+			//go to the end of the file...
+			fileWriter.seek(fileWriter.length);
+			var blob = new Blob([m], {type: "text/plain"});
+			fileWriter.write(blob);
+    		}, app.onError);
+        }
+	directoryLocation.getFile("survey.txt", {create:true}, this.fileAppend, app.onError);
   },
   dataSyncCheck: function(da,dc,dt){
 	// send autoid and captureid to see if record is in remote database
