@@ -242,7 +242,24 @@ var AnswerListView = Backbone.View.extend({
 					if(that.qHistory.indexOf(currentQuestion) == -1)that.qHistory.push(currentQuestion);
 					// last module - go to receipt
 					if(timer == 4){
-						alert("All Done");
+						// clear stage and events
+						that.cleanup();
+						// return receipt from database
+						// check for ie9 or less - no receipt
+						var ie = (function(){ 
+							var undef, v = 3, div = document.createElement('div'), all = div.getElementsByTagName('i');				 
+							while ( div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->', all[0]);
+						       	return v > 4 ? v : undef;
+					       	}());
+						if(ie <= 9){
+							custom_alert("Survey is Complete.", "", function() { 
+								appRouter.navigate('/', {trigger: false});
+								location.assign(HOME);
+							});
+
+						} else {
+							networkStatus != "offline" ? appRouter.navigate('fcs/receipt/' + appID, {trigger: true}) : (function () {appRouter.navigate('/', {trigger: true});location.assign(HOME);})();  
+						}
 					}
 				},
 				error: function(model,response){

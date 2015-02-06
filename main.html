@@ -29,6 +29,9 @@
 	<div id="content"></div>
 	<div data-role="footer" data-theme="b" id="footer">Footer</div>
     <div> 
+    <div id="popupInfo" data-role="popup" class="ui-content" data-position-to="" data-dismissible="false" data-history="false"></div>
+    <div id="popupRestart" data-role="popup" class="ui-content" data-position-to="" data-dismissible="false" data-history="false"></div>
+    <div id="popupTip" data-role="popup" data-theme="a" data-position-to="#footer" data-tap-toggle="false"></div>
 	<script src="js/vendor/jquery-1.11.0.min.js"></script> 
 	<script src="js/orig/jquery.mobile-1.3.1.min.js"></script>
 	<script src="js/vendor/underscore-min.js"></script>
@@ -93,6 +96,40 @@
 	</script>
 	<script type="text/template" id="tpl-question-details">
 		<h1 id="question" class="ui-title" role="heading" aria-level="1"><%= title %></h3></h1>
+	</script>
+	<script type="text/template" id="tpl-dialog-details">
+			<li class="edit" name="edit" id="<%= id %>"><%= id %> - <%= timestamp %></li>
+	</script>
+	<script type="text/template" id="tpl-receipt-details">
+    	<div id="aid" class="form-center-col"><h3>Session Receipt</h3>
+		<a href="#" id="finish" data-role="button" data-icon="check" class="finish">Looks Good/Finish</a>
+		<h4>Fish Consumption Survey</h4>
+		<button data-icon="edit" class="edit" id=1 name=1>Click here to redo this survey</button>
+		<ul data-role="listview" data-inset="true">
+		<% var mod = _.pick(elements, 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10'); %>
+		<% _.each(mod, function(element,index,list) {  var qindex = Number(index.substr(1))-1; %>
+		<% if(!element) return;  %>
+			<% element = JSON.stringify(element).replace(/\\"/g, "").replace("\\", "").replace(/\"/g, "").replace("{","").replace("}", "");  %> 
+			<li data-role="list-divider"><span class="tip"><%= questionObject[qindex].title %></span>Question <%= qindex %></li>
+			<li>
+			<% _.each(element.split(","), function(e,i,l) { %>
+				<p> <%= e %> </p>
+			<% }); %>
+			</li>
+		<% }); %>
+		</ul>
+		<a href="#" id="finish" data-role="button" data-icon="check" class="finish">Looks Good/Finish</a>
+	</div>
+	</script>
+	<script type="text/template" id="tpl-restart-details">
+	    <div data-role="header" data-theme="b" class="ui-corner-top"><h3>Restart App?</h3></div>
+	    <div data-role="content" data-theme="b" class="ui-corner-bottom ui-content">
+	    	<fieldset>
+	    		<h3>Are you sure you want to restart the App? <br> Your submission from this session will be saved.</h3>
+			<a href="#" data-role="button" data-inline=true id="restartCancel">Cancel</a>
+			<a href="#" data-role="button" data-inline=true id="restartRestart">Restart</a>
+		</fieldset>
+	    </div>
 	</script>
 	<script type="text/template" id="tpl-answer-details">
 	  <% if((type) == "radio"){ %>
@@ -286,9 +323,12 @@
 	<script src="js/collections/QuestionList.js"></script>
 	<script src="js/collections/AnswerList.js"></script>
 	<script src="js/views/AnswerListView.js"></script>
+	<script src="js/views/DialogView.js"></script>
 	<script src="js/views/FooterView.js"></script>
 	<script src="js/views/HeaderView.js"></script>
 	<script src="js/views/QuestionListView.js"></script>
+	<script src="js/views/ReceiptView.js"></script>
+	<script src="js/views/RestartView.js"></script>
 	<script src="js/views/StorageView.js"></script>
 	<script src="js/views/StorageListView.js"></script>
 	<script src="js/views/UtilitiesView.js"></script>
