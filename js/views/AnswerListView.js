@@ -206,15 +206,48 @@ var AnswerListView = Backbone.View.extend({
 		var that = this;
 		formtype = this.model.get("type");
 		// disable radio button double click
-                //if(formtype == "radio"){
-		 //       $(".ui-radio").css("pointer-events", "none");
-		//}
-	        var currentAnswer = this.extractAnswer();
+                if(formtype == "radio"){
+		        $(".ui-radio").css("pointer-events", "none");
+		}
+		if(other) {
+			var currentAnswer = other;
+		} else if(!decline) {
+			var currentAnswer = this.extractAnswer();
+		} else {
+			var currentAnswer = "Did not Enter";	
+		};
+		if(currentAnswer == "Other") {
+			footerView.toggle("on");
+			return;
+		};
+	        //var currentAnswer = this.extractAnswer();
 		// current question
 		var currentQuestion = Number(this.model.get("qcount")); 
 		appID = Number(this.model.get("id")); 
 		// next question  
 		var nextQuestion = (currentQuestion + 1);
+		var participant_type = this.model.get("q1");
+		if(currentQuestion == 2 && currentAnswer == "No"){
+			if(participant_type == "Boat Angler"){
+				nextQuestion += 1;	
+			}
+			if((participant_type == "Pier Angler") || (participant_type == "Shoreline Angler")){
+				nextQuestion += 2;	
+			}
+		}
+		if((currentQuestion == 3 && currentAnswer == "This month") || (currentQuestion == 3 && currentAnswer == "Within the last 3 months")){
+			alert("End Survey");
+			location.reload();
+		}
+		if((currentQuestion == 3 && currentAnswer == "Within the last 6 months") || (currentQuestion == 3 && currentAnswer == "More than 6 months ago")){
+				if((participant_type == "Pier Angler") || (participant_type == "Shoreline Angler")){
+					nextQuestion += 1;	
+				}
+		}
+		if(currentQuestion == 4 && currentAnswer == "No"){
+			alert("End Survey");
+			location.reload();
+		}
 		if(currentQuestion >=  this.endquestion){
 			//console.log("endquestion: "+this.endquestion);
 			/* user is finished with survey enrollment/weekly - record is complete */
@@ -281,11 +314,54 @@ var AnswerListView = Backbone.View.extend({
 		this.remove();
 	},
 	render: function(){
-		console.log("AnswerListView render");
 		$(this.el).html("");
 		$(headerView.el).show();
 		$(footerView.el).show();
 		$(this.el).html(this.template(this.model.toJSON()));
+		$('input:checkbox[value="Other"]').on('change', function(s) {
+			$('<div>').simpledialog2({
+				mode: 'button',
+		   		headerText: '',
+		   		headerClose: true,
+				buttonPrompt: 'Type your response',
+				buttonInput: true,
+				buttons : {
+			  		'OK': {
+				    		click: function () { 
+							var name = $.mobile.sdLastInput;
+							var i = "'" + name + "'";
+						   	$("#aid").controlgroup("container").append('<input type="checkbox" value="' + name + '" id="id' + i + '"> <label for="id' + i + '">' + name + '</label>');
+						   	$("#aid").trigger("create");
+						   	$("input:checkbox[value="+i+"]").prop('checked', true).checkboxradio('refresh');
+					   	}
+			  		},
+		   		}
+	  		})
+		});
+		$('select').on('change', function(s) {
+			var selectTarget = $(s.currentTarget);
+			$("body").css("background-color", "white");
+			$("body").css("opacity", "1");
+			if(selectTarget.val() == "Other") {
+				$('<div>').simpledialog2({
+				    mode: 'button',
+			   	    headerText: '',
+			   	    headerClose: true,
+			    	    buttonPrompt: 'Type your response',
+			    	    buttonInput: true,
+			    	    buttons : {
+			          	'OK': {
+				          click: function () { 
+						var newoption = $.mobile.sdLastInput;
+						$("select").append($("<option></option>").attr("value", newoption).text(newoption));
+					       	selectTarget.val(newoption);
+						selectTarget.trigger('change');
+					  }
+					},
+				    }
+			  	})	
+			};
+		});
 		footerView.toggle("on");
 		/* !!!!!!!! important this must be in code otherwise events will be lost between rendering !!!!!! */
 		this.delegateEvents();
