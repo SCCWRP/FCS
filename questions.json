@@ -362,8 +362,9 @@
 	"title": "In what year were you born?",
 	"action": "none",
       	"num": "q23",
-      	"type": "text",
-      	"menu": "",
+      	"type": "select",
+	"check": "select",
+      	"menu": "Select One,< $10k,$10-15k,$15-25k,$25-35k,$35-50k,$50-75k,$75-100k,$100-150k,> $150k,Would prefer not to say/Refused,Dont know/not sure",
         "other": "n",
 	"otype": "",
   	"answer": "",
@@ -371,7 +372,6 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-	"placeholder": "Enter Year",
       	"id": "23"
   },
   {
