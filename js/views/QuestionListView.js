@@ -3,7 +3,11 @@ var QuestionListView = Backbone.View.extend({
 	template:_.template($('#tpl-question-details').html()),
 	render: function(){
 		$(this.el).html("");
-		var rawTitle = this.model.get("title");
+		if(language == "Spanish"){
+			var rawTitle = this.model.get("stitle");
+		} else {
+			var rawTitle = this.model.get("title");
+		}
 		console.log(rawTitle);
 		$(this.el).html(this.template({"title": rawTitle}));	
 	}

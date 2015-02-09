@@ -4,6 +4,13 @@ var HeaderView = Backbone.View.extend({
     	initialize: function(){
 		this.render();
 	},
+	events:{
+		"change select[name=language]":"getLanguage"
+	},
+    	getLanguage: function(event){
+			language = event.target.value;
+			alert(language);
+        },
     	render: function(){
 		//console.log("header");
 		$(this.el).html("");

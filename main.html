@@ -3,8 +3,7 @@
   <head>
     <title>Fish Consumption Study v.0.0.1</title>
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-	<!-- 
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" /> 
         <link rel="stylesheet" href="css/jqm-icon-pack-fa.css" /> 
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
@@ -14,7 +13,6 @@
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.css" />
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.dark.css"  id='jQMnDTheme' />
         <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
-	// -->
         <meta http-equiv="cache-control" content="max-age=0" />
 	<meta http-equiv="cache-control" content="no-cache" />
 	<meta http-equiv="expires" content="0" />
@@ -25,7 +23,7 @@
   <body>
     <div data-role="page" data-theme="b" id="one">
 	<div data-role="header" data-theme="b" id="header" class="ui-corner-top"></div> 
-	<div id="log">Log Content v.0.0.1</div>
+	<!-- <div id="log">Log Content v.0.0.1</div> // -->
 	<div id="content"></div>
 	<div data-role="footer" data-theme="b" id="footer">Footer</div>
     <div> 
@@ -80,22 +78,23 @@
 		<div id="forward" class = "ui-block-c"><a href="#" data-role="button" id="multi"><div id='multiButtonText' >Next</div></a></div>
 	    </fieldset>
 	   </form>
-	   <fieldset id="topBars" class="ui-grid-a"><div id="modLabel" class = "ui-block-a"><p>Section (%):</p></div>
-	     <div id="Mod-bar" class = "ui-block-b"><input type="range" name="slider2" id="Modprogress-bar" value="0" min="0" max="100" data-highlight="true"></div>
-	   </fieldset>
 	   <fieldset id="botBars" class="ui-grid-a"><div id="fullLabel" class = "ui-block-a"><p>Total (%):</p></div>
 	     <div id="Full-bar" class = "ui-block-b"><input type="range" name="slider2" id="Fullprogress-bar" value="0" min="0" max="100" data-highlight="true"></div>
      	   </fieldset>
 	  </div>
 	</script>
 	<script type="text/template" id="tpl-header-details">
+                <select name="language" id="language">
+                	<option id="0" value="English">English</option>
+                	<option id="1" value="Spanish">Spanish</option>
+                </select>
 		<h1 id="question" class="ui-title" role="heading" aria-level="1">Fish Consumption Study</h1>
 		<form>
 		<a href="./index.html" id="home" data-role="button" data-icon="home" class="ui-btn-right">Home</a>
 		</form>
 	</script>
 	<script type="text/template" id="tpl-question-details">
-		<h1 id="question" class="ui-title" role="heading" aria-level="1"><%= title %></h3></h1>
+		<h1 id="question" class="ui-title" role="heading" aria-level="1"><%= title %></h1>
 	</script>
 	<script type="text/template" id="tpl-dialog-details">
 			<li class="edit" name="edit" id="<%= id %>"><%= id %> - <%= timestamp %></li>

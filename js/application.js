@@ -22,9 +22,9 @@ var appRouter = new (Backbone.Router.extend({
 	    //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter); - issues with iphone
   },
   dirty: function(){
-	alert("dirty");
+	//alert("dirty");
         var dirtyKeys = window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys_dirty");
-	alert(dirtyKeys);
+	//alert(dirtyKeys);
         if (dirtyKeys != null){
 		answerList = new AnswerList();
 		var servicesSync = answerList.fetch({ 
@@ -142,7 +142,7 @@ var app = {
      		var localSave;
      		//var prevStorage = window.localStorage.getItem("fcs-keys");
      		var prevStorage = window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys");
-      		alert("prevStorage: "+prevStorage); 
+      		//alert("prevStorage: "+prevStorage); 
      		if (prevStorage != null){
 	     		//alert("The following session keys are saved " + prevStorage);
 	     		var keysArray = prevStorage.split(',');
@@ -150,11 +150,11 @@ var app = {
 	     		//if(connectionStatus != "offline") {
 	     		var currentKey; // currentKey = sessionid
 	     		var loopNum=keysArray.length;
-	     		alert("Should loop " + loopNum + " times");
+	     		//alert("Should loop " + loopNum + " times");
 	     		for(var i=0; i<loopNum; i++){
 		     		//alert("Loop number " +  i + "");
 		     		currentKey = keysArray.pop();
-		     		alert("currentKey: "+currentKey);
+		     		//alert("currentKey: "+currentKey);
 		     		//currentTime = currentKey.split('-');
 		     		//alert("currentTimestamp: "+currentTime[2]);
 		     		//var read =  window.localStorage.getItem(currentKey);
@@ -169,7 +169,7 @@ var app = {
 		     		}
 		     		//alert("Read Session: "+ read);
 		     		if(a=="remote"){
-					alert("read: "+read);
+					//alert("read: "+read);
 		     			app.submitRemote(read,currentTime[2]);
 		     		}
 			     	//to_submit = read.split(',');
@@ -182,11 +182,11 @@ var app = {
 		}
   },
   saveLocalData: function(m){
-	alert("saveLocalData");
+	//alert("saveLocalData");
   	function fileAppend(fs){
-		alert("fileAppend");
+		//alert("fileAppend");
     		fs.createWriter(function(fileWriter) {
-			alert("fs.createWriter");
+			//alert("fs.createWriter");
 			fileWriter.onwrite = function(evt) {
 		            app.showContent("fileAppend wrote to file");
 		        };
@@ -204,7 +204,7 @@ var app = {
 	//alert("dataSyncCheck captureid: "+ dc);
 	//alert("dataSyncCheck timestamp: "+ dt);
 	// if the record is in database remove local record
-	alert("dataSyncCheck");
+	//alert("dataSyncCheck");
         var url = 'http://data.sccwrp.org/sensor/check.php';
         message = $.ajax({
                 type: 'GET',
@@ -220,25 +220,25 @@ var app = {
                 success: function(data) {
 			// first delete value
 			var currentRecord = "sensor-keys-"+ dt +"-"+ dc;
-			alert("Value to Delete: "+ currentRecord);
+			//alert("Value to Delete: "+ currentRecord);
         		window.localStorage.removeItem(currentRecord);
 			// second delete key from ring	
         		var prevStorage = window.localStorage.getItem("sensor-keys");
 			// not a good idea - remove current key ring
        			//window.localStorage.removeItem("sensor-keys");
         		if (prevStorage != null){
-	     			alert("Get Key Ring: " + prevStorage);
+	     			//alert("Get Key Ring: " + prevStorage);
 				// split key ring string into array
 	     			var keysArray = prevStorage.split(',');
-				alert("keysArray.length: "+ keysArray.length);
+				//alert("keysArray.length: "+ keysArray.length);
 				// find key we want to delete
 				var keyFind = keysArray.indexOf(currentRecord);
 				if(keyFind != -1){
-					alert("Key to Delete: "+ keyFind);
+					//alert("Key to Delete: "+ keyFind);
 					// remove key from ring
 					keysArray.splice(keyFind, 1);
 					if(keysArray.length == 0){
-						alert("keysArray is empty: "+ keysArray.length);
+						//alert("keysArray is empty: "+ keysArray.length);
      						window.localStorage.removeItem("sensor-keys");
 					} else {
 						var newRing = keysArray.join();
@@ -253,11 +253,11 @@ var app = {
         });
   },
   getGPSOnSuccess: function(position){
-	alert("getGPSOnSuccess");
+	//alert("getGPSOnSuccess");
 	latlon = position.coords.latitude + "," + position.coords.longitude
   },
   getGPSOnFailure: function(error){
-	alert("getGPSOnFailure");
+	//alert("getGPSOnFailure");
 	latlon = "failed";
   },
   getId: function(id) {
@@ -267,15 +267,15 @@ var app = {
     $("#log").html(s);
   },
   onFSSuccess: function(fs){
-	alert("onFSSuccess");
+	//alert("onFSSuccess");
 	fileSystem = fs;
 	fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
 		function(dirEntry) {
 			directoryLocation = dirEntry;
-			alert(directoryLocation);
-			//alert(SESSIONID);
+			//alert(directoryLocation);
+			////alert(SESSIONID);
 			timestampFile = ""+SESSIONID+".txt";
-			//alert(timestampFile);
+			////alert(timestampFile);
 			dirEntry.getFile(timestampFile, {create:true}, 
 				function(f) {
 		         		app.showContent("directory and timestamp file created");
@@ -375,7 +375,7 @@ var app = {
 	}
 	if( isDevice ){
     		document.addEventListener("deviceready", function(){
-			alert("isDevice deviceready");
+			//alert("isDevice deviceready");
 			app.onDeviceReady();
 			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, app.onFSSuccess, app.onError); // mobile only
 			latlon = navigator.geolocation.getCurrentPosition(app.getGPSOnSuccess, app.getGPSOnFailure);

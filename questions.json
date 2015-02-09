@@ -1,10 +1,12 @@
 [
   {
 	"title": "Who are you interviewing?",
+	"stitle": "A quién estás entrevistando?",
 	"action": "none",
       	"num": "q11",
       	"type": "select",
       	"menu": "Select One,Pier Angler,Shoreline Angler,Boat Angler",
+      	"smenu": "Seleccione Uno,Pescador Pier,Pescador Shoreline,Pescador Barco",
         "other": "n",
 	"otype": "",
 	"check": "select",

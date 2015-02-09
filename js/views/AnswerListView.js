@@ -2,7 +2,7 @@ var AnswerListView = Backbone.View.extend({
 	//el: '#content',
 	template:_.template($('#tpl-answer-details').html()),
 	initialize: function(){
-		//console.log("AnswerListView");
+		console.log("AnswerListView");
 		//Start idle counter
 		var that = this;
 		$(document).ready(function () {
@@ -102,7 +102,11 @@ var AnswerListView = Backbone.View.extend({
 		questionList.fetch({success: getQuestion,error: errorQuestion});
 		function getQuestion(){
 			gotQuestion = questionList.get(nextQcount);
-			var fixMenu = gotQuestion.attributes.menu.split(",")
+			if(language == "Spanish"){
+				var fixMenu = gotQuestion.attributes.smenu.split(",")
+			} else {
+				var fixMenu = gotQuestion.attributes.menu.split(",")
+			}
 			t.set({	'title': gotQuestion.attributes.title,
 				'menu': fixMenu,
 				'type': gotQuestion.attributes.type,
@@ -277,7 +281,7 @@ var AnswerListView = Backbone.View.extend({
 					if(timer == 4){
 						// save data to sd drive
 						if(isDevice){
-							alert(parsedJSON);
+							//alert(parsedJSON);
 							app.saveLocalData(parsedJSON);
 						}
 						// clear stage and events

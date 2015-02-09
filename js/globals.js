@@ -8,6 +8,7 @@ var fileSystem;
 var directoryLocation;
 var timestampFile;
 var latlon;
+var language = "English";
 $.ajax({
 	url: "questions.json",
 	dataType: 'json',
