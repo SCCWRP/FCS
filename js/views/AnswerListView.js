@@ -293,15 +293,8 @@ var AnswerListView = Backbone.View.extend({
 							while ( div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->', all[0]);
 						       	return v > 4 ? v : undef;
 					       	}());
-						if(ie <= 9){
-							custom_alert("Survey is Complete.", "", function() { 
 								appRouter.navigate('/', {trigger: false});
 								location.assign(HOME);
-							});
-
-						} else {
-							networkStatus != "offline" ? appRouter.navigate('fcs/receipt/' + appID, {trigger: true}) : (function () {appRouter.navigate('/', {trigger: true});location.assign(HOME);})();  
-						}
 					}
 				},
 				error: function(model,response){

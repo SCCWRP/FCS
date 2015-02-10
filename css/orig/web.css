@@ -42,7 +42,35 @@ overflow:hidden;
  #landList li{
 	 height:33%;
  }
+ #landList .ui-btn-text{
+	 font-size: 40px;
+ }
+ #footButtons .ui-btn-text{
+	 font-size: 40px;
+ }
  .libtn{
 	 border: 0;
 	 top: 100px;
+ }
+ #question {
+	 font-size: 40px; !important
+ }
+ .ui-btn {
+	 font-size: 25px;
+ }
+ .ui-mini{
+	 font-size: 20px;
+ }
+ .ui-checkbox{
+	 font-size: 25px;
+ }
+ .ui-controlgroup-controls{
+	 text-align: center;
+	 width: 1200px;
+ }
+ body, input, select, textarea, button, .ui-btn {
+	 line-height: 1.1;
+ }
+ .ui-header {
+	 min-height: 100px;
  }
