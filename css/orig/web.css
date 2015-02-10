@@ -42,27 +42,11 @@ overflow:hidden;
  #landList li{
 	 height:33%;
  }
+ .libtn{
+	 margin-top: 7%; !important
+	 border: 0;
+ }
  .liDown{
-	 position:relative;
+	 position:absolute;
+	 top:40%;
  }
- .boxed2{
-	 border-style:solid;
-	 border-width:1px;
-	 border-color:silver;
- }
-#landingSurvey > h1:nth-child(1){
-	position:relative;
-	top:20%;
-}
-#landingFAQ > h1:nth-child(1){
-	position:relative;
-	top:22%;
-}
-#landingSurf > h1:nth-child(1){
-	position:relative;
-	top:24%;
-}
-#landingContact > h1:nth-child(1){
-	position:relative;
-	top:26%;
-}
