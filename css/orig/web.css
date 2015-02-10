@@ -50,7 +50,7 @@ overflow:hidden;
  }
  .libtn{
 	 border: 0;
-	 top: 100px;
+	 top: 15px;
  }
  #question {
 	 font-size: 40px; !important
@@ -62,11 +62,11 @@ overflow:hidden;
 	 font-size: 20px;
  }
  .ui-checkbox{
-	 font-size: 25px;
+	 font-size: 40px;
  }
  .ui-controlgroup-controls{
 	 text-align: center;
-	 width: 1200px;
+	 width: 100%;
  }
  body, input, select, textarea, button, .ui-btn {
 	 line-height: 1.1;
