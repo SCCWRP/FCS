@@ -253,6 +253,11 @@ var AnswerListView = Backbone.View.extend({
 			alert("End Survey");
 			location.reload();
 		}
+		if(currentQuestion == 26 && currentAnswer == "Yes"){
+			if(isDevice){
+				app.getCamera();
+			}
+		}
 		if(currentQuestion >=  this.endquestion){
 			//console.log("endquestion: "+this.endquestion);
 			/* user is finished with survey enrollment/weekly - record is complete */

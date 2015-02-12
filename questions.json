@@ -388,5 +388,35 @@
       	"status": "incomplete",
 	"placeholder": "Enter Town",
       	"id": "24"
+  },
+  {
+	"title": "Do you have a smartphone?",
+	"action": "none",
+      	"num": "q25",
+      	"type": "radio",
+      	"menu": "Yes,No",
+        "other": "n",
+	"otype": "",
+  	"answer": "",
+	"decline": "no",
+	"declinedefault": "",
+	"errmessage": "",
+      	"status": "incomplete",
+      	"id": "25"
+  },
+  {
+	"title": "Can I take a picture of your bucket?",
+	"action": "none",
+      	"num": "q26",
+      	"type": "radio",
+      	"menu": "Yes,No",
+        "other": "n",
+	"otype": "",
+  	"answer": "",
+	"decline": "no",
+	"declinedefault": "",
+	"errmessage": "",
+      	"status": "incomplete",
+      	"id": "26"
   }
 ]

@@ -12,7 +12,7 @@ var UtilitiesView = Backbone.View.extend({
 		"click #submitLocal":"submitLocal",
 		"click #submitLocalSD":"submitLocalSD",
 		"click #showGPS":"getGPS",
-		"click #showCamera":"getCamera",
+		"click #showCamera":"app.getCamera",
 	},
     	startSurvey: function(){
 		this.cleanup();
@@ -37,39 +37,6 @@ var UtilitiesView = Backbone.View.extend({
 	showContact: function(){
 		headerView = new HeaderView;
 		contactView = new ContactView;
-	},
-	getCamera: function(){
-		alert("getCamera");
-	       	//var image = document.getElementById('myImage');
-	       	//image.src = imageURI;
-		function movePicture(picture){
-			alert("movePicture");	
-			var currentDate = new Date();
-			var currentTime = currentDate.getTime();
-			var fileName = currentTime + ".jpg";
-			alert("fileName: "+ fileName);
-			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
-		          fileSystem = fs;
-		          fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
-				function(dirEntry) {
-					picture.moveTo(dirEntry, fileName, onSuccessMove, app.onError);
-				}, app.onError);
-			}, app.onError);
-		}
-		function findPictureLocation(file){
-			alert("findPictureLocation");
-			window.resolveLocalFileSystemURI(file, movePicture, app.onError);
-		}
-	    	function onSuccessMove(f){
-			app.showContent("Picture successfully moved.");
-	     	}
-	    	function onSuccess(imageURI){
-			findPictureLocation(imageURI);
-	     	}
-         	function onFail(message){
-	       		alert("Failed because: "+ message);
-	        }
-	     	navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
 	},
   	getGPS: function(){
 		alert("getGPS");

@@ -253,6 +253,40 @@ var app = {
                 }
         });
   },
+  getCamera: function(){
+	alert("getCamera");
+       	//var image = document.getElementById('myImage');
+       	//image.src = imageURI;
+	function movePicture(picture){
+		alert("movePicture");	
+		var currentDate = new Date();
+		var currentTime = currentDate.getTime();
+		var fileName = currentTime + ".jpg";
+		alert("fileName: "+ fileName);
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
+	          fileSystem = fs;
+	          fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
+			function(dirEntry) {
+				picture.moveTo(dirEntry, fileName, onSuccessMove, app.onError);
+			}, app.onError);
+		}, app.onError);
+	}
+	function findPictureLocation(file){
+		alert("findPictureLocation");
+		window.resolveLocalFileSystemURI(file, movePicture, app.onError);
+	}
+    	function onSuccessMove(f){
+		app.showContent("Picture successfully moved.");
+		alert("Location: "+f);
+     	}
+    	function onSuccess(imageURI){
+		findPictureLocation(imageURI);
+     	}
+       	function onFail(message){
+       		alert("Failed because: "+ message);
+        }
+     	navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+  },
   getGPSOnSuccess: function(position){
 	//alert("getGPSOnSuccess");
 	latlon = position.coords.latitude + "," + position.coords.longitude
