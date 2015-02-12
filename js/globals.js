@@ -30,7 +30,6 @@ $.ajax({
 	},
 	error: function () {/*console.log("error")*/}	
 });
-var EventBus = _.extend({}, Backbone.Events);
 function custom_alert(output_msg, title_msg, callback) {
 	    if (!title_msg)
 		    title_msg = '';
