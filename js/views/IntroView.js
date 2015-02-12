@@ -20,7 +20,7 @@ var IntroView = Backbone.View.extend({
 		var deviceType = navigator.userAgent + "-v.0.0.1";
 		/* get last id */
 		if(isDevice){
-			var fcsID = window.device.uuid + "-" + timestamp;
+			var fcsID = device.uuid + "-" + timestamp;
 		} else {
 			var fcsID = "missing id";
 		}
