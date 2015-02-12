@@ -41,18 +41,6 @@ var appRouter = new (Backbone.Router.extend({
         	});
 	}
   },
-  receipt: function(appid){
-	 var receipt = new Receipt({id: appid});
-	 receipt.fetch({success: successMessage,error: errorMessage});
-	 function successMessage(response){
-		 receiptView = new ReceiptView({model: receipt}); 
-		 $("#content").html(receiptView.render().el );
-		 $('#content').trigger('create');
-	 }
-	 function errorMessage(response){
-		 //console.log(response);
-	 }
-  },
   resizePage: function(){
 	/* in the beta version this functin was used with unique form element names
 	   in full study all (maybe) form elements derive from .ui-field-contain */
@@ -278,6 +266,7 @@ var app = {
     	function onSuccessMove(f){
 		app.showContent("Picture successfully moved.");
 		alert("Location: "+f);
+		return f;
      	}
     	function onSuccess(imageURI){
 		findPictureLocation(imageURI);

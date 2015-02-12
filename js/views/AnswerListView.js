@@ -255,7 +255,8 @@ var AnswerListView = Backbone.View.extend({
 		}
 		if(currentQuestion == 26 && currentAnswer == "Yes"){
 			if(isDevice){
-				app.getCamera();
+				var test = app.getCamera();
+				alert("test: "+ test);
 			}
 		}
 		if(currentQuestion >=  this.endquestion){

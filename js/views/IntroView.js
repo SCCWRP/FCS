@@ -52,7 +52,7 @@ var IntroView = Backbone.View.extend({
 		/* get last id */
 	     	var questionList = new QuestionList();
 		answerList = new AnswerList();
-		var answerCreate = answerList.create({qcount: 1, timestamp: SESSIONID, device_type: deviceType, fcs_id: fcsID, coordinates: latlon}, {
+		var answerCreate = answerList.create({qcount: 1, timestamp: SESSIONID, picture_url: null, device_type: deviceType, fcs_id: fcsID, coordinates: latlon}, {
 			success: function(response){
 				var answer = answerList.get(response.id);
 				answerListView = new AnswerListView({model: answer });
