@@ -251,6 +251,7 @@ var app = {
 		var currentTime = currentDate.getTime();
 		var fileName = currentTime + ".jpg";
 		alert("fileName: "+ fileName);
+		imgUrl = fileName;
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
 	          fileSystem = fs;
 	          fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
@@ -258,7 +259,6 @@ var app = {
 				picture.moveTo(dirEntry, fileName, onSuccessMove, app.onError);
 			}, app.onError);
 		}, app.onError);
-		return fileName;
 	}
 	function findPictureLocation(file){
 		//alert("findPictureLocation");
