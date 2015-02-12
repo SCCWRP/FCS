@@ -376,6 +376,7 @@ var app = {
 	}
 	if( isDevice ){
     		document.addEventListener("deviceready", function(){
+			alert(device.uuid);
 			//alert("isDevice deviceready");
 			app.onDeviceReady();
 			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, app.onFSSuccess, app.onError); // mobile only
