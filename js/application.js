@@ -246,7 +246,7 @@ var app = {
        	//var image = document.getElementById('myImage');
        	//image.src = imageURI;
 	function movePicture(picture){
-		alert("movePicture");	
+		//alert("movePicture");	
 		var currentDate = new Date();
 		var currentTime = currentDate.getTime();
 		var fileName = currentTime + ".jpg";
@@ -258,15 +258,15 @@ var app = {
 				picture.moveTo(dirEntry, fileName, onSuccessMove, app.onError);
 			}, app.onError);
 		}, app.onError);
+		return fileName;
 	}
 	function findPictureLocation(file){
-		alert("findPictureLocation");
+		//alert("findPictureLocation");
 		window.resolveLocalFileSystemURI(file, movePicture, app.onError);
 	}
     	function onSuccessMove(f){
-		app.showContent("Picture successfully moved.");
-		alert("Location: "+f);
-		return f;
+		app.showContent(f);
+		//alert("Location: "+f);
      	}
     	function onSuccess(imageURI){
 		findPictureLocation(imageURI);
