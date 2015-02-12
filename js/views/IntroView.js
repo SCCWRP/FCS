@@ -13,6 +13,7 @@ var IntroView = Backbone.View.extend({
      	},
     	startSurvey: function(){
 		if(prevStorage){
+			alert("prevStorage");
      			var prevStorage = window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys");
 			/* get last key */
 			// turn string into array
@@ -22,8 +23,11 @@ var IntroView = Backbone.View.extend({
      			var lastKey = JSON.parse(window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys" + locateLastKey));
 			/* is current key null */
 			if(lastKey.fcs_id){
+				alert("lastKey.fcs_id");
 				if(isDevice){
+					alert("isDevice");
 					var prevKeyArray = lastKey.fcs_id.split('-');
+					alert("prevKeyArray: "+ prevKeyArray[1]);
 					var fcsID = (Number(prevKeyArray[1]) + 1);
 				} else {
 					var fcsID = SESSIONID + "-1";
