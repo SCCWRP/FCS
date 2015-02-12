@@ -12,6 +12,34 @@ var IntroView = Backbone.View.extend({
 		$("#content").html( new UtilitiesView().render().el );
      	},
     	startSurvey: function(){
+		if(prevStorage){
+     			var prevStorage = window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys");
+			/* get last key */
+			// turn string into array
+			var prevArray = prevStorage.split(',');
+			var locateLastKey = prevArray[prevArray.length-1];
+			/* turn last key into object */
+     			var lastKey = JSON.parse(window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys" + locateLastKey));
+			/* is current key null */
+			if(lastKey.fcs_id){
+				if(isDevice){
+					var prevKeyArray = lastKey.fcs_id.split('-');
+					var fcsID = (Number(prevKeyArray[1]) + 1);
+				} else {
+					var fcsID = SESSIONID + "-1";
+				}
+			} else {
+				alert("no fcs_id key");
+			}
+		} else {
+			/* first time data is stored locally */
+			if(isDevice){
+				var fcsID = device.uuid + "-1";
+			} else {
+				var fcsID = SESSIONID + "-1";
+			}
+		}
+		alert(fcsID);
 		this.cleanup();
 		headerView = new HeaderView;
 		$("#home").show();
@@ -19,11 +47,6 @@ var IntroView = Backbone.View.extend({
 		/* set version */
 		var deviceType = navigator.userAgent + "-v.0.0.1";
 		/* get last id */
-		if(isDevice){
-			var fcsID = device.uuid;
-		} else {
-			var fcsID = "missing id";
-		}
 	     	var questionList = new QuestionList();
 		answerList = new AnswerList();
 		var answerCreate = answerList.create({qcount: 1, timestamp: SESSIONID, device_type: deviceType, fcs_id: fcsID, coordinates: latlon}, {
