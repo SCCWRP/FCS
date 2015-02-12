@@ -12,9 +12,9 @@ var IntroView = Backbone.View.extend({
 		$("#content").html( new UtilitiesView().render().el );
      	},
     	startSurvey: function(){
+  		var prevStorage = window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys");
 		if(prevStorage){
 			alert("prevStorage");
-     			var prevStorage = window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys");
 			/* get last key */
 			// turn string into array
 			var prevArray = prevStorage.split(',');
