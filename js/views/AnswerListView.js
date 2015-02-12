@@ -253,7 +253,7 @@ var AnswerListView = Backbone.View.extend({
 			alert("End Survey");
 			location.reload();
 		}
-		if(currentQuestion == 26 && currentAnswer == "Yes"){
+		if(currentQuestion == 28 && currentAnswer == "Yes"){
 			if(isDevice){
 				var test = app.getCamera();
 				alert("test: "+ test);
