@@ -5,6 +5,7 @@ var networkStatus;
 var HOME = location.href;
 var SESSIONID = +new Date;
 var fileSystem;
+var fieldDevice;
 var directoryLocation;
 var timestampFile;
 var latlon;

@@ -36,7 +36,8 @@ var IntroView = Backbone.View.extend({
 		} else {
 			/* first time data is stored locally */
 			if(isDevice){
-				var fcsID = device.uuid + "-1";
+				//var fcsID = device.uuid + "-1";
+				var fcsID = fieldDevice + "-1";
 			} else {
 				var fcsID = SESSIONID + "-1";
 			}
