@@ -66,7 +66,7 @@
 	"title": "What is your Zip Code?",
 	"action": "none",
       	"num": "q15",
-      	"type": "text",
+      	"type": "number",
       	"menu": "",
         "other": "n",
 	"otype": "",
@@ -77,7 +77,7 @@
       	"status": "incomplete",
       	"id": "5",
 	"placeholder": "Enter your Zip",
-	"check": "0,zipval,calzip"
+	"check": "0,zipval"
   },
   {
 	"title": "Do you eat the fish that you catch?",
@@ -110,7 +110,7 @@
       	"id": "7"
   },
   {
-	"title": "On average how many times a week do you come here to fish?",
+	"title": "1. On average how many times a week do you come here to fish?",
 	"action": "none",
       	"num": "q18",
       	"type": "select",
@@ -125,7 +125,7 @@
       	"id": "8"
   },
   {
-	"title": "Which time of year are you most likely to be fishing here?",
+	"title": "2. Which time of year are you most likely to be fishing here?",
 	"action": "none",
       	"num": "q19",
       	"type": "select",
@@ -140,13 +140,12 @@
       	"id": "9"
   },
   {
-	"title": "On average, when you eat this fish (insert name/category), what size portions do you eat?",
+	"title": "3. On average, when you eat this fish (insert name/category), what size portions do you eat?",
 	"action": "none",
       	"num": "q10",
-      	"type": "select",
-	"check": "select",
-      	"menu": "Select One,1.5 oz.,3.0 oz,4.5 oz.,6.0 oz.,7.5 oz.,Other",
-        "other": "y",
+      	"type": "multi",
+      	"menu": "A) 1.5 oz.,B) 3.0 oz,C) 4.5 oz.,D) 6.0 oz.,E) 7.5 oz.",
+        "other": "n",
 	"otype": "",
   	"answer": "",
 	"decline": "no",
@@ -156,7 +155,7 @@
       	"id": "10"
   },
   {
-	"title": "How do you typically prepare this fish?",
+	"title": "4. How do you typically prepare this fish?",
 	"action": "none",
       	"num": "q11",
       	"type": "select",
@@ -172,7 +171,7 @@
       	"id": "11"
   },
   {
-	"title": "What is the most common language that is spoken in your home?",
+	"title": "5. What is the most common language that is spoken in your home?",
 	"action": "none",
       	"num": "q12",
       	"type": "select",
@@ -188,7 +187,7 @@
       	"id": "12"
   },
   {
-	"title": "Which are common types of fish that you catch when you are fishing in San Diego Bay?",
+	"title": "6. Which are common types of fish that you catch when you are fishing in San Diego Bay?",
 	"action": "none",
       	"num": "q13",
       	"type": "multi",
@@ -203,7 +202,7 @@
       	"id": "13"
   },
   {
-	"title": "Who else eats that fish that you catch?",
+	"title": "7. Who else eats that fish that you catch?",
 	"action": "none",
       	"num": "q14",
       	"type": "multi",
@@ -218,7 +217,7 @@
       	"id": "14"
   },
   {
-	"title": "How many children eat the fish that you catch?",
+	"title": "8. How many children eat the fish that you catch?",
 	"action": "none",
       	"num": "q15",
       	"type": "text",
@@ -234,7 +233,7 @@
       	"id": "15"
   },
   {
-	"title": "How many meals a week do you/your family eat fish that you caught from here?",
+	"title": "9. How many meals a week do you/your family eat fish that you caught from here?",
 	"action": "none",
       	"num": "q15",
       	"type": "select",
@@ -249,7 +248,7 @@
       	"id": "15"
   },
   {
-	"title": "In the last 30 days how many meals have you/your family eaten with fish that you caught from here?",
+	"title": "10. In the last 30 days how many meals have you/your family eaten with fish that you caught from here?",
 	"action": "none",
       	"num": "q16",
       	"type": "select",
@@ -265,7 +264,7 @@
       	"id": "16"
   },
   {
-	"title": "What form of transportation did you take to get here to fish?",
+	"title": "11. What form of transportation did you take to get here to fish?",
 	"action": "none",
       	"num": "q17",
       	"type": "select",
@@ -280,11 +279,11 @@
       	"id": "17"
   },
   {
-	"title": "How many years have you lived in the area?",
+	"title": "12. How many years have you lived in the area?",
 	"action": "none",
       	"num": "q18",
       	"type": "select",
-	"menu": "Select One,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,Other",
+	"menu": "Select One,Less than 10 Years,More than 10 Years,Other",
         "other": "y",
 	"otype": "number",
   	"answer": "",
@@ -295,29 +294,28 @@
       	"id": "18"
   },
   {
-	"title": "Where else do you like to catch fish in the local area?",
+	"title": "13. Where else do you like to catch fish in the local area?",
 	"action": "none",
       	"num": "q19",
-      	"type": "text",
-      	"menu": "",
-        "other": "n",
-	"otype": "",
+      	"type": "select",
+      	"menu": "Select One,North Bay,Mid Bay,South Bay,Mission Bay,None,Other",
+        "other": "y",
+	"otype": "text",
   	"answer": "",
 	"decline": "no",
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-	"placeholder": "Enter Location",
       	"id": "19"
   },
   {
-	"title": "How far do you live from San Diego Bay?",
+	"title": "14. Approximately how far do you live from San Diego Bay?",
 	"action": "none",
       	"num": "q20",
-      	"type": "text",
-      	"menu": "",
-        "other": "n",
-	"otype": "",
+      	"type": "select",
+      	"menu": "Select One,Less than 25 Miles,More than 25 Miles,Other",
+        "other": "y",
+	"otype": "text",
   	"answer": "",
 	"decline": "no",
 	"declinedefault": "",
@@ -327,7 +325,7 @@
       	"id": "20"
   },
   {
-	"title": "Are you aware of any fish advisories on fish consumed from San Diego Bay?",
+	"title": "15. Are you aware of any fish advisories on fish consumed from San Diego Bay?",
 	"action": "none",
       	"num": "q21",
       	"type": "radio",
@@ -342,23 +340,22 @@
       	"id": "21"
   },
   {
-	"title": "How would you categorize your ethnicity?",
+	"title": "16. How would you categorize your ethnicity?",
 	"action": "none",
       	"num": "q22",
-      	"type": "text",
-      	"menu": "",
-        "other": "n",
-	"otype": "",
+      	"type": "select",
+      	"menu": "Select One,African American/Black,Hispanic/Latino,Asian,Middle Eastern,Pacific Islander,Native American/Alaskan,Other",
+        "other": "y",
+	"otype": "text",
   	"answer": "",
 	"decline": "no",
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-	"placeholder": "Ethnicity",
       	"id": "22"
   },
   {
-	"title": "In what year were you born?",
+	"title": "17. In what year were you born?",
 	"action": "none",
       	"num": "q23",
       	"type": "select",
@@ -374,7 +371,7 @@
       	"id": "23"
   },
   {
-	"title": "What town do you live in?",
+	"title": "18. What town do you live in?",
 	"action": "none",
       	"num": "q24",
       	"type": "text",
@@ -390,7 +387,7 @@
       	"id": "24"
   },
   {
-	"title": "Do you have a smartphone?",
+	"title": "19. Do you have a smartphone?",
 	"action": "none",
       	"num": "q25",
       	"type": "radio",
@@ -405,7 +402,7 @@
       	"id": "25"
   },
   {
-	"title": "Can I take a picture of your bucket?",
+	"title": "20. Can I take a picture of your bucket?",
 	"action": "none",
       	"num": "q26",
       	"type": "radio",
