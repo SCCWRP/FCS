@@ -66,7 +66,7 @@
 	"title": "What is your Zip Code?",
 	"action": "none",
       	"num": "q15",
-      	"type": "number",
+      	"type": "text",
       	"menu": "",
         "other": "n",
 	"otype": "",
