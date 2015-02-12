@@ -182,12 +182,13 @@ var app = {
 		}
   },
   saveLocalData: function(m){
-	//alert("saveLocalData");
+	alert("saveLocalData");
   	function fileAppend(fs){
 		//alert("fileAppend");
     		fs.createWriter(function(fileWriter) {
 			//alert("fs.createWriter");
 			fileWriter.onwrite = function(evt) {
+			    alert("fileAppend wrote to file");
 		            app.showContent("fileAppend wrote to file");
 		        };
 			//go to the end of the file...
