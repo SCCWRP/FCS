@@ -29,16 +29,10 @@ var AnswerListView = Backbone.View.extend({
 				$('#forward').show();
 			};
 			// Points of no-return
-			if(this.model.get('qcount') == 12) {
+			if(this.model.get('qcount') == 1) {
 				$("#back").css("visibility", "hidden");
 			} else {
 				$("#back").css("visibility", "visible");
-			};
-			// No saving until module 2 
-			if(this.model.get('qcount') <= 13) {
-				$("#restart").css("visibility", "hidden");
-			} else {
-				$("#restart").css("visibility", "visible");
 			};
 		});
 		},
@@ -60,6 +54,7 @@ var AnswerListView = Backbone.View.extend({
 	},
 	processKeyup: function(event) {
 		if(event.keyCode == 13){
+			alert("processKeyup keycode13: "+event);
 			this.saveAnswer(event);
 		}
 	},
@@ -91,6 +86,12 @@ var AnswerListView = Backbone.View.extend({
 			footerView.toggle("on");
 			return;
 		}
+		// No saving until question 8
+		if(this.model.get('qcount') <= 7) {
+			$("#restart").css("visibility", "hidden");
+		} else {
+			$("#restart").css("visibility", "visible");
+		};
 		var that = this;
 		// get current question number
 		var nextQcount = t.get("qcount");
