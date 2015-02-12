@@ -19,7 +19,11 @@ var IntroView = Backbone.View.extend({
 		/* set version */
 		var deviceType = navigator.userAgent + "-v.0.0.1";
 		/* get last id */
-		var fcsID = window.device.uuid + "-" + timestamp;
+		if(isDevice){
+			var fcsID = window.device.uuid + "-" + timestamp;
+		} else {
+			var fcsID = "missing id";
+		}
 	     	var questionList = new QuestionList();
 		answerList = new AnswerList();
 		var answerCreate = answerList.create({qcount: 1, timestamp: SESSIONID, device_type: deviceType, fcs_id: fcsID, coordinates: latlon}, {
