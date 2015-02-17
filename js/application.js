@@ -245,12 +245,13 @@ var app = {
 	alert("getCamera");
        	//var image = document.getElementById('myImage');
        	//image.src = imageURI;
+	var imgUrl;
 	function movePicture(picture){
 		//alert("movePicture");	
 		var currentDate = new Date();
 		var currentTime = currentDate.getTime();
 		var fileName = currentTime + ".jpg";
-		alert("fileName: "+ fileName);
+		//alert("fileName: "+ fileName);
 		imgUrl = fileName;
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
 	          fileSystem = fs;
@@ -275,6 +276,7 @@ var app = {
        		alert("Failed because: "+ message);
         }
      	navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+	return imgUrl;
   },
   getGPSOnSuccess: function(position){
 	//alert("getGPSOnSuccess");
