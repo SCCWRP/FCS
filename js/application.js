@@ -264,20 +264,22 @@ var app = {
 	function findPictureLocation(file){
 		//alert("findPictureLocation");
 		window.resolveLocalFileSystemURI(file, movePicture, app.onError);
+		return file;
 	}
     	function onSuccessMove(f){
 		app.showContent(f);
 		//alert("Location: "+f);
      	}
     	function onSuccess(imageURI){
-		findPictureLocation(imageURI);
-		alert(imageURI);
+		var returnFile = findPictureLocation(imageURI);
+		alert(returnFile);
+		return returnFile;
      	}
        	function onFail(message){
        		alert("Failed because: "+ message);
         }
-	var test = "mytest";
-     	navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+	//var test = "mytest";
+     	var test = navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
 	alert("test getCamera:"+test);
   },
   getGPSOnSuccess: function(position){
