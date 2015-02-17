@@ -271,12 +271,13 @@ var app = {
      	}
     	function onSuccess(imageURI){
 		findPictureLocation(imageURI);
+		return "hello";
      	}
        	function onFail(message){
        		alert("Failed because: "+ message);
         }
-     	navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
-	return imgUrl;
+     	var test = navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+	return test;
   },
   getGPSOnSuccess: function(position){
 	//alert("getGPSOnSuccess");
