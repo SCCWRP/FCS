@@ -264,7 +264,6 @@ var app = {
 	function findPictureLocation(file){
 		//alert("findPictureLocation");
 		window.resolveLocalFileSystemURI(file, movePicture, app.onError);
-		return file;
 	}
     	function onSuccessMove(f){
 		app.showContent(f);
@@ -272,15 +271,14 @@ var app = {
      	}
     	function onSuccess(imageURI){
 		var returnFile = findPictureLocation(imageURI);
-		alert(returnFile);
-		return returnFile;
      	}
        	function onFail(message){
        		alert("Failed because: "+ message);
         }
 	//var test = "mytest";
      	var test = navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
-	alert("test getCamera:"+test);
+	//alert("test getCamera:"+test);
+	alert("imgUrl: "+imgUrl);
   },
   getGPSOnSuccess: function(position){
 	//alert("getGPSOnSuccess");
