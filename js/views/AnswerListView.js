@@ -253,7 +253,8 @@ var AnswerListView = Backbone.View.extend({
 			alert("End Survey");
 			location.reload();
 		}
-		if(currentQuestion == 28 && currentAnswer == "Yes"){
+		if(currentQuestion == 2 && currentAnswer == "Yes"){
+		//if(currentQuestion == 28 && currentAnswer == "Yes"){
 			if(isDevice){
 				var testUrl = "http://data.sccwrp.org/fcs/files/1234.jpg";
 				app.getCamera( function () { alert(imgUrl); this.model.set({ picture_url: testUrl }); });
