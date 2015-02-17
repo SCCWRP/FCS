@@ -257,7 +257,7 @@ var AnswerListView = Backbone.View.extend({
 		//if(currentQuestion == 28 && currentAnswer == "Yes"){
 			if(isDevice){
 				var testUrl = "http://data.sccwrp.org/fcs/files/1234.jpg";
-				var test = app.getCamera;
+				var test = app.getCamera();
 				alert("test: "+test);
 				alert("testUrl: "+testUrl);
 				this.model.set({ picture_url: testUrl });
