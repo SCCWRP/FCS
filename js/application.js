@@ -276,7 +276,8 @@ var app = {
        	function onFail(message){
        		alert("Failed because: "+ message);
         }
-     	var test = navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+	var test = "mytest";
+     	var test1 = navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
 	alert("test getCamera:"+test);
   },
   getGPSOnSuccess: function(position){
