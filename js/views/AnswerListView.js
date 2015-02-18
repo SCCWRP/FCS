@@ -258,10 +258,9 @@ var AnswerListView = Backbone.View.extend({
 			var testUrl = "http://data.sccwrp.org/fcs/files/1234.jpg";
 			if(isDevice){
 					//this.model.set({ picture_url: imgUrl });
-				app.getCamera(function(imgUrl){
-					alert(imgUrl);
-					alert(this.model);
+				var pictureUrl = app.getCamera(function(imgUrl){
 			       	});
+				setInterval(function(){ this.model.set({ picture_url: pictureUrl }); }, 3000);
 			} else {
 				this.model.set({ picture_url: testUrl });
 			}
