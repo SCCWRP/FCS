@@ -255,12 +255,15 @@ var AnswerListView = Backbone.View.extend({
 		}
 		if(currentQuestion == 2 && currentAnswer == "Yes"){
 		//if(currentQuestion == 28 && currentAnswer == "Yes"){
+			var testUrl = "http://data.sccwrp.org/fcs/files/1234.jpg";
 			if(isDevice){
-				var testUrl = "http://data.sccwrp.org/fcs/files/1234.jpg";
 				app.getCamera(function(imgUrl){
 					alert(imgUrl);
-					this.model.set({ picture_url: testUrl });
+					this.model.set({ picture_url: "mytest" });
+					this.model.save();
 				});
+			} else {
+					this.model.set({ picture_url: testUrl });
 			}
 		}
 		if(currentQuestion >=  this.endquestion){
