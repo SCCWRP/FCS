@@ -257,11 +257,12 @@ var AnswerListView = Backbone.View.extend({
 		//if(currentQuestion == 28 && currentAnswer == "Yes"){
 			var testUrl = "http://data.sccwrp.org/fcs/files/1234.jpg";
 			if(isDevice){
-				var pictureUrl;
-				setInterval(function(){
-					pictureUrl = app.getCamera(function(imgUrl){ return imgUrl; });
-				}, 3000);
-				this.model.set({ picture_url: pictureUrl });
+				function setPictureUrl(callback){
+					this.model.set({ picture_url: callback });
+				}
+				setPictureUrl(app.getCamera(function(imgUrl){ 
+					return imgUrl; 
+				}));
 			} else {
 				this.model.set({ picture_url: testUrl });
 			}
