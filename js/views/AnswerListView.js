@@ -258,12 +258,13 @@ var AnswerListView = Backbone.View.extend({
 			var testUrl = "http://data.sccwrp.org/fcs/files/1234.jpg";
 			if(isDevice){
 				function setPictureUrl(callback){
-					this.model.set({ picture_url: callback });
 					app.getCamera(function(imgUrl){ console.log("test"); });
+					return;
 				}
 				setPictureUrl(app.getCamera(function(imgUrl){ 
 					alert(imgUrl);
 					this.model.set({ picture_url: imgUrl });
+					return;
 				}));
 			} else {
 				this.model.set({ picture_url: testUrl });
