@@ -241,20 +241,15 @@ var app = {
                 }
         });
   },
-  getCamera: function(t){
+  getCamera: function(callback){
 	alert("getCamera");
        	//var image = document.getElementById('myImage');
        	//image.src = imageURI;
 	var imgUrl;
 	function movePicture(picture){
-		console.log(t);
-		//alert("movePicture");	
 		var currentDate = new Date();
 		var currentTime = currentDate.getTime();
 		var fileName = currentTime + ".jpg";
-		//alert("fileName: "+ fileName);
-		imgUrl = fileName;
-		t.set({picture_url: imgUrl});
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
 	          fileSystem = fs;
 	          fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
@@ -262,6 +257,7 @@ var app = {
 				picture.moveTo(dirEntry, fileName, onSuccessMove, app.onError);
 			}, app.onError);
 		}, app.onError);
+		callback(fileName);
 	}
 	function findPictureLocation(file){
 		window.resolveLocalFileSystemURI(file, movePicture, app.onError);
@@ -273,10 +269,9 @@ var app = {
 		var returnFile = findPictureLocation(imageURI);
      	}
        	function onFail(message){
-       		alert("Failed because: "+ message);
+       		callback("failed: "+ message);
         }
-	//var test = "mytest";
-     	var test = navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+     	navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
   },
   getGPSOnSuccess: function(position){
 	//alert("getGPSOnSuccess");
