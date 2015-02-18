@@ -259,8 +259,8 @@ var AnswerListView = Backbone.View.extend({
 			if(isDevice){
 				app.getCamera(function(imgUrl){
 					alert(imgUrl);
-					this.model.set({ picture_url: "mytest" });
-					alert("this.model.set");
+					that.model.set({ picture_url: "mytest" });
+					alert("that.model.set");
 					//alert(this.model.get('picture_url'));
 				});
 			} else {
