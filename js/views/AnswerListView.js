@@ -258,25 +258,7 @@ var AnswerListView = Backbone.View.extend({
 			var testUrl = "http://data.sccwrp.org/fcs/files/1234.jpg";
 			if(isDevice){
 				//this.model.set({ picture_url: imgUrl });
-				//app.getCamera(function(imgUrl){ return imgUrl; });
-				function movePicture(picture){
-					alert("movePicture");
-					var currentDate = new Date();
-					var currentTime = currentDate.getTime();
-					var fileName = currentTime + ".jpg";
-					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
-	          				fileSystem = fs;
-	          				fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
-						function(dirEntry) {
-							picture.moveTo(dirEntry, fileName, onSuccessMove, app.onError);
-						}, app.onError);
-					}, app.onError);
-					this.model.set({ picture_url: "mytest" });
-				}
-    				function onSuccess(imageURI){
-					window.resolveLocalFileSystemURI(imageURI, movePicture, app.onError);
-     				}
-     				navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+				app.getCamera(function(imgUrl){ }, this.model);
 			} else {
 				this.model.set({ picture_url: testUrl });
 			}

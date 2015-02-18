@@ -241,8 +241,9 @@ var app = {
                 }
         });
   },
-  getCamera: function(callback){
+  getCamera: function(callback,t){
 	alert("getCamera");
+	alert(t);
        	//var image = document.getElementById('myImage');
        	//image.src = imageURI;
 	var imgUrl;
