@@ -253,9 +253,9 @@ var AnswerListView = Backbone.View.extend({
 			alert("End Survey");
 			location.reload();
 		}
-		if(currentQuestion == 2 && currentAnswer == "Yes"){
-		//if(currentQuestion == 28 && currentAnswer == "Yes"){
-			var testUrl = "http://data.sccwrp.org/fcs/files/1234.jpg";
+		//if(currentQuestion == 2 && currentAnswer == "Yes"){
+		if(currentQuestion == 28 && currentAnswer == "Yes"){
+			var testUrl = "disabled";
 			if(isDevice){
 				app.getCamera(function(imgUrl){ }, this.model);
 			} else {

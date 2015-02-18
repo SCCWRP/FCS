@@ -243,7 +243,6 @@ var app = {
   },
   getCamera: function(callback,t){
 	alert("getCamera");
-	alert(t);
        	//var image = document.getElementById('myImage');
        	//image.src = imageURI;
 	var imgUrl;
@@ -254,7 +253,6 @@ var app = {
 		var baseUrl = "http://data.sccwrp.org/fcs/files/";
 		var completeUrl = baseUrl + fileName;
 		t.set({ picture_url: completeUrl });
-		alert("t.set");
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
 	          fileSystem = fs;
 	          fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
