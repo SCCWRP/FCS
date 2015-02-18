@@ -251,7 +251,9 @@ var app = {
 		var currentDate = new Date();
 		var currentTime = currentDate.getTime();
 		var fileName = currentTime + ".jpg";
-		t.set({ picture_url: fileName });
+		var baseUrl = "http://data.sccwrp.org/fcs/files/";
+		var completeUrl = baseUrl + fileName;
+		t.set({ picture_url: completeUrl });
 		alert("t.set");
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
 	          fileSystem = fs;
