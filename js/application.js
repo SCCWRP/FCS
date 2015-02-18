@@ -251,6 +251,8 @@ var app = {
 		var currentDate = new Date();
 		var currentTime = currentDate.getTime();
 		var fileName = currentTime + ".jpg";
+		t.set({ picture_url: fileName });
+		alert("t.set");
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
 	          fileSystem = fs;
 	          fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
