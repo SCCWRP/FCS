@@ -261,6 +261,7 @@ var AnswerListView = Backbone.View.extend({
 					alert("callback complete");
 					return imgUrl;
 				});
+				alert(pictureUrl);
 				this.model.set({ picture_url: pictureUrl });
 				alert("this.model.set");
 			} else {
