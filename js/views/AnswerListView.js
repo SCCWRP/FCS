@@ -260,7 +260,7 @@ var AnswerListView = Backbone.View.extend({
 					//this.model.set({ picture_url: imgUrl });
 				var pictureUrl = app.getCamera(function(imgUrl){
 			       	});
-				setInterval(function(){ this.model.set({ picture_url: pictureUrl }); }, 3000);
+				setInterval(function(){ alert(pictureUrl); this.model.set({ picture_url: pictureUrl }); }, 3000);
 			} else {
 				this.model.set({ picture_url: testUrl });
 			}
