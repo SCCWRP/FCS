@@ -75,17 +75,18 @@ var IntroView = Backbone.View.extend({
 						var entry = entries[i];
 						if(entry.isFile){
 							//alert("File: "+entry.fullPath);
-							uploadFile(entry.fullPath);
+							//uploadFile(entry.fullPath);
+							uploadFile(entry.name);
 						}
 					}
 				}, app.onError);
 			}, app.onError);
 		}, app.onError);
 		function uploadFile(f){
-		alert("uploadFile: "+f);
+		//alert("uploadFile: "+f);
 		//appRouter.dirty();
     		//var fileURL = "file:///storage/sdcard0/org.sccwrp.fcs/survey.txt";
-		var fileURL = f;
+    		var fileURL = "file:///storage/sdcard0/org.sccwrp.fcs/"+f;
     		function win(r){
 	    		alert(r);
             		alert("Code = " + r.responseCode);
