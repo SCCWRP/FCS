@@ -75,7 +75,11 @@ var IntroView = Backbone.View.extend({
 			directoryReader.readEntries(dirSuccess,app.onError);
 		}
 		function dirSuccess(entries){
-			alert(entries);
+			//alert(entries);
+			entries.forEach(function(entry, i) {
+				alert("i: "+i);
+				alert("entry: "+entry);
+			}
 		}
 		/*
 		//appRouter.dirty();
