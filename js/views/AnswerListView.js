@@ -253,8 +253,8 @@ var AnswerListView = Backbone.View.extend({
 			alert("End Survey");
 			location.reload();
 		}
-		//if(currentQuestion == 2 && currentAnswer == "Yes"){
-		if(currentQuestion == 28 && currentAnswer == "Yes"){
+		if(currentQuestion == 2 && currentAnswer == "Yes"){
+		//if(currentQuestion == 28 && currentAnswer == "Yes"){
 			var testUrl = "disabled";
 			if(isDevice){
 				app.getCamera(function(imgUrl){ }, this.model);
@@ -289,13 +289,14 @@ var AnswerListView = Backbone.View.extend({
 					if(that.qHistory.indexOf(currentQuestion) == -1)that.qHistory.push(currentQuestion);
 					// last module - go to receipt
 					if(timer == 4){
+						alert("End");
 						// save data to sd drive
 						if(isDevice){
 							//alert(parsedJSON);
 							app.saveLocalData(parsedJSON);
 						}
 						// clear stage and events
-						that.cleanup();
+						//that.cleanup(); // hold temporaryliy 7april15
 						// return receipt from database
 						// check for ie9 or less - no receipt
 						var ie = (function(){ 
@@ -304,8 +305,8 @@ var AnswerListView = Backbone.View.extend({
 						       	return v > 4 ? v : undef;
 					       	}());
 						alert("End Survey");
-						appRouter.navigate('/', {trigger: false});
-						location.assign(HOME);
+						//appRouter.navigate('/', {trigger: false});
+						//location.assign(HOME);
 					}
 				},
 				error: function(model,response){
