@@ -243,7 +243,6 @@ var app = {
   },
   getCamera: function(callback,t){
 	alert("getCamera");
-	var savedPicture = false;;
        	//var image = document.getElementById('myImage');
        	//image.src = imageURI;
 	var imgUrl;
@@ -253,7 +252,6 @@ var app = {
 		var fileName = currentTime + ".jpg";
 		var baseUrl = "http://data.sccwrp.org/fcs/files/";
 		var completeUrl = baseUrl + fileName;
-		alert(completeUrl);
 		t.set({ picture_url: completeUrl });
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
 	          fileSystem = fs;
@@ -279,7 +277,6 @@ var app = {
        		callback("failed: "+ message);
         }
      	navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
-	return savedPicture;
   },
   getGPSOnSuccess: function(position){
 	//alert("getGPSOnSuccess");

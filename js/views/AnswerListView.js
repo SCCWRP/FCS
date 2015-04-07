@@ -257,9 +257,7 @@ var AnswerListView = Backbone.View.extend({
 		//if(currentQuestion == 28 && currentAnswer == "Yes"){
 			var testUrl = "disabled";
 			if(isDevice){
-				var savedPicture = app.getCamera(function(imgUrl){ }, this.model);
-				app.showContent(this.model);
-				alert("savedPicture: "+savedPicture);
+				app.getCamera(function(imgUrl){ }, this.model);
 			} else {
 				this.model.set({ picture_url: testUrl });
 			}
@@ -283,6 +281,7 @@ var AnswerListView = Backbone.View.extend({
 		//if(timer != 0){ use this code if you want break up modules and then save
 		// dump saved answers to json string 
 		var parsedJSON = JSON.stringify(this.model.toJSON());
+		alert(parsedJSON);
 		this.model.save(answerDetails, {
 				wait: false,
 				success: function(model,response){
@@ -294,7 +293,7 @@ var AnswerListView = Backbone.View.extend({
 						alert("End");
 						// save data to sd drive
 						if(isDevice){
-							//alert(parsedJSON);
+							alert(parsedJSON);
 							app.saveLocalData(parsedJSON);
 						}
 						// clear stage and events
