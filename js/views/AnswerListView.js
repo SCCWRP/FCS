@@ -257,7 +257,9 @@ var AnswerListView = Backbone.View.extend({
 		//if(currentQuestion == 28 && currentAnswer == "Yes"){
 			var testUrl = "disabled";
 			if(isDevice){
-				app.getCamera(function(imgUrl){ }, this.model);
+				var savedPicture = app.getCamera(function(imgUrl){ }, this.model);
+				app.showContent(this.model);
+				alert("savedPicture: "+savedPicture);
 			} else {
 				this.model.set({ picture_url: testUrl });
 			}

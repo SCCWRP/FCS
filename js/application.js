@@ -243,6 +243,7 @@ var app = {
   },
   getCamera: function(callback,t){
 	alert("getCamera");
+	var savedPicture = false;;
        	//var image = document.getElementById('myImage');
        	//image.src = imageURI;
 	var imgUrl;
@@ -268,6 +269,7 @@ var app = {
 	}
     	function onSuccessMove(f){
 		alert("moved pictures successfully");
+		savedPicture = true;
 		app.showContent(f);
      	}
     	function onSuccess(imageURI){
@@ -277,6 +279,7 @@ var app = {
        		callback("failed: "+ message);
         }
      	navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+	return savedPicture;
   },
   getGPSOnSuccess: function(position){
 	//alert("getGPSOnSuccess");
