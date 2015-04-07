@@ -86,12 +86,11 @@ var IntroView = Backbone.View.extend({
 		//alert("uploadFile: "+f);
 		//appRouter.dirty();
     		//var fileURL = "file:///storage/sdcard0/org.sccwrp.fcs/survey.txt";
-    		var fileURL = "file:///storage/sdcard0/org.sccwrp.fcs/"+f;
+    		//var fileURL = "file:///storage/sdcard0/org.sccwrp.fcs/"+f;
+		var dirURL = "cdvfile://localhost/persistent/org.sccwrp.fcs/";
+		var fileURL = f.fullPath;
     		function win(r){
-	    		alert(r);
-            		alert("Code = " + r.responseCode);
-            		alert("Response = " + r.response);
-            		alert("Sent = " + r.bytesSent);
+	    		//alert(r); //alert("Code = " + r.responseCode); //alert("Response = " + r.response); //alert("Sent = " + r.bytesSent);
     		}
     		function fail(error){
     			alert("An error has occurred: Code = " + error.code);
@@ -100,11 +99,11 @@ var IntroView = Backbone.View.extend({
     		}
 
     		var uri = encodeURI("http://data.sccwrp.org/fcs/upload.php");
-
     		var options = new FileUploadOptions();
     		options.fileKey = "file";
     		options.fileName = fileURL.substr(fileURL.lastIndexOf('/')+1);
-    		options.mimeType = "text/plain";
+    		//options.mimeType = "text/plain";
+    		options.mimeType = "image/jpeg";
 		
     		var headers={'headerParam':'headerValue'};
     		options.headers = headers;
@@ -113,17 +112,13 @@ var IntroView = Backbone.View.extend({
     		ft.onprogress = function(progressEvent){
 		  if (progressEvent.lengthComputable) {
 			var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-			var tmp_content =  perc + "% Loaded";
-			app.showContent(tmp_content);
+			app.showContent("Uploading file: "+ perc + "% loaded...");
 		  } else {
-			if($("#log").innerHTML == "") {
-				app.showContent("Loading");
-			} else {
-				app.showContent(".");
-			}
 		  }
     		}
-    		ft.upload(fileURL, uri, win, fail, options);
+		finalURL = dirURL + options.fileName;
+		ft.upload(finalURL, uri, win, fail, options);
+    		//ft.upload(fileURL, uri, win, fail, options);
 		}
     	},
 	cleanup: function() {
