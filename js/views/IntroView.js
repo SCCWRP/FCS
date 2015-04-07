@@ -74,31 +74,18 @@ var IntroView = Backbone.View.extend({
 					for(var i = 0; i < entries.length; i++){
 						var entry = entries[i];
 						if(entry.isFile){
-							alert("File: "+entry.fullPath);
+							//alert("File: "+entry.fullPath);
+							uploadFile(entry.fullPath);
 						}
 					}
 				}, app.onError);
 			}, app.onError);
 		}, app.onError);
-		/*
-		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fsSuccess, app.onError);
-		function fsSuccess(fs){
-	                // create directory reader
-			var directoryReader = fs.root.createReader()
-			// get a list of all entries in the directory
-			directoryReader.readEntries(dirSuccess,app.onError);
-		}
-		function dirSuccess(entries){
-			//alert(entries);
-			entries.forEach(function(entry, i) {
-				alert("i: "+i);
-				alert("entry: "+entry.name);
-			})kk
-		}
-		*/
-		/*
+		function uploadFile(f){
+		alert("uploadFile: "+f);
 		//appRouter.dirty();
-    		var fileURL = "file:///storage/sdcard0/org.sccwrp.fcs/survey.txt";
+    		//var fileURL = "file:///storage/sdcard0/org.sccwrp.fcs/survey.txt";
+		var fileURL = f;
     		function win(r){
 	    		alert(r);
             		alert("Code = " + r.responseCode);
@@ -136,7 +123,7 @@ var IntroView = Backbone.View.extend({
 		  }
     		}
     		ft.upload(fileURL, uri, win, fail, options);
-		*/
+		}
     	},
 	cleanup: function() {
 		//console.log("IntroView cleanup");
