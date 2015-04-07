@@ -67,6 +67,20 @@ var IntroView = Backbone.View.extend({
      	},
 	submitData: function(){
 		alert("submitData");
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
+			fs.root.getDirectory('sccwrp.org.fcs', {}, function(dirEntry){
+				var dirReader = dirEntry.createReader();
+				dirReader.readEntries(function(entries){
+					for(var i = 0; i < entries.length; i++){
+						var entry = entries[i];
+						if(entry.isFile){
+							alert("File: "+entry.fullPath);
+						}
+					}
+				}, app.onError);
+			}, app.onError);
+		}, app.onError);
+		/*
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fsSuccess, app.onError);
 		function fsSuccess(fs){
 	                // create directory reader
@@ -78,9 +92,10 @@ var IntroView = Backbone.View.extend({
 			//alert(entries);
 			entries.forEach(function(entry, i) {
 				alert("i: "+i);
-				alert("entry: "+entry);
-			});
+				alert("entry: "+entry.name);
+			})kk
 		}
+		*/
 		/*
 		//appRouter.dirty();
     		var fileURL = "file:///storage/sdcard0/org.sccwrp.fcs/survey.txt";
