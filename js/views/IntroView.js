@@ -76,7 +76,8 @@ var IntroView = Backbone.View.extend({
 						if(entry.isFile){
 							//alert("File: "+entry.fullPath);
 							//uploadFile(entry.fullPath);
-							uploadFile(entry.name);
+							//uploadFile(entry.name);
+							uploadFile(entry);
 						}
 					}
 				}, app.onError);
