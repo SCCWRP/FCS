@@ -79,7 +79,7 @@ var IntroView = Backbone.View.extend({
 			entries.forEach(function(entry, i) {
 				alert("i: "+i);
 				alert("entry: "+entry);
-			}
+			});
 		}
 		/*
 		//appRouter.dirty();
