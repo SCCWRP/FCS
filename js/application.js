@@ -252,6 +252,7 @@ var app = {
 		var fileName = currentTime + ".jpg";
 		var baseUrl = "http://data.sccwrp.org/fcs/files/";
 		var completeUrl = baseUrl + fileName;
+		alert(completeUrl);
 		t.set({ picture_url: completeUrl });
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
 	          fileSystem = fs;
@@ -266,6 +267,7 @@ var app = {
 		window.resolveLocalFileSystemURI(file, movePicture, app.onError);
 	}
     	function onSuccessMove(f){
+		alert("moved pictures successfully");
 		app.showContent(f);
      	}
     	function onSuccess(imageURI){
@@ -321,6 +323,7 @@ var app = {
 	return document.querySelector(id);
   },
   onError: function(e){
+	alert(e);
 	var msg = '';
     	switch (e.code) {
           case FileError.QUOTA_EXCEEDED_ERR:
