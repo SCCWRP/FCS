@@ -66,7 +66,7 @@ var IntroView = Backbone.View.extend({
 		});
      	},
 	submitData: function(){
-		alert("submitData");
+		alert("submitData2");
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
 			fs.root.getDirectory('org.sccwrp.fcs', {}, function(dirEntry){
 				var dirReader = dirEntry.createReader();
