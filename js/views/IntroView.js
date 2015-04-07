@@ -68,7 +68,7 @@ var IntroView = Backbone.View.extend({
 	submitData: function(){
 		alert("submitData");
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
-			fs.root.getDirectory('sccwrp.org.fcs', {}, function(dirEntry){
+			fs.root.getDirectory('org.sccwrp.fcs', {}, function(dirEntry){
 				var dirReader = dirEntry.createReader();
 				dirReader.readEntries(function(entries){
 					for(var i = 0; i < entries.length; i++){
