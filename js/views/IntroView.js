@@ -90,6 +90,7 @@ var IntroView = Backbone.View.extend({
 		var dirURL = "cdvfile://localhost/persistent/org.sccwrp.fcs/";
 		var fileURL = f.fullPath;
     		function win(r){
+			alert(r);
 	    		//alert(r); //alert("Code = " + r.responseCode); //alert("Response = " + r.response); //alert("Sent = " + r.bytesSent);
     		}
     		function fail(error){
