@@ -67,7 +67,18 @@ var IntroView = Backbone.View.extend({
      	},
 	submitData: function(){
 		alert("submitData");
-		appRouter.dirty();
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fsSuccess, app.onError);
+		function fsSuccess(fs){
+	                // create directory reader
+			var directoryReader = fs.root.createReader()
+			// get a list of all entries in the directory
+			directoryReader.readEntries(dirSuccess,app.onError);
+		}
+		function dirSuccess(entries){
+			alert(entries);
+		}
+		/*
+		//appRouter.dirty();
     		var fileURL = "file:///storage/sdcard0/org.sccwrp.fcs/survey.txt";
     		function win(r){
 	    		alert(r);
@@ -106,6 +117,7 @@ var IntroView = Backbone.View.extend({
 		  }
     		}
     		ft.upload(fileURL, uri, win, fail, options);
+		*/
     	},
 	cleanup: function() {
 		//console.log("IntroView cleanup");
