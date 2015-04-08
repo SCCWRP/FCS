@@ -158,10 +158,12 @@ var app = {
   	function fileAppend(fs){
     		fs.createWriter(function(fileWriter) {
 			fileWriter.onwrite = function(evt) {
-		            app.showContent(m);
+		            //app.showContent(m);
 		            //app.showContent("wrote to file");
 			    alert("End Survey");
-			    location.reload();
+			    appRouter.navigate('/', {trigger: false});
+			    location.assign(HOME);
+			    //location.reload();
 		        };
 			//go to the end of the file...
 			fileWriter.seek(fileWriter.length);

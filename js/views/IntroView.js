@@ -46,9 +46,10 @@ var IntroView = Backbone.View.extend({
 		this.cleanup();
 		headerView = new HeaderView;
 		$("#home").show();
+		app.showContent("");
 		footerView = new FooterView;
 		/* set version */
-		var deviceType = navigator.userAgent + "-v.0.0.1";
+		var deviceType = navigator.userAgent + "-v.1.0";
 		/* get last id */
 	     	var questionList = new QuestionList();
 		answerList = new AnswerList();
@@ -90,7 +91,7 @@ var IntroView = Backbone.View.extend({
 			var dirURL = "cdvfile://localhost/persistent/org.sccwrp.fcs/";
 			var fileURL = f.fullPath;
     			function win(r){
-				app.showContent("file uploaded - "+r);
+				app.showContent("file uploaded - "+f.name);
 	    			//alert(r); //alert("Code = " + r.responseCode); //alert("Response = " + r.response); //alert("Sent = " + r.bytesSent);
     			}
     			function fail(error){
