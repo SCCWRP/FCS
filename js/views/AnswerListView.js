@@ -244,9 +244,10 @@ var AnswerListView = Backbone.View.extend({
 			if(isDevice){
 				var parsedJSON = JSON.stringify(this.model.toJSON());
 				app.saveLocalData(parsedJSON);
+			} else {
+				alert("End Survey");
+				location.reload();
 			}
-			alert("End Survey");
-			location.reload();
 		}
 		if((currentQuestion == 3 && currentAnswer == "Within the last 6 months") || (currentQuestion == 3 && currentAnswer == "More than 6 months ago")){
 				if((participant_type == "Pier Angler") || (participant_type == "Shoreline Angler")){
@@ -257,9 +258,10 @@ var AnswerListView = Backbone.View.extend({
 			if(isDevice){
 				var parsedJSON = JSON.stringify(this.model.toJSON());
 				app.saveLocalData(parsedJSON);
+			} else {
+				alert("End Survey");
+				location.reload();
 			}
-			alert("End Survey");
-			location.reload();
 		}
 		//if(currentQuestion == 2 && currentAnswer == "Yes"){
 		if(currentQuestion == 28 && currentAnswer == "Yes"){
@@ -301,17 +303,18 @@ var AnswerListView = Backbone.View.extend({
 						// save data to sd drive
 						if(isDevice){
 							app.saveLocalData(parsedJSON);
+						} else {
+							// clear stage and events
+							that.cleanup(); 
+							// return receipt from database
+							alert("End Survey");
+							appRouter.navigate('/', {trigger: false});
+							location.assign(HOME);
 						}
-						// clear stage and events
-						that.cleanup(); 
-						// return receipt from database
-						alert("End Survey");
-						appRouter.navigate('/', {trigger: false});
-						location.assign(HOME);
 					}
 				},
 				error: function(model,response){
-				  console.log(response.status);
+					app.showContent(response.status);
        				}
 			});
 		$("body").css("background-color", "white");

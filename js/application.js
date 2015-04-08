@@ -159,6 +159,8 @@ var app = {
     		fs.createWriter(function(fileWriter) {
 			fileWriter.onwrite = function(evt) {
 		            app.showContent("wrote to file");
+			    alert("End Survey");
+			    location.reload();
 		        };
 			//go to the end of the file...
 			fileWriter.seek(fileWriter.length);
