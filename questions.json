@@ -334,7 +334,7 @@
 	"title": "17. How would you categorize your ethnicity?",
 	"action": "none",
       	"type": "select",
-      	"menu": "Select One,African American/Black,Hispanic/Latino,Asian,Middle Eastern,Pacific Islander,Native American/Alaskan,Other",
+      	"menu": "Select One,Caucasian,African American/Black,Hispanic/Latino,Asian,Middle Eastern,Pacific Islander,Native American/Alaskan,Other",
         "other": "y",
 	"otype": "text",
   	"answer": "",

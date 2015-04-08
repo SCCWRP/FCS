@@ -55,7 +55,7 @@ var AnswerListView = Backbone.View.extend({
 	},
 	processKeyup: function(event) {
 		if(event.keyCode == 13){
-			alert("processKeyup keycode13: "+event);
+			//alert("processKeyup keycode13: "+event);
 			this.saveAnswer(event);
 		}
 	},
