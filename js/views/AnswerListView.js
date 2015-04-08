@@ -21,6 +21,7 @@ var AnswerListView = Backbone.View.extend({
 		this.listenTo(this.model, 'sync', this.nextQuestion);
 		this.listenTo(footerView, 'forward', this.saveAnswer); 
 		this.listenTo(footerView, 'back', this.goBack); 
+		//this.listenTo(restartView, 'reload', this.saveAnswer);
 		this.listenTo(this.model, 'change:status', this.nextQuestion);
 		this.listenTo(this.model, 'change:type', function() {
 			if(["radio", "select"].indexOf(this.model.get('type')) >=  0) {
@@ -319,6 +320,20 @@ var AnswerListView = Backbone.View.extend({
 		$("body").css("background-color", "white");
 		$("body").css("opacity", "1");
 		}, /* end saveAnswer */
+	saveExit: function() {
+		var that = this;
+		var parsedJSON = JSON.stringify(this.model.toJSON());
+	        if(isDevice){
+	        	app.saveLocalData(parsedJSON);
+		} else {
+			// clear stage and events
+			that.cleanup(); 
+			// return receipt from database
+			alert("End Survey");
+			appRouter.navigate('/', {trigger: false});
+			location.assign(HOME);
+		}
+	},
 	cleanup: function() {
 	        this.undelegateEvents();
 		this.unbind();

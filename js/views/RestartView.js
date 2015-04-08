@@ -14,8 +14,9 @@ var RestartView = Backbone.View.extend({
 	},
     	reload: function (e) { 
 	  	$("#popupRestart").popup("close");
-		this.cleanup();
-		location.reload();
+		answerListView.saveExit();
+		//this.cleanup();
+		//location.reload();
 	},
 	cleanup: function() {
 		console.log("RestartView cleanup");
