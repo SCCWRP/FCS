@@ -2,7 +2,7 @@ var AnswerListView = Backbone.View.extend({
 	//el: '#content',
 	template:_.template($('#tpl-answer-details').html()),
 	initialize: function(){
-		console.log("AnswerListView");
+		//console.log("AnswerListView");
 		//Start idle counter
 		var that = this;
 		$(document).ready(function () {

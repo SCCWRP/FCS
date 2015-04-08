@@ -42,7 +42,7 @@ var IntroView = Backbone.View.extend({
 				var fcsID = SESSIONID + "-1";
 			}
 		}
-		alert(fcsID);
+		//alert(fcsID);
 		this.cleanup();
 		headerView = new HeaderView;
 		$("#home").show();
@@ -66,6 +66,10 @@ var IntroView = Backbone.View.extend({
 		});
      	},
 	submitData: function(){
+		$(this.el).html("");
+		$("#header").show();
+		$("#header").html('<a href="./index.html" id="home" data-role="button" data-icon="home" class="ui-btn">Home</a>');
+		$("#home").show();
 		/* synchronize local browser storage records */
 		appRouter.dirty();
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
@@ -78,6 +82,7 @@ var IntroView = Backbone.View.extend({
 							uploadFile(entry);
 						}
 					}
+					alert("Finished uploading to SCCWRP");
 				}, app.onError);
 			}, app.onError);
 		}, app.onError);
