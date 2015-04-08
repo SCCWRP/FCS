@@ -66,7 +66,8 @@ var IntroView = Backbone.View.extend({
 		});
      	},
 	submitData: function(){
-		alert("submitData2");
+		/* synchronize local browser storage records */
+		appRouter.dirty();
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
 			fs.root.getDirectory('org.sccwrp.fcs', {}, function(dirEntry){
 				var dirReader = dirEntry.createReader();
@@ -74,9 +75,6 @@ var IntroView = Backbone.View.extend({
 					for(var i = 0; i < entries.length; i++){
 						var entry = entries[i];
 						if(entry.isFile){
-							//alert("File: "+entry.fullPath);
-							//uploadFile(entry.fullPath);
-							//uploadFile(entry.name);
 							uploadFile(entry);
 						}
 					}
@@ -84,12 +82,10 @@ var IntroView = Backbone.View.extend({
 			}, app.onError);
 		}, app.onError);
 		function uploadFile(f){
-			appRouter.dirty();
 			var dirURL = "cdvfile://localhost/persistent/org.sccwrp.fcs/";
 			var fileURL = f.fullPath;
     			function win(r){
-				alert(r);
-				app.showContent("File uploaded: "+r);
+				app.showContent("file uploaded - "+r);
 	    			//alert(r); //alert("Code = " + r.responseCode); //alert("Response = " + r.response); //alert("Sent = " + r.bytesSent);
     			}
     			function fail(error){
@@ -111,7 +107,7 @@ var IntroView = Backbone.View.extend({
     			ft.onprogress = function(progressEvent){
 		  	  if (progressEvent.lengthComputable) {
 				var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-				app.showContent("Uploading file: "+ perc + "% loaded...");
+				app.showContent("uploading file: "+ perc + "% loaded...");
 		  	  } else {
 		  	  }
     			}
@@ -120,19 +116,16 @@ var IntroView = Backbone.View.extend({
 		}
     	},
 	cleanup: function() {
-		//console.log("IntroView cleanup");
 	        this.undelegateEvents();
 	        this.$el.removeData().unbind();
 	        Backbone.View.prototype.remove.call(this);
 	},
 	render: function(){
-		//console.log("introview render");
 		/* clear the interface */
 		$("#header").hide();
 		//$("#landing").show();
 		$(this.el).html(this.template());	
 		$("#footer").hide();
-		////console.log(jQuery("html").html());
 		// code below is for devices taking too long to render
 		// its ugly but it works
 		if(isDevice){

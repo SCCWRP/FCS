@@ -241,6 +241,10 @@ var AnswerListView = Backbone.View.extend({
 			}
 		}
 		if((currentQuestion == 3 && currentAnswer == "This month") || (currentQuestion == 3 && currentAnswer == "Within the last 3 months")){
+			if(isDevice){
+				var parsedJSON = JSON.stringify(this.model.toJSON());
+				app.saveLocalData(parsedJSON);
+			}
 			alert("End Survey");
 			location.reload();
 		}
@@ -250,6 +254,10 @@ var AnswerListView = Backbone.View.extend({
 				}
 		}
 		if(currentQuestion == 4 && currentAnswer == "No"){
+			if(isDevice){
+				var parsedJSON = JSON.stringify(this.model.toJSON());
+				app.saveLocalData(parsedJSON);
+			}
 			alert("End Survey");
 			location.reload();
 		}
@@ -297,12 +305,6 @@ var AnswerListView = Backbone.View.extend({
 						// clear stage and events
 						that.cleanup(); 
 						// return receipt from database
-						// check for ie9 or less - no receipt
-						var ie = (function(){ 
-							var undef, v = 3, div = document.createElement('div'), all = div.getElementsByTagName('i');				 
-							while ( div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->', all[0]);
-						       	return v > 4 ? v : undef;
-					       	}());
 						alert("End Survey");
 						appRouter.navigate('/', {trigger: false});
 						location.assign(HOME);
@@ -316,7 +318,6 @@ var AnswerListView = Backbone.View.extend({
 		$("body").css("opacity", "1");
 		}, /* end saveAnswer */
 	cleanup: function() {
-		//console.log("AnswerListView cleanup");
 	        this.undelegateEvents();
 		this.unbind();
 		this.remove();

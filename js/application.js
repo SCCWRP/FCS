@@ -5,7 +5,6 @@ var appRouter = new (Backbone.Router.extend({
     "": "start"
   },
   css: function(){
-	     //console.log("css");
 	     $('#one').trigger('pagecreate');
 	     $('html,body').animate({ scrollTop: '0px'}, 0);
 	     appRouter.resizePage();
@@ -22,20 +21,18 @@ var appRouter = new (Backbone.Router.extend({
 	    //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter); - issues with iphone
   },
   dirty: function(){
-	//alert("dirty");
         var dirtyKeys = window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys_dirty");
-	//alert(dirtyKeys);
         if (dirtyKeys != null){
 		answerList = new AnswerList();
 		var servicesSync = answerList.fetch({ 
         	  success: function (response) {
-			console.log(response);
+			app.showContent(response);
 	        	answerList.syncDirtyAndDestroyed();    
 	          },
 	    	  error: function(model,response){
-			console.log(response.responseText);
-			console.log(response.status);
-			console.log(response.statusText);
+			app.showContent(response.responseText);
+			app.showContent(response.status);
+			app.showContent(response.statusText);
 		  }
 
         	});
@@ -62,10 +59,7 @@ var appRouter = new (Backbone.Router.extend({
 	var oneHeight = (formSize > stageSize) ? minHeight:("" + Math.round($('#one').height()) + "px");
 	//console.log("multi-select: "+ $('#multi-select').height());
 	if($('#consent').height() == 0){
-		//console.log("consent");
-		//console.log("consent: "+$('#consent').height());
 		$('#one').css('height',6100);
-		//console.log("one: "+$('#one').height());
 	} else {
 		if(($('#consent').height() > 0) && (screen.width <= 1024)){
 			$('#one').css('height',6500);
@@ -81,10 +75,8 @@ var appRouter = new (Backbone.Router.extend({
 		var multiHeight = ($('#multi-view').height()+500+"px");
 		$('#one').css('height',multiHeight);
 	}
-	//console.log("oneHeight: "+oneHeight);
   },
   positionFooter: function(){
-	//console.log("positionFooter");
 	$footer = $("#footer");
 	footerHeight = $footer.height();
 	var deviceType = (navigator.userAgent.match(/iPad/i))  == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i))  == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
@@ -93,9 +85,6 @@ var appRouter = new (Backbone.Router.extend({
 		$('#footer').css('font-size','10px');
 	}
 	var drop = (deviceType == "iPhone") ? /*-59*/3:3;
-	//console.log("window scrolltop: "+ $(window).scrollTop());
-	//console.log("window height: "+ $(window).height());
-	//footerTop = ($(window).scrollTop()+$(window).height()-footerHeight)-drop+"px";       
 	$footer.css({
 		position: "fixed",
 		bottom: 0,
@@ -125,12 +114,8 @@ var app = {
 	}
   },
   getLocalData: function(a,t){
-     		//alert("a: "+a);
-     		//alert("t: "+t);
      		var localSave;
-     		//var prevStorage = window.localStorage.getItem("fcs-keys");
      		var prevStorage = window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys");
-      		//alert("prevStorage: "+prevStorage); 
      		if (prevStorage != null){
 	     		//alert("The following session keys are saved " + prevStorage);
 	     		var keysArray = prevStorage.split(',');
@@ -170,14 +155,10 @@ var app = {
 		}
   },
   saveLocalData: function(m){
-	alert("saveLocalData");
   	function fileAppend(fs){
-		//alert("fileAppend");
     		fs.createWriter(function(fileWriter) {
-			//alert("fs.createWriter");
 			fileWriter.onwrite = function(evt) {
-			    alert("fileAppend wrote to file");
-		            app.showContent("fileAppend wrote to file");
+		            app.showContent("wrote to file");
 		        };
 			//go to the end of the file...
 			fileWriter.seek(fileWriter.length);
@@ -185,7 +166,8 @@ var app = {
 			fileWriter.write(blob);
     		}, app.onError);
         }
-	directoryLocation.getFile("survey.txt", {create:true}, fileAppend, app.onError);
+	//directoryLocation.getFile("survey.txt", {create:true}, fileAppend, app.onError);
+	directoryLocation.getFile(timestampFile, {create:true}, fileAppend, app.onError);
   },
   dataSyncCheck: function(da,dc,dt){
 	// send autoid and captureid to see if record is in remote database
@@ -243,7 +225,6 @@ var app = {
   },
   getCamera: function(callback,t){
 	alert("getCamera");
-       	//var image = document.getElementById('myImage');
        	//image.src = imageURI;
 	var imgUrl;
 	function movePicture(picture){
@@ -279,11 +260,9 @@ var app = {
      	navigator.camera.getPicture(onSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
   },
   getGPSOnSuccess: function(position){
-	//alert("getGPSOnSuccess");
 	latlon = position.coords.latitude + "," + position.coords.longitude
   },
   getGPSOnFailure: function(error){
-	//alert("getGPSOnFailure");
 	latlon = "failed";
   },
   getId: function(id) {
@@ -293,31 +272,16 @@ var app = {
     $("#log").html(s);
   },
   onFSSuccess: function(fs){
-	//alert("onFSSuccess");
 	fileSystem = fs;
 	fileSystem.root.getDirectory('org.sccwrp.fcs', {create: true},
 		function(dirEntry) {
 			directoryLocation = dirEntry;
-			//alert(directoryLocation);
-			////alert(SESSIONID);
 			timestampFile = ""+SESSIONID+".txt";
-			////alert(timestampFile);
 			dirEntry.getFile(timestampFile, {create:true}, 
 				function(f) {
 		         		app.showContent("directory and timestamp file created");
 				}, app.onError);
-				/*
-					f.createWriter(function(fileWriter){
-						alert("fs.createWriter");
-						fileWriter.onwrite = function(evt) {
-		            				app.showContent("write to file");
-		        			};
-						fileWriter.write("my data");
-					}, app.onError);
-				*/
 		}, app.onError);
-	//alert(fileSystem.name);
-	//app.showContent("Got file system");
   },
   getById: function(id){
 	return document.querySelector(id);
@@ -348,7 +312,6 @@ var app = {
       	alert('Error: ' + msg);
   },
   submitRemote: function(s,t){
-     //alert("s:"+s);
      //function rsubmit(s){
 	var url = 'http://data.sccwrp.org/sensor/load.php';
 	message = $.ajax({
