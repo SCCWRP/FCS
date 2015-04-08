@@ -291,7 +291,6 @@ var AnswerListView = Backbone.View.extend({
 		//if(timer != 0){ use this code if you want break up modules and then save
 		// dump saved answers to json string 
 		var parsedJSON = JSON.stringify(this.model.toJSON());
-		//alert(parsedJSON);
 		this.model.save(answerDetails, {
 				wait: false,
 				success: function(model,response){

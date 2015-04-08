@@ -158,7 +158,8 @@ var app = {
   	function fileAppend(fs){
     		fs.createWriter(function(fileWriter) {
 			fileWriter.onwrite = function(evt) {
-		            app.showContent("wrote to file");
+		            app.showContent(m);
+		            //app.showContent("wrote to file");
 			    alert("End Survey");
 			    location.reload();
 		        };
