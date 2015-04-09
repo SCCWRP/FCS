@@ -45,8 +45,8 @@ function custom_alert(output_msg, title_msg, callback) {
 		headerClose: true,
 		blankContent: "<p>" + output_msg + "</p>" + 
 		   "<a rel='close' data-role='button' href='#'>Close</a>",
-		//callbackClose: callback 
-		callbackClose: function () { alert("End Survey"); location.assign(HOME); }
+		callbackClose: callback 
+		//callbackClose: function () { alert("End Survey"); location.assign(HOME); }
 		});		   
 };
 

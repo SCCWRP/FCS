@@ -98,7 +98,7 @@
   	"answer": "",
 	"decline": "no",
 	"declinedefault": "",
-	"errmessage": "If not would you be willing to take the survey online or fill in a hard copy to mail back to us?",
+	"errmessage": "",
       	"status": "incomplete",
       	"id": "7"
   },
