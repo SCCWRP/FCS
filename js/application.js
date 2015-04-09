@@ -229,7 +229,7 @@ var app = {
         });
   },
   getCamera: function(callback,t){
-	alert("getCamera");
+	//alert("getCamera");
        	//image.src = imageURI;
 	var imgUrl;
 	function movePicture(picture){
@@ -252,7 +252,7 @@ var app = {
 		window.resolveLocalFileSystemURI(file, movePicture, app.onError);
 	}
     	function onSuccessMove(f){
-		alert("moved pictures successfully");
+		alert("Successfully saved picture.");
 		savedPicture = true;
 		app.showContent(f);
      	}

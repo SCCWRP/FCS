@@ -403,7 +403,7 @@
       	"id": "28"
   },
   {
-	"title": "Survey is Finished",
+	"title": "Finished with survey?",
 	"action": "none",
       	"type": "radio",
       	"menu": "Yes,No",

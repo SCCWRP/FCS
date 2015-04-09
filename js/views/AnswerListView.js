@@ -280,7 +280,11 @@ var AnswerListView = Backbone.View.extend({
 			var current_status = this.model.get('status');
 			this.model.set({ status: "complete" });
 			/* set timer so after save the app goes to receipt */
-			timer = 4;
+			if(currentAnswer == "Yes"){
+				timer = 4;
+			} else {
+				return;
+			}
 		};
 		// create answerDetails object
 		answerDetails = {};
