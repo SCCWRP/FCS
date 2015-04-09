@@ -255,7 +255,7 @@ var AnswerListView = Backbone.View.extend({
 					nextQuestion += 1;	
 				}
 		}
-		if((currentQuestion == 4 && currentAnswer == "No") || (currentQuestion == 7 && currentAnswer == "No")){
+		if(currentQuestion == 4 && currentAnswer == "No"){
 			if(isDevice){
 				var parsedJSON = JSON.stringify(this.model.toJSON());
 				app.saveLocalData(parsedJSON);

@@ -178,7 +178,7 @@
 	"action": "none",
       	"type": "select",
 	"check": "select",
-      	"menu": "Select One,Spanish,English,Mandarin,Cantonese,Vietnamese,Korean,Asian Indian Language,Other",
+      	"menu": "Select One,English,Spanish,Mandarin,Cantonese,Vietnamese,Korean,Asian Indian Language,Other",
         "other": "y",
 	"otype": "",
   	"answer": "",
