@@ -91,13 +91,13 @@ var IntroView = Backbone.View.extend({
 			var dirURL = "cdvfile://localhost/persistent/org.sccwrp.fcs/";
 			var fileURL = f.fullPath;
     			function win(r){
-				app.showContent("file uploaded - "+f.name);
+				app.showContent("file uploaded - "+f.name,true);
 	    			//alert(r); //alert("Code = " + r.responseCode); //alert("Response = " + r.response); //alert("Sent = " + r.bytesSent);
     			}
     			function fail(error){
-    				app.showContent("An error has occurred: Code = " + error.code);
-    				app.showContent("upload error source " + error.source);
-    				app.showContent("upload error target " + error.target);
+    				app.showContent("An error has occurred: Code = " + error.code,true);
+    				app.showContent("upload error source " + error.source,true);
+    				app.showContent("upload error target " + error.target,true);
     			}
     			var uri = encodeURI("http://data.sccwrp.org/fcs/upload.php");
     			var options = new FileUploadOptions();
@@ -113,7 +113,7 @@ var IntroView = Backbone.View.extend({
     			ft.onprogress = function(progressEvent){
 		  	  if (progressEvent.lengthComputable) {
 				var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-				app.showContent("uploading file: "+ perc + "% loaded...");
+				app.showContent("uploading file: "+ perc + "% loaded...",true);
 		  	  } else {
 		  	  }
     			}

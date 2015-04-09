@@ -273,8 +273,12 @@ var app = {
   getId: function(id) {
     return document.querySelector(id);
   },
-  showContent: function(s) {
-    $("#log").html(s);
+  showContent: function(s,t) {
+    if(t){	
+    	$("#log").append(s);
+    } else {
+    	$("#log").html(s);
+    }
   },
   onFSSuccess: function(fs){
 	fileSystem = fs;
