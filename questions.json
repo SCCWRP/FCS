@@ -277,7 +277,7 @@
 	"title": "13. How many years have you lived in this area?",
 	"action": "none",
       	"type": "select",
-	"menu": "Select One,Less than 10 Years,More than 10 Years,Other",
+	"menu": "Select One,Less than 5,6-10,10-20,More than 20",
         "other": "y",
 	"otype": "number",
   	"answer": "",

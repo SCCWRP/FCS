@@ -24,6 +24,8 @@ top:10%;
 margin-left:10%;
 margin-right:10%;
 white-space:normal;
+font-size: 40px;
+font-weight: 300; !important
 }
 #fcsid{
 position: fixed;
@@ -56,9 +58,6 @@ overflow:hidden;
  .libtn{
 	 border: 0;
 	 top: 15px;
- }
- #question {
-	 font-size: 40px; !important
  }
  .ui-btn {
 	 font-size: 25px;
