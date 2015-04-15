@@ -25,6 +25,11 @@ margin-left:10%;
 margin-right:10%;
 white-space:normal;
 }
+#fcsid{
+position: fixed;
+top: 0;
+right: 0;
+}
 input[type=checkbox]{
   position: absolute; 
   overflow: hidden; 

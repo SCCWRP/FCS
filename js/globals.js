@@ -6,6 +6,7 @@ var HOME = location.href;
 var SESSIONID = +new Date;
 var fileSystem;
 var fieldDevice;
+var fcsID;
 var imgUrl;
 var directoryLocation;
 var timestampFile;

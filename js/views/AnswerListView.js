@@ -88,7 +88,7 @@ var AnswerListView = Backbone.View.extend({
 			return;
 		}
 		// No saving until question 8
-		if(this.model.get('qcount') <= 7) {
+		if(this.model.get('qcount') <= 1) {
 			$("#restart").css("visibility", "hidden");
 		} else {
 			$("#restart").css("visibility", "visible");
@@ -241,7 +241,8 @@ var AnswerListView = Backbone.View.extend({
 				nextQuestion += 2;	
 			}
 		}
-		if((currentQuestion == 3 && currentAnswer == "This month") || (currentQuestion == 3 && currentAnswer == "Within the last 3 months")){
+		//if((currentQuestion == 3 && currentAnswer == "This month") || (currentQuestion == 3 && currentAnswer == "Within the last 3 months")){
+		if(currentQuestion == 3 && currentAnswer == "This month"){
 			if(isDevice){
 				var parsedJSON = JSON.stringify(this.model.toJSON());
 				app.saveLocalData(parsedJSON);

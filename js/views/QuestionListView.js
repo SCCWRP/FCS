@@ -9,6 +9,9 @@ var QuestionListView = Backbone.View.extend({
 			var rawTitle = this.model.get("title");
 		}
 		//console.log(rawTitle);
-		$(this.el).html(this.template({"title": rawTitle}));	
+		if(isDevice){
+			$(this.el).html('<b id="fcsid">FCSID:'+fcsID+'</b>');	
+		}
+		$(this.el).append(this.template({"title": rawTitle}));	
 	}
 });

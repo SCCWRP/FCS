@@ -26,9 +26,9 @@ var IntroView = Backbone.View.extend({
 					/* get the id number from end of fcs_id and auto increment */
 					var prevKeyArray = lastKey.fcs_id.split('-');
 					var prevKeyCount = (Number(prevKeyArray[1]) + 1);
-					var fcsID = prevKeyArray[0] + "-" + prevKeyCount;
+					fcsID = prevKeyArray[0] + "-" + prevKeyCount;
 				} else {
-					var fcsID = SESSIONID + "-1";
+					fcsID = SESSIONID + "-1";
 				}
 			} else {
 				alert("no fcs_id key");
@@ -37,12 +37,11 @@ var IntroView = Backbone.View.extend({
 			/* first time data is stored locally */
 			if(isDevice){
 				//var fcsID = device.uuid + "-1";
-				var fcsID = fieldDevice + "-1";
+				fcsID = fieldDevice + "-1";
 			} else {
-				var fcsID = SESSIONID + "-1";
+				fcsID = SESSIONID + "-1";
 			}
 		}
-		//alert(fcsID);
 		this.cleanup();
 		headerView = new HeaderView;
 		$("#home").show();
