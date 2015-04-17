@@ -2,5 +2,5 @@ var AnswerList = Backbone.Collection.extend({
 	initialize: function(){
         },
 	model: Answer,
-	url: 'http://data.sccwrp.org/fcs/index.php/surveys'
+	url: 'http://fcs.sccwrp.org/fcs/index.php/surveys'
 });

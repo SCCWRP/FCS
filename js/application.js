@@ -21,7 +21,7 @@ var appRouter = new (Backbone.Router.extend({
 	    //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter); - issues with iphone
   },
   dirty: function(){
-        var dirtyKeys = window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys_dirty");
+        var dirtyKeys = window.localStorage.getItem("http://fcs.sccwrp.org/fcs/index.php/surveys_dirty");
         if (dirtyKeys != null){
 		answerList = new AnswerList();
 		var servicesSync = answerList.fetch({ 
@@ -115,7 +115,7 @@ var app = {
   },
   getLocalData: function(a,t){
      		var localSave;
-     		var prevStorage = window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys");
+     		var prevStorage = window.localStorage.getItem("http://fcs.sccwrp.org/fcs/index.php/surveys");
      		if (prevStorage != null){
 	     		//alert("The following session keys are saved " + prevStorage);
 	     		var keysArray = prevStorage.split(',');
@@ -131,8 +131,8 @@ var app = {
 		     		//currentTime = currentKey.split('-');
 		     		//alert("currentTimestamp: "+currentTime[2]);
 		     		//var read =  window.localStorage.getItem(currentKey);
-		     		//var read =  JSON.parse(window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys" + currentKey));
-		     		var read =  window.localStorage.getItem("http://data.sccwrp.org/fcs/index.php/surveys" + currentKey);
+		     		//var read =  JSON.parse(window.localStorage.getItem("http://fcs.sccwrp.org/fcs/index.php/surveys" + currentKey));
+		     		var read =  window.localStorage.getItem("http://fcs.sccwrp.org/fcs/index.php/surveys" + currentKey);
 				//var readString = '{"record" : [' + read + ']}';
 				//alert("read: "+ read.timestamp);
 				//alert("read: "+ readString);
@@ -181,7 +181,7 @@ var app = {
 	//alert("dataSyncCheck timestamp: "+ dt);
 	// if the record is in database remove local record
 	//alert("dataSyncCheck");
-        var url = 'http://data.sccwrp.org/sensor/check.php';
+        var url = 'http://fcs.sccwrp.org/sensor/check.php';
         message = $.ajax({
                 type: 'GET',
                 url: url,
@@ -236,7 +236,7 @@ var app = {
 		var currentDate = new Date();
 		var currentTime = currentDate.getTime();
 		var fileName = currentTime + ".jpg";
-		var baseUrl = "http://data.sccwrp.org/fcs/files/";
+		var baseUrl = "http://fcs.sccwrp.org/fcs/files/";
 		var completeUrl = baseUrl + fileName;
 		t.set({ picture_url: completeUrl });
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
@@ -322,7 +322,7 @@ var app = {
   },
   submitRemote: function(s,t){
      //function rsubmit(s){
-	var url = 'http://data.sccwrp.org/sensor/load.php';
+	var url = 'http://fcs.sccwrp.org/sensor/load.php';
 	message = $.ajax({
 		type: 'GET',
 		url: url,
