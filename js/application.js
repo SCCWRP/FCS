@@ -172,7 +172,7 @@ var app = {
     		}, app.onError);
         }
 	//directoryLocation.getFile("survey.txt", {create:true}, fileAppend, app.onError);
-	directoryLocation.getFile(timestampFile, {create:false}, fileAppend, app.onError);
+	directoryLocation.getFile(timestampFile, {create:true}, fileAppend, app.onError);
   },
   dataSyncCheck: function(da,dc,dt){
 	// send autoid and captureid to see if record is in remote database
