@@ -155,7 +155,6 @@ var app = {
 		}
   },
   saveLocalData: function(m){
-	alert(m);
   	function fileAppend(fs){
     		fs.createWriter(function(fileWriter) {
 			fileWriter.onwrite = function(evt) {
