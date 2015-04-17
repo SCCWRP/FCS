@@ -247,8 +247,7 @@ var AnswerListView = Backbone.View.extend({
 				var parsedJSON = JSON.stringify(this.model.toJSON());
 				app.saveLocalData(parsedJSON);
 			} else {
-				alert("End Survey");
-				location.reload();
+				timer = 4;
 			}
 		}
 		if((currentQuestion == 3 && currentAnswer == "Within the last 6 months") || (currentQuestion == 3 && currentAnswer == "More than 6 months ago")){
@@ -261,8 +260,7 @@ var AnswerListView = Backbone.View.extend({
 				var parsedJSON = JSON.stringify(this.model.toJSON());
 				app.saveLocalData(parsedJSON);
 			} else {
-				alert("End Survey");
-				location.reload();
+				timer = 4;
 			}
 		}
 		//if(currentQuestion == 2 && currentAnswer == "Yes"){
