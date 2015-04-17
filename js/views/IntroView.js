@@ -48,7 +48,7 @@ var IntroView = Backbone.View.extend({
 		app.showContent("");
 		footerView = new FooterView;
 		/* set version */
-		var deviceType = navigator.userAgent + "-v.1.0";
+		var deviceType = navigator.userAgent + "-fcs-v1.1";
 		/* get last id */
 	     	var questionList = new QuestionList();
 		answerList = new AnswerList();
