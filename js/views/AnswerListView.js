@@ -243,12 +243,7 @@ var AnswerListView = Backbone.View.extend({
 		}
 		//if((currentQuestion == 3 && currentAnswer == "This month") || (currentQuestion == 3 && currentAnswer == "Within the last 3 months")){
 		if(currentQuestion == 3 && currentAnswer == "This month"){
-			if(isDevice){
-				var parsedJSON = JSON.stringify(this.model.toJSON());
-				app.saveLocalData(parsedJSON);
-			} else {
 				timer = 4;
-			}
 		}
 		if((currentQuestion == 3 && currentAnswer == "Within the last 6 months") || (currentQuestion == 3 && currentAnswer == "More than 6 months ago")){
 				if((participant_type == "Pier Angler") || (participant_type == "Shoreline Angler")){
@@ -256,12 +251,7 @@ var AnswerListView = Backbone.View.extend({
 				}
 		}
 		if((currentQuestion == 4 && currentAnswer == "No") || (currentQuestion == 7 && currentAnswer == "No")){
-			if(isDevice){
-				var parsedJSON = JSON.stringify(this.model.toJSON());
-				app.saveLocalData(parsedJSON);
-			} else {
 				timer = 4;
-			}
 		}
 		//if(currentQuestion == 2 && currentAnswer == "Yes"){
 		if(currentQuestion == 28 && currentAnswer == "Yes"){
