@@ -267,7 +267,7 @@ var AnswerListView = Backbone.View.extend({
 			var current_status = this.model.get('status');
 			this.model.set({ status: "complete" });
 			/* set timer so after save the app goes to receipt */
-			if(currentAnswer == "Finished with Survey"){
+			if(currentAnswer == "Finish Survey"){
 				timer = 4;
 			} else {
 				return;
@@ -344,14 +344,22 @@ var AnswerListView = Backbone.View.extend({
 		$(footerView.el).show();
 		$(this.el).html(this.template(this.model.toJSON()));
 		$('input:checkbox[value="Other"]').on('change', function(s) {
-			//console.log(s);
 			var sid = s.target.id;
 			$('<div>').simpledialog2({
 				mode: 'button',
+				dialogForce: true,
+				animate: false,
+				showModal: true,
+				forceInput: true,
 		   		headerText: '',
 		   		headerClose: false,
+				themeDialog: 'b',
+				theme: 'b',
+				themeInput: 'e',
+				width: '500px',
 				buttonPrompt: 'Type your response',
 				buttonInput: true,
+				corners: true,
 				buttons : {
 			  		'OK': {
 				    		click: function () { 
@@ -372,12 +380,9 @@ var AnswerListView = Backbone.View.extend({
 						$("#"+sid+"").prop('checked', false).checkboxradio('refresh');
 						return;
 					  },
-				          icon: "delete",
-					  theme: "c"
 					}
 		   		}
 	  		})
-			appRouter.css();
 		});
 		$('select').on('change', function(s) {
 			var selectTarget = $(s.currentTarget);
@@ -386,10 +391,17 @@ var AnswerListView = Backbone.View.extend({
 			if(selectTarget.val() == "Other") {
 				$('<div>').simpledialog2({
 				    mode: 'button',
-			   	    headerText: '',
-			   	    headerClose: false,
-			    	    buttonPrompt: 'Type your response',
-			    	    buttonInput: true,
+                                    dialogForce: true,
+                                    animate: false,
+                                    showModal: true,
+                                    forceInput: true,
+                                    headerText: '',
+                                    headerClose: false,
+                                    theme: 'b',
+                                    themeInput: 'e',
+                                    width: '500px',
+                                    buttonPrompt: 'Type your response',
+                                    buttonInput: true,
 			    	    buttons : {
 			          	'OK': {
 				          click: function () { 

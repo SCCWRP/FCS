@@ -406,7 +406,7 @@
 	"title": "Finished with survey?",
 	"action": "none",
       	"type": "radio",
-      	"menu": "Finished with Survey",
+      	"menu": "Finish Survey",
         "other": "n",
 	"otype": "",
   	"answer": "",
