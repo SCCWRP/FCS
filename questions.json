@@ -54,7 +54,7 @@
   	"answer": "",
 	"decline": "no",
 	"declinedefault": "",
-	"errmessage": "We are sorry, but we are only enrolling fisherman who are fishing in San Diego Bay",
+	"errmessage": "",
       	"status": "incomplete",
       	"id": "4"
   },

@@ -216,6 +216,7 @@ var AnswerListView = Backbone.View.extend({
 		        $(".ui-radio").css("pointer-events", "none");
 		}
 		if(other) {
+			alert(other);
 			var currentAnswer = other;
 		} else if(!decline) {
 			var currentAnswer = this.extractAnswer();
@@ -242,16 +243,14 @@ var AnswerListView = Backbone.View.extend({
 			}
 		}
 		//if((currentQuestion == 3 && currentAnswer == "This month") || (currentQuestion == 3 && currentAnswer == "Within the last 3 months")){
-		if(currentQuestion == 3 && currentAnswer == "This month"){
-				timer = 4;
+		if((currentQuestion == 3 && currentAnswer == "This month") || (currentQuestion == 4 && currentAnswer == "No") || (currentQuestion == 7 && currentAnswer == "No")){
+			// first save answer to question then ask user if they want exit survey
+			timer = 3;
 		}
 		if((currentQuestion == 3 && currentAnswer == "Within the last 6 months") || (currentQuestion == 3 && currentAnswer == "More than 6 months ago")){
 				if((participant_type == "Pier Angler") || (participant_type == "Shoreline Angler")){
 					nextQuestion += 1;	
 				}
-		}
-		if((currentQuestion == 4 && currentAnswer == "No") || (currentQuestion == 7 && currentAnswer == "No")){
-				timer = 4;
 		}
 		//if(currentQuestion == 2 && currentAnswer == "Yes"){
 		if(currentQuestion == 28 && currentAnswer == "Yes"){
@@ -292,6 +291,14 @@ var AnswerListView = Backbone.View.extend({
 					//console.log(model);
 					if(that.qHistory.indexOf(currentQuestion) == -1)that.qHistory.push(currentQuestion);
 					// last module - go to receipt
+					if(timer == 3){
+						$("#popupExit").html( new ExitView().render().el );
+						$("#popupExit").trigger("create");
+	  					$("#popupExit").popup("open");
+						$("#popupExit").popup('reposition', 'positionTo: window');
+		  				appRouter.css();
+						return;
+					}
 					if(timer == 4){
 						// save data to sd drive
 						if(isDevice){

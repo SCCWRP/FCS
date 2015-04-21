@@ -26,6 +26,7 @@
 	<div id="log">Version 1.1</div>
     <div> 
     <div id="popupInfo" data-role="popup" class="ui-content" data-position-to="" data-dismissible="false" data-history="false"></div>
+    <div id="popupExit" data-role="popup" class="ui-content" data-position-to="" data-dismissible="false" data-history="false"></div>
     <div id="popupRestart" data-role="popup" class="ui-content" data-position-to="" data-dismissible="false" data-history="false"></div>
     <div id="popupTip" data-role="popup" data-theme="a" data-position-to="#footer" data-tap-toggle="false"></div>
 	<script src="js/vendor/jquery-1.11.0.min.js"></script> 
@@ -126,6 +127,16 @@
 	    		<h3>Are you sure you want to restart the App? <br> Your submission from this session will be saved.</h3>
 			<a href="#" data-role="button" data-inline=true id="restartCancel">Cancel</a>
 			<a href="#" data-role="button" data-inline=true id="restartRestart">Restart</a>
+		</fieldset>
+	    </div>
+	</script>
+	<script type="text/template" id="tpl-exit-details">
+	    <div data-role="header" data-theme="b" class="ui-corner-top"><h3>Exit App?</h3></div>
+	    <div data-role="content" data-theme="b" class="ui-corner-bottom ui-content">
+	    	<fieldset>
+	    		<h3>Are you sure you want to exit the App? <br> Your submission from this session will be saved.</h3>
+			<a href="#" data-role="button" data-inline=true id="exitCancel">Cancel</a>
+			<a href="#" data-role="button" data-inline=true id="exitRestart">Restart</a>
 		</fieldset>
 	    </div>
 	</script>
@@ -324,6 +335,7 @@
 	<script src="js/collections/ReceiptList.js"></script>
 	<script src="js/views/AnswerListView.js"></script>
 	<script src="js/views/DialogView.js"></script>
+	<script src="js/views/ExitView.js"></script>
 	<script src="js/views/FooterView.js"></script>
 	<script src="js/views/HeaderView.js"></script>
 	<script src="js/views/QuestionListView.js"></script>

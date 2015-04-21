@@ -19,7 +19,7 @@ var RestartView = Backbone.View.extend({
 		//location.reload();
 	},
 	cleanup: function() {
-		console.log("RestartView cleanup");
+		//console.log("RestartView cleanup");
 	        this.undelegateEvents();
 	        this.$el.removeData().unbind();
 	        Backbone.View.prototype.remove.call(this);
