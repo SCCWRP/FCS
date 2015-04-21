@@ -216,7 +216,6 @@ var AnswerListView = Backbone.View.extend({
 		        $(".ui-radio").css("pointer-events", "none");
 		}
 		if(other) {
-			alert(other);
 			var currentAnswer = other;
 		} else if(!decline) {
 			var currentAnswer = this.extractAnswer();
@@ -268,7 +267,7 @@ var AnswerListView = Backbone.View.extend({
 			var current_status = this.model.get('status');
 			this.model.set({ status: "complete" });
 			/* set timer so after save the app goes to receipt */
-			if(currentAnswer == "Yes"){
+			if(currentAnswer == "Finished with Survey"){
 				timer = 4;
 			} else {
 				return;
@@ -345,48 +344,74 @@ var AnswerListView = Backbone.View.extend({
 		$(footerView.el).show();
 		$(this.el).html(this.template(this.model.toJSON()));
 		$('input:checkbox[value="Other"]').on('change', function(s) {
+			//console.log(s);
+			var sid = s.target.id;
 			$('<div>').simpledialog2({
 				mode: 'button',
 		   		headerText: '',
-		   		headerClose: true,
+		   		headerClose: false,
 				buttonPrompt: 'Type your response',
 				buttonInput: true,
 				buttons : {
 			  		'OK': {
 				    		click: function () { 
-							var name = $.mobile.sdLastInput;
-							var i = "'" + name + "'";
-						   	$("#aid").controlgroup("container").append('<input type="checkbox" value="' + name + '" id="id' + i + '"> <label for="id' + i + '">' + name + '</label>');
-						   	$("#aid").trigger("create");
-						   	$("input:checkbox[value="+i+"]").prop('checked', true).checkboxradio('refresh');
+							if($.mobile.sdLastInput){
+								var name = $.mobile.sdLastInput;
+								var i = "'" + name + "'";
+						   		$("#aid").controlgroup("container").append('<input type="checkbox" value="' + name + '" id="id' + i + '"> <label for="id' + i + '">' + name + '</label>');
+						   		$("#aid").trigger("create");
+						   		$("input:checkbox[value="+i+"]").prop('checked', true).checkboxradio('refresh');
+							} else {
+								$("#"+sid+"").prop('checked', false).checkboxradio('refresh');
+								return;
+							}
 					   	}
 			  		},
+			          	'Cancel': {
+				          click: function () { 
+						$("#"+sid+"").prop('checked', false).checkboxradio('refresh');
+						return;
+					  },
+				          icon: "delete",
+					  theme: "c"
+					}
 		   		}
 	  		})
+			appRouter.css();
 		});
 		$('select').on('change', function(s) {
 			var selectTarget = $(s.currentTarget);
-			$("body").css("background-color", "white");
-			$("body").css("opacity", "1");
+			//$("body").css("background-color", "white");
+			//$("body").css("opacity", "1");
 			if(selectTarget.val() == "Other") {
 				$('<div>').simpledialog2({
 				    mode: 'button',
 			   	    headerText: '',
-			   	    headerClose: true,
+			   	    headerClose: false,
 			    	    buttonPrompt: 'Type your response',
 			    	    buttonInput: true,
 			    	    buttons : {
 			          	'OK': {
 				          click: function () { 
-						var newoption = $.mobile.sdLastInput;
-						$("select").append($("<option></option>").attr("value", newoption).text(newoption));
-					       	selectTarget.val(newoption);
-						selectTarget.trigger('change');
+						if($.mobile.sdLastInput){
+							var newoption = $.mobile.sdLastInput;
+							$("select").append($("<option></option>").attr("value", newoption).text(newoption));
+					       		selectTarget.val(newoption);
+							selectTarget.trigger('change');
+						} else {
+							return;
+						}
 					  }
 					},
+			          	'Cancel': {
+				          click: function () { 
+						return;
+					  }
+					}
 				    }
 			  	})	
 			};
+			appRouter.css();
 		});
 		footerView.toggle("on");
 		/* !!!!!!!! important this must be in code otherwise events will be lost between rendering !!!!!! */
