@@ -83,3 +83,6 @@ overflow:hidden;
  .ui-header {
 	 min-height: 100px;
  }
+ .select {
+	     font-size: 40px !important;
+ }

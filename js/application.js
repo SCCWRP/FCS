@@ -361,7 +361,6 @@ var app = {
 	$.mobile.linkBindingEnabled = false;
 	$.mobile.hashListeningEnabled = false;
 	$.mobile.pushStateEnabled = false;
-	$.mobile.selectmenu.prototype.options.nativeMenu = false;
 	//app.bindEvents();
 	Backbone.history.start({pushState: true, hashChange: false});
 	// check network status
