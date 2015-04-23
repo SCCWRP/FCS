@@ -51,7 +51,7 @@ overflow:hidden;
 	 height:50%;
  }
  #landList .ui-btn-text{
-	 font-size: 40px;
+	 font-size: 60px;
  }
  #footButtons .ui-btn-text{
 	 font-size: 40px;
@@ -74,11 +74,11 @@ overflow:hidden;
 	 width: 200% !important;
  }
  .ui-select {
-	 font-size: 40px;
+	 font-size: 40px !important;
 }
  body, input, select, textarea, button, .ui-btn {
 	 line-height: 1.1;
-	 font-size: 40px;
+	 font-size: 40px !important;
  }
  .ui-header {
 	 min-height: 100px;
