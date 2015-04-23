@@ -27,6 +27,7 @@ top:10%;
 margin-left:10%;
 margin-right:10%;
 white-space:normal;
+font-size: 40px;
 color: black;
 font-weight: 300; !important
 }
@@ -55,6 +56,9 @@ overflow:hidden;
  #landList .ui-btn-text{
 	 font-size: 60px !important;
  }
+ #footButtons .ui-btn-text{		
+	 font-size: 40px;		
+ }
  .libtn{
 	 border: 0;
 	 top: 15px;
@@ -62,12 +66,22 @@ overflow:hidden;
  .ui-btn {
 	 font-size: 25px;
  }
+ .ui-mini{		
+	 font-size: 40px;		
+ }		
+ .ui-checkbox .ui-btn-text{		
+	 font-size: 40px;		
+ }
  .ui-controlgroup-controls{
 	 text-align: center;
 	 width: 200% !important;
  }
+ .ui-select {		
+	 font-size: 40px;		
+ }
  body, input, select, textarea, button, .ui-btn {
 	 line-height: 1.1;
+	 font-size: 40px;
  }
  .ui-header {
 	 min-height: 100px;
