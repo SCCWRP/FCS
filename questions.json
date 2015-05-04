@@ -148,7 +148,7 @@
 	"title": "4. Of the fish you catch from San Diego Bay, what size portion do you or others you share fish with typically eat for a meal?",
 	"action": "none",
       	"type": "multi",
-      	"menu": "A) 1.5 oz.,B) 3.0 oz,C) 4.5 oz.,D) 6.0 oz.,E) 7.5 oz.,F) Not Applicable",
+      	"menu": "A) 1.5 oz.,B) 3.0 oz,C) 4.5 oz.,D) 6.0 oz.,E) 7.5 oz.,F) Not Applicable,Other",
         "other": "n",
 	"otype": "",
   	"answer": "",
