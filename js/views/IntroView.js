@@ -69,7 +69,7 @@ var IntroView = Backbone.View.extend({
 		$(this.el).html("");
 		$("#header").show();
 		//$("#header").html('<a href="./index.html" id="home" data-role="button" class="ui-btn ui-icon-home">Home</a>');
-		$("#header").html('<a href="./index.html" id="home" data-role="button" class="ui-btn ui-icon-back">Back to Home</a><div id="header_log"></div>');
+		$("#header").html('<a href="./index.html" id="home" data-role="button" class="ui-btn ui-icon-back">Back to Home</a><div id="header_log">Header Log</div>');
 		$("#home").show();
 		/* synchronize local browser storage records */
 		appRouter.dirty();
