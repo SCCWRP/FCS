@@ -186,7 +186,7 @@ var app = {
 	//alert("dataSyncCheck timestamp: "+ dt);
 	// if the record is in database remove local record
 	//alert("dataSyncCheck");
-        var url = 'http://fcs.sccwrp.org/sensor/check.php';
+        var url = 'http://fcs.sccwrp.org/fcs/check.php';
         message = $.ajax({
                 type: 'GET',
                 url: url,
@@ -280,9 +280,9 @@ var app = {
   },
   showContent: function(s,t) {
     if(t){	
-    	$("#log").append(s);
+    	$("#content").append(s);
     } else {
-    	$("#log").html(s);
+    	$("#content").html(s);
     }
   },
   onFSSuccess: function(fs){
@@ -375,7 +375,7 @@ var app = {
 	        //app.showContent("upload error source " + error.source,true);
 		//app.showContent("upload error target " + error.target,true);
      	}
-    	var uri = encodeURI("http://data.sccwrp.org/sensor/upload.php");
+    	var uri = encodeURI("http://fcs.sccwrp.org/fcs/upload.php");
     	var options = new FileUploadOptions();
     	options.fileKey = "file";
     	options.fileName = fileURL.substr(fileURL.lastIndexOf('/')+1);

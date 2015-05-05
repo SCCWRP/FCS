@@ -77,6 +77,7 @@ var IntroView = Backbone.View.extend({
 			filesystem.root.getDirectory('org.sccwrp.fcs', {}, function(dirEntry){
 				var dirReader = dirEntry.createReader();
 				dirReader.readEntries(function(entries){
+					var lastentry = false;
 					for(var i = 0; i < entries.length; i++){
 						var entry = entries[i];
 						if(i == (entries.length - 1)){
@@ -85,52 +86,10 @@ var IntroView = Backbone.View.extend({
 						if(entry.isFile){
 							app.uploadFile(filesystem,entry,lastentry);
 						}
-						/*
-						var entry = entries[i];
-						if(entry.isFile){
-							uploadFile(entry);
-						}
-						*/
 					}
-					//alert("Finished uploading to SCCWRP");
 				}, app.onError);
 			}, app.onError);
 		}, app.onError);
-		/*
-		function uploadFile(f){
-			var dirURL = "cdvfile://localhost/persistent/org.sccwrp.fcs/";
-			var fileURL = f.fullPath;
-    			function win(r){
-				app.showContent("file uploaded - "+f.name,true);
-	    			//alert(r); //alert("Code = " + r.responseCode); //alert("Response = " + r.response); //alert("Sent = " + r.bytesSent);
-    			}
-    			function fail(error){
-    				app.showContent("An error has occurred: Code = " + error.code,true);
-    				app.showContent("upload error source " + error.source,true);
-    				app.showContent("upload error target " + error.target,true);
-    			}
-    			var uri = encodeURI("http://fcs.sccwrp.org/fcs/upload.php");
-    			var options = new FileUploadOptions();
-    			options.fileKey = "file";
-    			options.fileName = fileURL.substr(fileURL.lastIndexOf('/')+1);
-    			//options.mimeType = "text/plain";
-    			options.mimeType = "image/jpeg";
-		
-    			var headers={'headerParam':'headerValue'};
-    			options.headers = headers;
-
-    			var ft = new FileTransfer();
-    			ft.onprogress = function(progressEvent){
-		  	  if (progressEvent.lengthComputable) {
-				var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-				app.showContent("uploading file: "+ perc + "% loaded...",true);
-		  	  } else {
-		  	  }
-    			}
-			finalURL = dirURL + options.fileName;
-			ft.upload(finalURL, uri, win, fail, options);
-		}
-		*/
     	},
 	cleanup: function() {
 	        this.undelegateEvents();
