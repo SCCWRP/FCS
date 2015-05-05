@@ -74,7 +74,7 @@ var IntroView = Backbone.View.extend({
 		/* synchronize local browser storage records */
 		appRouter.dirty();
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(filesystem){
-			fs.root.getDirectory('org.sccwrp.fcs', {}, function(dirEntry){
+			filesystem.root.getDirectory('org.sccwrp.fcs', {}, function(dirEntry){
 				var dirReader = dirEntry.createReader();
 				dirReader.readEntries(function(entries){
 					for(var i = 0; i < entries.length; i++){
