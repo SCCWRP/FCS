@@ -354,11 +354,11 @@ var app = {
       //rsubmit(s);
   },
   uploadFile: function(fs,f,lf) {
-	var dirURL = "cdvfile://localhost/persistent/org.sccwrp.sensor/";
+	var dirURL = "cdvfile://localhost/persistent/org.sccwrp.fcs/";
 	var fileURL = f.fullPath;
     	function win(r){
 		// get directory/create subdirectory/move file to save folder
-		fs.root.getDirectory('org.sccwrp.sensor/save', {create: true},
+		fs.root.getDirectory('org.sccwrp.fcs/save', {create: true},
 			function(dirEntry) {
 				f.moveTo(dirEntry, f.name, 
 					function onSuccessMove(){
