@@ -293,7 +293,7 @@ var app = {
 			timestampFile = ""+SESSIONID+".txt";
 			dirEntry.getFile(timestampFile, {create:true}, 
 				function(f) {
-		         		app.showContent("directory and timestamp file created");
+		         		//app.showContent("directory and timestamp file created");
 				}, app.onError);
 		}, app.onError);
   },
