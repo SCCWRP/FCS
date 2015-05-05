@@ -104,11 +104,16 @@ var appRouter = new (Backbone.Router.extend({
 }));
 var app = {
   dialog: function(message,title,button){
-	function dialogCallback(){
-		//custom_alert("dialogCallback closed");
-	}
 	if(isDevice == true){
-		navigator.notification.alert(message, dialogCallback, title, button)	
+		function alertDismiss(){
+			//alert("alertDismiss");
+		}
+		navigator.notification.alert(
+			message,
+		        alertDismiss,         // callback
+			title,
+			button
+		);
 	} else {
 		alert(message);
 	}
@@ -347,6 +352,51 @@ var app = {
     	});
       //} 
       //rsubmit(s);
+  },
+  uploadFile: function(fs,f,lf) {
+	var dirURL = "cdvfile://localhost/persistent/org.sccwrp.sensor/";
+	var fileURL = f.fullPath;
+    	function win(r){
+		// get directory/create subdirectory/move file to save folder
+		fs.root.getDirectory('org.sccwrp.sensor/save', {create: true},
+			function(dirEntry) {
+				f.moveTo(dirEntry, f.name, 
+					function onSuccessMove(){
+						app.showContent("Finished file: "+f.name+"&nbsp;&nbsp;<img src='img/green_check.png'><br>",true);
+					        if(lf == true){
+					        	$("#header_log").html("Uploading Complete!");
+					        }
+					}, app.onError);
+			}, app.onError);
+    	}
+    	function fail(error){
+		app.showContent("Failed file: "+f.name+" - "+error.code+"&nbsp;&nbsp;<img src='img/red_stop.png'><br>",true);
+		//app.showContent("An error has occurred: Code = " + error.code,true);
+	        //app.showContent("upload error source " + error.source,true);
+		//app.showContent("upload error target " + error.target,true);
+     	}
+    	var uri = encodeURI("http://data.sccwrp.org/sensor/upload.php");
+    	var options = new FileUploadOptions();
+    	options.fileKey = "file";
+    	options.fileName = fileURL.substr(fileURL.lastIndexOf('/')+1);
+    	options.mimeType = "image/jpeg";
+	
+	//var headers={'headerParam':'headerValue','Connection':'Close'};
+    	//options.headers = headers;
+        options.headers = { Connection: "Close" };
+	options.chunkedMode = false;
+
+	var ft = new FileTransfer();
+	ft.onprogress = function(progressEvent){
+	  if (progressEvent.lengthComputable) {
+		var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+		$("#header_log").html("Uploading: "+f.name+" "+ perc +"%");
+	  } else {
+		// empty/fix
+	  }
+	}
+	finalURL = dirURL + options.fileName;
+	ft.upload(finalURL, uri, win, fail, options);
   },
   onDeviceReady: function(){
 	//window.requestFileSystem(window.TEMPORARY, 5*1024*1024 /*5MB*/, app.onFSSuccess, app.onError); // using chrome if mobile see below

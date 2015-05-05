@@ -68,24 +68,35 @@ var IntroView = Backbone.View.extend({
 	submitData: function(){
 		$(this.el).html("");
 		$("#header").show();
-		$("#header").html('<a href="./index.html" id="home" data-role="button" class="ui-btn ui-icon-home">Home</a>');
+		//$("#header").html('<a href="./index.html" id="home" data-role="button" class="ui-btn ui-icon-home">Home</a>');
+		$("#header").html('<a href="./index.html" id="home" data-role="button" class="ui-btn ui-icon-back">Back to Home</a><div id="header_log"></div>');
 		$("#home").show();
 		/* synchronize local browser storage records */
 		appRouter.dirty();
-		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs){
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(filesystem){
 			fs.root.getDirectory('org.sccwrp.fcs', {}, function(dirEntry){
 				var dirReader = dirEntry.createReader();
 				dirReader.readEntries(function(entries){
 					for(var i = 0; i < entries.length; i++){
 						var entry = entries[i];
+						if(i == (entries.length - 1)){
+							lastentry = true;
+						}
+						if(entry.isFile){
+							app.uploadFile(filesystem,entry,lastentry);
+						}
+						/*
+						var entry = entries[i];
 						if(entry.isFile){
 							uploadFile(entry);
 						}
+						*/
 					}
-					alert("Finished uploading to SCCWRP");
+					//alert("Finished uploading to SCCWRP");
 				}, app.onError);
 			}, app.onError);
 		}, app.onError);
+		/*
 		function uploadFile(f){
 			var dirURL = "cdvfile://localhost/persistent/org.sccwrp.fcs/";
 			var fileURL = f.fullPath;
@@ -119,6 +130,7 @@ var IntroView = Backbone.View.extend({
 			finalURL = dirURL + options.fileName;
 			ft.upload(finalURL, uri, win, fail, options);
 		}
+		*/
     	},
 	cleanup: function() {
 	        this.undelegateEvents();
