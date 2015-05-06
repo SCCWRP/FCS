@@ -265,7 +265,7 @@ var AnswerListView = Backbone.View.extend({
 			/* user is finished with survey enrollment/weekly - record is complete */
 			// code below should only happen once - edit mode will cause code to re-execute
 			var current_status = this.model.get('status');
-			this.model.set({ coordinates: latlon, status: "complete" });
+			this.model.set({ status: "complete" });
 			/* set timer so after save the app goes to receipt */
 			if(currentAnswer == "Finish"){
 				timer = 4;
