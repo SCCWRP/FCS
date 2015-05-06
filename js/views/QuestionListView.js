@@ -11,7 +11,9 @@ var QuestionListView = Backbone.View.extend({
 		//console.log(rawTitle);
 		if(isDevice){
 			$(this.el).html('<b id="fcsid">FCSID:'+fcsID+'</b>');	
+			$(this.el).html('<b id="latlonid">Lat/Lon:'+latlon+'</b>');	
 		}
+			$(this.el).html('<b id="latlonid">Lat/Lon:'+latlon+'</b>');	
 		$(this.el).append(this.template({"title": rawTitle}));	
 	}
 });

@@ -36,6 +36,11 @@ position: fixed;
 top: 0;
 right: 0;
 }
+#latlonid{
+position: fixed;
+top: 10;
+right: 0;
+}
 input[type=checkbox]{
   position: absolute; 
   overflow: hidden; 
