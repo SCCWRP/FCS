@@ -10,7 +10,10 @@ var QuestionListView = Backbone.View.extend({
 		}
 		//console.log(rawTitle);
 		if(isDevice){
-			$(this.el).html('<b id="fcsid">FCSID:'+fcsID+'</b><br><b id="latlonid">Lat/Lon:'+latlon+'</b>');	
+			// get coordinates from model to make sure they have been saved
+			var fcsIdSet = this.model.get("fcs_id");
+			var latLonSet = this.model.get("coordinates");
+			$(this.el).html('<b id="fcsid">FCSID:'+fcsIdSet+'</b><br><b id="latlonid">Lat/Lon:'+latLonSet+'</b>');	
 		}
 		$(this.el).append(this.template({"title": rawTitle}));	
 	}
