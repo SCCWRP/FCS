@@ -300,6 +300,7 @@ var AnswerListView = Backbone.View.extend({
 					}
 					if(timer == 4){
 						// save data to sd drive
+						alert(parsedJSON);
 						if(isDevice){
 							app.saveLocalData(parsedJSON);
 						} else {
@@ -323,6 +324,7 @@ var AnswerListView = Backbone.View.extend({
 		var that = this;
 		var parsedJSON = JSON.stringify(this.model.toJSON());
 	        if(isDevice){
+			alert(parsedJSON);
 	        	app.saveLocalData(parsedJSON);
 		} else {
 			// clear stage and events
