@@ -265,7 +265,7 @@ var AnswerListView = Backbone.View.extend({
 			/* user is finished with survey enrollment/weekly - record is complete */
 			// code below should only happen once - edit mode will cause code to re-execute
 			var current_status = this.model.get('status');
-			this.model.set({ status: "complete" });
+			this.model.set({ coordinates: latlon, status: "complete" });
 			/* set timer so after save the app goes to receipt */
 			if(currentAnswer == "Finish"){
 				timer = 4;
@@ -277,12 +277,9 @@ var AnswerListView = Backbone.View.extend({
 		answerDetails = {};
 		answerDetails["q"+currentQuestion] = currentAnswer;
 		this.model.set("q"+currentQuestion, currentAnswer);
+		// set coordinates - gps can take awhile
+		this.model.set({coordinates: latlon});
 		answerDetails.qcount = nextQuestion;
-		// if coordinates is empty and latlon is set then assign
-		if((!answerDetails.coordinates) && (latlon)){
-			answerDetails.coordinates = latlon;
-			alert("coordinates empty and latlon set"+answerDetails.coordinates);
-		}
 		// either set or save here
 		//this.model.set(answerDetails, {validate:true});
 		//if(timer != 0){ use this code if you want break up modules and then save
