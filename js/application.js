@@ -163,12 +163,9 @@ var app = {
   	function fileAppend(fs){
     		fs.createWriter(function(fileWriter) {
 			fileWriter.onwrite = function(evt) {
-		            //app.showContent(m);
-		            //app.showContent("wrote to file");
-			    alert("End Survey");
+			    app.dialog("Survey is Complete","Notification","Ok");
 			    appRouter.navigate('/', {trigger: false});
 			    location.assign(HOME);
-			    //location.reload();
 		        };
 			//go to the end of the file...
 			fileWriter.seek(fileWriter.length);
@@ -257,9 +254,9 @@ var app = {
 		window.resolveLocalFileSystemURI(file, movePicture, app.onError);
 	}
     	function onSuccessMove(f){
-		alert("Successfully saved picture.");
+		app.dialog("Saved Picture","Notification","Ok");
 		savedPicture = true;
-		app.showContent(f);
+		//app.showContent(f);
      	}
     	function onSuccess(imageURI){
 		var returnFile = findPictureLocation(imageURI);
