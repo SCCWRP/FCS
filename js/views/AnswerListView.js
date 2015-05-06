@@ -278,6 +278,11 @@ var AnswerListView = Backbone.View.extend({
 		answerDetails["q"+currentQuestion] = currentAnswer;
 		this.model.set("q"+currentQuestion, currentAnswer);
 		answerDetails.qcount = nextQuestion;
+		// if coordinates is empty and latlon is set then assign
+		if((!answerDetails.coordinates) && (latlon)){
+			answerDetails.coordinates = latlon;
+			alert("coordinates empty and latlon set"+answerDetails.coordinates);
+		}
 		// either set or save here
 		//this.model.set(answerDetails, {validate:true});
 		//if(timer != 0){ use this code if you want break up modules and then save
@@ -300,14 +305,13 @@ var AnswerListView = Backbone.View.extend({
 					}
 					if(timer == 4){
 						// save data to sd drive
-						alert(parsedJSON);
 						if(isDevice){
 							app.saveLocalData(parsedJSON);
 						} else {
 							// clear stage and events
 							that.cleanup(); 
 							// return receipt from database
-							alert("End Survey");
+							app.dialog("Survey is Complete","Notification","Ok");
 							appRouter.navigate('/', {trigger: false});
 							location.assign(HOME);
 						}
@@ -324,7 +328,6 @@ var AnswerListView = Backbone.View.extend({
 		var that = this;
 		var parsedJSON = JSON.stringify(this.model.toJSON());
 	        if(isDevice){
-			alert(parsedJSON);
 	        	app.saveLocalData(parsedJSON);
 		} else {
 			// clear stage and events
