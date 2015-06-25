@@ -30,7 +30,7 @@ var Receipt = Backbone.Model.extend({
 		};
 		this.rollback = attrs;
 	},
-	urlRoot: 'http://data.sccwrp.org/fcs/index.php/surveys',
+	urlRoot: 'http://data.sccwrp.org/fcs/index2.php/surveys',
     	/* critical - backbone by default will not replace client side attributes with server response
 		https://github.com/jashkenas/backbone/issues/1069
 	   instead we will return the response.event object to our model which will replace those client attributes

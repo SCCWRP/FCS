@@ -21,7 +21,7 @@ var appRouter = new (Backbone.Router.extend({
 	    //$(window).scroll(appRouter.positionFooter).resize(appRouter.positionFooter); - issues with iphone
   },
   dirty: function(){
-        var dirtyKeys = window.localStorage.getItem("http://fcs.sccwrp.org/fcs/index.php/surveys_dirty");
+        var dirtyKeys = window.localStorage.getItem("http://fcs.sccwrp.org/fcs/index2.php/surveys_dirty");
         if (dirtyKeys != null){
 		answerList = new AnswerList();
 		var servicesSync = answerList.fetch({ 
@@ -120,7 +120,7 @@ var app = {
   },
   getLocalData: function(a,t){
      		var localSave;
-     		var prevStorage = window.localStorage.getItem("http://fcs.sccwrp.org/fcs/index.php/surveys");
+     		var prevStorage = window.localStorage.getItem("http://fcs.sccwrp.org/fcs/index2.php/surveys");
      		if (prevStorage != null){
 	     		//alert("The following session keys are saved " + prevStorage);
 	     		var keysArray = prevStorage.split(',');
@@ -136,8 +136,8 @@ var app = {
 		     		//currentTime = currentKey.split('-');
 		     		//alert("currentTimestamp: "+currentTime[2]);
 		     		//var read =  window.localStorage.getItem(currentKey);
-		     		//var read =  JSON.parse(window.localStorage.getItem("http://fcs.sccwrp.org/fcs/index.php/surveys" + currentKey));
-		     		var read =  window.localStorage.getItem("http://fcs.sccwrp.org/fcs/index.php/surveys" + currentKey);
+		     		//var read =  JSON.parse(window.localStorage.getItem("http://fcs.sccwrp.org/fcs/index2.php/surveys" + currentKey));
+		     		var read =  window.localStorage.getItem("http://fcs.sccwrp.org/fcs/index2.php/surveys" + currentKey);
 				//var readString = '{"record" : [' + read + ']}';
 				//alert("read: "+ read.timestamp);
 				//alert("read: "+ readString);

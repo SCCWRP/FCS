@@ -252,7 +252,7 @@ var AnswerListView = Backbone.View.extend({
 				}
 		}
 		//if(currentQuestion == 2 && currentAnswer == "Yes"){
-		if(currentQuestion == 28 && currentAnswer == "Yes"){
+		if(currentQuestion == 29 && currentAnswer == "Yes"){
 			var testUrl = "disabled";
 			if(isDevice){
 				app.getCamera(function(imgUrl){ }, this.model);

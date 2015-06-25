@@ -174,7 +174,22 @@
       	"id": "12"
   },
   {
-	"title": "6. What is the most common language that is spoken in your home?",
+        "title": "6. What portion of the fish do you eat?",
+        "action": "none",
+        "type": "select",
+        "check": "select",
+        "menu": "Select One,Filet,Whole Fish,Other",
+        "other": "y",
+        "otype": "",
+        "answer": "",
+        "decline": "no",
+        "declinedefault": "",
+        "errmessage": "",
+        "status": "incomplete",
+        "id": "13"
+  },
+  {
+	"title": "7. What is the most common language that is spoken in your home?",
 	"action": "none",
       	"type": "select",
 	"check": "select",
@@ -186,10 +201,10 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "13"
+      	"id": "14"
   },
   {
-	"title": "7. What types of fish do you catch when you are fishing in San Diego Bay?",
+	"title": "8. What types of fish do you catch when you are fishing in San Diego Bay?",
 	"action": "none",
       	"type": "multi",
       	"menu": "1) Spotted Sand Bass,2) Kelp Bass,3) Barred Sand Bass,4) California Corbina,5) Shortfin Corvina,6) Yellowfin Croaker,7) Spotfin Croaker,8) White Seabass,9) California Halibut,10) Diamond Turbot,11) Spotted Turbot,12) Black Perch,13) Opaleye,14) Pile Perch,15) Rainbow Surfperch,16) Shiner Perch,17) Bat Ray,18) Gray Smoothhound Shark,19) Leopard Shark,20) Round Stingray,21) Shovelnose Guitarfish,22) Bonefish,23) Pacific Chub Mackerel,24) California Lizardfish,25) Striped Mullet,26) Pacific Mackerel,27) California Scorpionfish,28) Smelt,29) California needlefish,30) Anchovy,Other",
@@ -200,10 +215,10 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "14"
+      	"id": "15"
   },
   {
-	"title": "8. Who else eats the fish that you catch?",
+	"title": "9. Who else eats the fish that you catch?",
 	"action": "none",
       	"type": "multi",
       	"menu": "Family,Friends,Neighbors,Other,No one else eats the fish that I catch",
@@ -214,10 +229,10 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "15"
+      	"id": "16"
   },
   {
-	"title": "9. How many children eat the fish that you catch?",
+	"title": "10. How many children eat the fish that you catch?",
 	"action": "none",
       	"type": "select",
       	"menu": "Select One,0,1,2,3,4,5,6,7,8,9,10,Other",
@@ -228,10 +243,10 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "16"
+      	"id": "17"
   },
   {
-	"title": "10. How many meals a week do you/your family eat fish that you caught from here?",
+	"title": "11. How many meals a week do you/your family eat fish that you caught from here?",
 	"action": "none",
       	"type": "select",
       	"menu": "Select One,Zero meals,1 meal a week,2-3 meals a week,4-5 meals a week,More than 5 meals a week",
@@ -242,10 +257,10 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "17"
+      	"id": "18"
   },
   {
-	"title": "11. In the last 30 days how many meals have you/your family eaten with fish that you caught from here?",
+	"title": "12. In the last 30 days how many meals have you/your family eaten with fish that you caught from here?",
 	"action": "none",
       	"type": "select",
 	"check": "select",
@@ -257,10 +272,10 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "18"
+      	"id": "19"
   },
   {
-	"title": "12. What form of transportation did you take to get here to fish?",
+	"title": "13. What form of transportation did you take to get here to fish?",
 	"action": "none",
       	"type": "select",
       	"menu": "Select One,Car,Bus,Walk,Bike,Train,Other",
@@ -271,10 +286,10 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "19"
+      	"id": "20"
   },
   {
-	"title": "13. How many years have you lived in this area?",
+	"title": "14. How many years have you lived in this area?",
 	"action": "none",
       	"type": "select",
 	"menu": "Select One,Less than 5,6-10,11-20,More than 20,I don't live in the area",
@@ -285,10 +300,10 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "20"
+      	"id": "21"
   },
   {
-	"title": "14. Where else do you like to catch fish in the local area?",
+	"title": "15. Where else do you like to catch fish in the local area?",
 	"action": "none",
       	"type": "select",
       	"menu": "Select One,North Bay,Mid Bay,South Bay,Mission Bay,Ocean,None,Other",
@@ -299,10 +314,10 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "21"
+      	"id": "22"
   },
   {
-	"title": "15. Approximately how far do you live from San Diego Bay?",
+	"title": "16. Approximately how far do you live from San Diego Bay?",
 	"action": "none",
       	"type": "select",
       	"menu": "Select One,Less than 25 Miles,More than 25 Miles",
@@ -314,10 +329,10 @@
 	"errmessage": "",
       	"status": "incomplete",
 	"placeholder": "Enter Distance",
-      	"id": "22"
+      	"id": "23"
   },
   {
-	"title": "16. Are you aware of any fish advisories on fish consumed from San Diego Bay?",
+	"title": "17. Are you aware of any fish advisories on fish consumed from San Diego Bay?",
 	"action": "none",
       	"type": "radio",
       	"menu": "Yes,No",
@@ -328,10 +343,10 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "23"
+      	"id": "24"
   },
   {
-	"title": "17. How would you categorize your ethnicity?",
+	"title": "18. How would you categorize your ethnicity?",
 	"action": "none",
       	"type": "multi",
       	"menu": "Caucasian/White,Black/African American,Hispanic/Latino,American Indian or Alaska Native,Asian,Native Hawaiian/Pacific Islander,Other",
@@ -342,10 +357,10 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "24"
+      	"id": "25"
   },
   {
-	"title": "18. In what year were you born?",
+	"title": "19. In what year were you born?",
 	"action": "none",
       	"type": "select",
 	"check": "select",
@@ -357,10 +372,10 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "25"
+      	"id": "26"
   },
   {
-	"title": "19. What town do you live in?",
+	"title": "20. What town do you live in?",
 	"action": "none",
       	"type": "text",
       	"menu": "",
@@ -372,10 +387,10 @@
 	"errmessage": "",
       	"status": "incomplete",
 	"placeholder": "Enter Town",
-      	"id": "26"
+      	"id": "27"
   },
   {
-	"title": "20. Do you have a smartphone?",
+	"title": "21. Do you have a smartphone?",
 	"action": "none",
       	"type": "radio",
       	"menu": "Yes,No",
@@ -386,10 +401,10 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "27"
+      	"id": "28"
   },
   {
-	"title": "21. Is there a fish you've caught today you plan to eat? May I take a photo of it?",
+	"title": "22. Is there a fish you've caught today you plan to eat? May I take a photo of it?",
 	"action": "none",
       	"type": "select",
       	"menu": "Select One,Yes,No,N/A",
@@ -400,7 +415,7 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "28"
+      	"id": "29"
   },
   {
 	"title": "Finished with survey?",
@@ -414,6 +429,6 @@
 	"declinedefault": "",
 	"errmessage": "",
       	"status": "incomplete",
-      	"id": "29"
+      	"id": "30"
   }
 ]
