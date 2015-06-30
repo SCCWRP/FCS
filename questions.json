@@ -305,8 +305,8 @@
   {
 	"title": "15. Where else do you like to catch fish in the local area?",
 	"action": "none",
-      	"type": "select",
-      	"menu": "Select One,North Bay,Mid Bay,South Bay,Mission Bay,Ocean,None,Other",
+      	"type": "multi",
+      	"menu": "North Bay,Mid Bay,South Bay,Mission Bay,Ocean,None,Other",
         "other": "y",
 	"otype": "text",
   	"answer": "",
