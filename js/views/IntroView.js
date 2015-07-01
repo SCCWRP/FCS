@@ -12,14 +12,14 @@ var IntroView = Backbone.View.extend({
 		$("#content").html( new UtilitiesView().render().el );
      	},
     	startSurvey: function(){
-  		var prevStorage = window.localStorage.getItem("http://fcs.sccwrp.org/fcs/index.php/surveys");
+  		var prevStorage = window.localStorage.getItem("http://fcs.sccwrp.org/fcs/index2.php/surveys");
 		if(prevStorage){
 			/* get last key */
 			// turn string into array
 			var prevArray = prevStorage.split(',');
 			var locateLastKey = prevArray[prevArray.length-1];
 			/* turn last key into object */
-     			var lastKey = JSON.parse(window.localStorage.getItem("http://fcs.sccwrp.org/fcs/index.php/surveys" + locateLastKey));
+     			var lastKey = JSON.parse(window.localStorage.getItem("http://fcs.sccwrp.org/fcs/index2.php/surveys" + locateLastKey));
 			/* is current key null */
 			if(lastKey.fcs_id){
 				if(isDevice){
